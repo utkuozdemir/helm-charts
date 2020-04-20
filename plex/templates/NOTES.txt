@@ -1,0 +1,15 @@
+For the initial setup, do "kubectl -n {{ .Release.Namespace }} port-forward svc/plex 8888:{{ .Values.service.port }}",
+hit http://localhost:8888/web so Plex can find the server. This is one time operation.
+See "On a different Network" section here: https://support.plex.tv/articles/200288586-installation/
+
+{{- if .Values.ingress.enabled }}
+Ingress is enabled, so the app is accessible from:
+{{- range $host := .Values.ingress.hosts }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ . }}{{ $.Values.ingress.path }}
+{{- end }}
+
+To enable remote access, go to Settings -> Network -> Custom server access URLs
+and set the value to one of the ingress URLs above, and save changes.
+Afterwards, go to Settings -> Network -> Remote Access, and disable/re-enable, retry etc.
+(Remote access check with custom URLs is somewhat buggy)
+{{- end }}

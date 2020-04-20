@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "plex.fullname" . }}
+  labels:
+{{ include "plex.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: plex
+      protocol: TCP
+      name: plex
+  selector:
+    app.kubernetes.io/name: {{ include "plex.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

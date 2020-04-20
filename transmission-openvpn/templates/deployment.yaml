@@ -1,0 +1,81 @@
+apiVersion: {{ template "deployment.apiVersion" . }}
+kind: Deployment
+metadata:
+  name: {{ include "transmission-openvpn.fullname" . }}
+  labels:
+{{ include "transmission-openvpn.labels" . | indent 4 }}
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "transmission-openvpn.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "transmission-openvpn.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - envFrom:
+            - configMapRef:
+                name: {{ include "transmission-openvpn.fullname" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          name: {{ .Chart.Name }}
+          ports:
+            - containerPort: 9091
+              name: http
+            - containerPort: {{ .Values.peerPort }}
+              name: peer
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          volumeMounts:
+            - mountPath: /data
+              name: storage
+            - mountPath: /etc/openvpn/custom/default.ovpn
+              name: openvpn-config
+              subPath: default.ovpn
+            - mountPath: /dev/net/tun
+              name: dev-net-tun
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      dnsConfig:
+        nameservers:
+          - 1.1.1.1
+          - 1.0.0.1
+      terminationGracePeriodSeconds: 180
+      volumes:
+        - name: storage
+      {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "transmission-openvpn.fullname" .) }}
+      {{- else }}
+          emptyDir: {}
+      {{- end }}
+        - name: openvpn-config
+          secret:
+            secretName: {{ include "transmission-openvpn.fullname" . }}
+        - hostPath:
+            path: /dev/net/tun
+            type: CharDevice
+          name: dev-net-tun

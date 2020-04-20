@@ -1,0 +1,106 @@
+apiVersion: {{ template "deployment.apiVersion" . }}
+kind: Deployment
+metadata:
+  name: {{ include "plex.fullname" . }}
+  labels:
+{{ include "plex.labels" . | indent 4 }}
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "plex.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "plex.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - envFrom:
+            - configMapRef:
+                name: {{ include "plex.fullname" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          name: {{ .Chart.Name }}
+          ports:
+            - name: plex
+              containerPort: 32400
+              protocol: TCP
+            - containerPort: 3005
+              hostPort: 3005
+              protocol: TCP
+            - containerPort: 8324
+              hostPort: 8324
+              protocol: TCP
+            - containerPort: 32469
+              hostPort: 32469
+              protocol: TCP
+            - containerPort: 1900
+              hostPort: 1900
+              protocol: UDP
+            - containerPort: 32410
+              hostPort: 32410
+              protocol: UDP
+            - containerPort: 32412
+              hostPort: 32412
+              protocol: UDP
+            - containerPort: 32413
+              hostPort: 32413
+              protocol: UDP
+            - containerPort: 32414
+              hostPort: 32414
+              protocol: UDP
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          volumeMounts:
+            - mountPath: /transcode
+              name: transcode
+            - mountPath: /config
+              name: config
+            - mountPath: /data
+              name: data
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      terminationGracePeriodSeconds: 180
+      volumes:
+        - name: transcode
+            {{- if .Values.persistence.transcode.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.transcode.existingClaim | default (printf "%s-%s" (include "plex.fullname" .) "transcode" ) }}
+            {{- else }}
+          emptyDir: {}
+          {{- end }}
+        - name: config
+      {{- if .Values.persistence.config.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.config.existingClaim | default (printf "%s-%s" (include "plex.fullname" .) "config" ) }}
+      {{- else }}
+          emptyDir: {}
+      {{- end }}
+        - name: data
+      {{- if .Values.persistence.data.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.data.existingClaim | default (printf "%s-%s" (include "plex.fullname" .) "data" ) }}
+      {{- else }}
+          emptyDir: {}
+      {{- end }}
