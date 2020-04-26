@@ -43,30 +43,9 @@ spec:
             - name: plex
               containerPort: 32400
               protocol: TCP
-            - containerPort: 3005
-              hostPort: 3005
-              protocol: TCP
-            - containerPort: 8324
-              hostPort: 8324
-              protocol: TCP
-            - containerPort: 32469
-              hostPort: 32469
-              protocol: TCP
-            - containerPort: 1900
-              hostPort: 1900
-              protocol: UDP
-            - containerPort: 32410
-              hostPort: 32410
-              protocol: UDP
-            - containerPort: 32412
-              hostPort: 32412
-              protocol: UDP
-            - containerPort: 32413
-              hostPort: 32413
-              protocol: UDP
-            - containerPort: 32414
-              hostPort: 32414
-              protocol: UDP
+              {{- if and .Values.plex.hostPort.enabled }}
+              hostPort: {{ .Values.plex.hostPort.port }}
+              {{- end }}
           readinessProbe:
             httpGet:
               path: /web/index.html
