@@ -6,7 +6,6 @@ replicaCount: 1
 
 image:
   repository: metalmatze/transmission-exporter
-  tag: 0.3.0
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -58,7 +57,5 @@ web:
 
 transmission:
   addr: http://transmission:9091
-  authentication:
-    enabled: false
-    #username: user
-    #password: pass
+  # username: user
+  # password: pass
