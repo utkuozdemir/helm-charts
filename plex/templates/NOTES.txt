@@ -21,7 +21,7 @@
 {{- end }}
 
 
-For the initial setup, do "kubectl -n {{ .Release.Namespace }} port-forward svc/{{ include "plex.fullname" . }}) 8888:{{ .Values.service.port }}",
+For the initial setup, do "kubectl -n {{ .Release.Namespace }} port-forward svc/{{ include "plex.fullname" . }} 8888:{{ .Values.service.port }}",
 hit http://localhost:8888/web so Plex can find the server. This is one time operation.
 See "On a different Network" section here: https://support.plex.tv/articles/200288586-installation/
 

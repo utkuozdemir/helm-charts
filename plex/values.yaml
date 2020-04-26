@@ -103,7 +103,6 @@ affinity: {}
 
 # see the explanation for the parameters: https://github.com/plexinc/pms-docker#parameters
 plex: {}
-  # hostname: plex-server
   # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   # timezone: UTC
   # claim:
