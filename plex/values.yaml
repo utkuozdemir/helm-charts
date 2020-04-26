@@ -8,6 +8,7 @@
 image:
   repository: plexinc/pms-docker
   pullPolicy: IfNotPresent
+  # tag: plexpass
 
 imagePullSecrets: []
 nameOverride: ""
