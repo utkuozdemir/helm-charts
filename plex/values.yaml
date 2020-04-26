@@ -1,34 +1,86 @@
-# Default values for plex
+# Default values for plex.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# https://hub.docker.com/r/plexinc/pms-docker/tags
+# global:
+#   storageClass: my-storage-class
+
 image:
   repository: plexinc/pms-docker
-  tag: public
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext:
+  capabilities:
+    add:
+      - NET_ADMIN
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
 service:
   type: ClusterIP
-  port: 32400
+  port: 80
 
 ingress:
   enabled: false
   annotations: {}
     # kubernetes.io/ingress.class: nginx
-  # kubernetes.io/tls-acme: "true"
-  labels: {}
-  path: /
+    # kubernetes.io/tls-acme: "true"
   hosts:
-    - chart-example.local
+    - host: chart-example.local
+      paths: []
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
+
+config:
+  persistence:
+    enabled: false
+    # storageClass: "my-storage-class"
+    annotations:
+    accessModes:
+      - ReadWriteOnce
+    ## Persistent Volume size
+    size: 8Gi
+
+data:
+  persistence:
+    enabled: false
+    # storageClass: "my-storage-class"
+    annotations:
+    accessModes:
+      - ReadWriteOnce
+    ## Persistent Volume size
+    size: 64Gi
+
+transcode:
+  persistence:
+    enabled: false
+    # storageClass: "my-storage-class"
+    annotations:
+    accessModes:
+      - ReadWriteOnce
+    ## Persistent Volume size
+    size: 2Gi
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -48,43 +100,18 @@ tolerations: []
 
 affinity: {}
 
-## Enable persistence using Persistent Volume Claims
-## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
-##
-persistence:
-  transcode:
-    enabled: true
-    # storageClassName: default
-    accessModes:
-      - ReadWriteOnce
-    size: 8Gi
-    annotations:
-      "helm.sh/resource-policy": keep
-    # finalizers: []
-    # subPath: ""
-    # existingClaim:
-  config:
-    enabled: true
-    # storageClassName: default
-    accessModes:
-      - ReadWriteOnce
-    size: 1Gi
-    annotations:
-      "helm.sh/resource-policy": keep
-    # finalizers: []
-    # subPath: ""
-    # existingClaim:
-  data:
-    enabled: true
-    # storageClassName: default
-    accessModes:
-      - ReadWriteOnce
-    size: 32Gi
-    annotations:
-      "helm.sh/resource-policy": keep
-    # finalizers: []
-    # subPath: ""
-    # existingClaim:
-
-timezone: UTC
-hostname: plex-server
+# see the explanation for the parameters: https://github.com/plexinc/pms-docker#parameters
+plex: {}
+  # hostname: plex-server
+  # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # timezone: UTC
+  # claim:
+  # uid: 911
+  # gid: 911
+  # changeConfigDirOwnership: true
+  # advertiseIp: http://10.1.1.23:32400
+  # allowedNetworks:
+  #   - 192.168.1.0/24
+  #   - 172.16.0.0/16
+  # otherEnv:
+  #   - MY_VAR: my_value

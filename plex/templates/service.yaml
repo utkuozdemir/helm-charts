@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ include "plex.fullname" . }}
   labels:
-{{ include "plex.labels" . | indent 4 }}
+    {{- include "plex.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,5 +12,4 @@ spec:
       protocol: TCP
       name: plex
   selector:
-    app.kubernetes.io/name: {{ include "plex.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    {{- include "plex.selectorLabels" . | nindent 4 }}
