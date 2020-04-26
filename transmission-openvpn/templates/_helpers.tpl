@@ -35,101 +35,65 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "transmission-openvpn.labels" -}}
-app.kubernetes.io/name: {{ include "transmission-openvpn.name" . }}
 helm.sh/chart: {{ include "transmission-openvpn.chart" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
+{{ include "transmission-openvpn.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
-{{/*API VERSIONS*/}}
-
 {{/*
-Return the appropriate apiVersion for networkpolicy.
+Selector labels
 */}}
-{{- define "networkpolicy.apiVersion" -}}
-{{- if semverCompare ">=1.4-0, <1.7-0" .Capabilities.KubeVersion.GitVersion -}}
-{{- print "extensions/v1beta1" -}}
-{{- else if semverCompare "^1.7-0" .Capabilities.KubeVersion.GitVersion -}}
-{{- print "networking.k8s.io/v1" -}}
-{{- end -}}
+{{- define "transmission-openvpn.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "transmission-openvpn.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
 {{/*
-Return the appropriate apiVersion for deployment.
+Create the name of the service account to use
 */}}
-{{- define "deployment.apiVersion" -}}
-{{- if semverCompare "<1.9-0" .Capabilities.KubeVersion.GitVersion -}}
-{{- print "apps/v1beta2" -}}
+{{- define "transmission-openvpn.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create -}}
+    {{ default (include "transmission-openvpn.fullname" .) .Values.serviceAccount.name }}
 {{- else -}}
-{{- print "apps/v1" -}}
+    {{ default "default" .Values.serviceAccount.name }}
 {{- end -}}
 {{- end -}}
 
 {{/*
-Return the appropriate apiVersion for statefulset.
+Return the proper Storage Class
+Reference taken from various Bitnami charts: https://github.com/bitnami/charts
 */}}
-{{- define "statefulset.apiVersion" -}}
-{{- if semverCompare "<1.9-0" .Capabilities.KubeVersion.GitVersion -}}
-{{- print "apps/v1beta2" -}}
+{{- define "transmission-openvpn.data.storageClass" -}}
+{{/*
+Helm 2.11 supports the assignment of a value to a variable defined in a different scope,
+but Helm 2.9 and 2.10 does not support it, so we need to implement this if-else logic.
+*/}}
+{{- if .Values.global -}}
+    {{- if .Values.global.storageClass -}}
+        {{- if (eq "-" .Values.global.storageClass) -}}
+            {{- printf "storageClassName: \"\"" -}}
+        {{- else }}
+            {{- printf "storageClassName: %s" .Values.global.storageClass -}}
+        {{- end -}}
+    {{- else -}}
+        {{- if .Values.persistence.data.storageClass -}}
+              {{- if (eq "-" .Values.persistence.data.storageClass) -}}
+                  {{- printf "storageClassName: \"\"" -}}
+              {{- else }}
+                  {{- printf "storageClassName: %s" .Values.persistence.data.storageClass -}}
+              {{- end -}}
+        {{- end -}}
+    {{- end -}}
 {{- else -}}
-{{- print "apps/v1" -}}
-{{- end -}}
-{{- end -}}
-
-{{/*
-Return the appropriate apiVersion for ingress.
-*/}}
-{{- define "ingress.apiVersion" -}}
-{{- if semverCompare "<1.14-0" .Capabilities.KubeVersion.GitVersion -}}
-{{- print "extensions/v1beta1" -}}
-{{- else -}}
-{{- print "networking.k8s.io/v1beta1" -}}
-{{- end -}}
-{{- end -}}
-
-{{/*
-Return the appropriate apiVersion for daemonset.
-*/}}
-{{- define "daemonset.apiVersion" -}}
-{{- if semverCompare "<1.9-0" .Capabilities.KubeVersion.GitVersion -}}
-{{- print "extensions/v1beta1" -}}
-{{- else -}}
-{{- print "apps/v1" -}}
-{{- end -}}
-{{- end -}}
-
-{{/*
-Return the appropriate apiVersion for cronjob.
-*/}}
-{{- define "cronjob.apiVersion" -}}
-{{- if semverCompare "< 1.8-0" .Capabilities.KubeVersion.GitVersion -}}
-{{- print "batch/v2alpha1" }}
-{{- else if semverCompare ">=1.8-0" .Capabilities.KubeVersion.GitVersion -}}
-{{- print "batch/v1beta1" }}
-{{- end -}}
-{{- end -}}
-
-{{/*
-Return the appropriate apiVersion for podsecuritypolicy.
-*/}}
-{{- define "podsecuritypolicy.apiVersion" -}}
-{{- if semverCompare "<1.10-0" .Capabilities.KubeVersion.GitVersion -}}
-{{- print "extensions/v1beta1" -}}
-{{- else -}}
-{{- print "policy/v1beta1" -}}
-{{- end -}}
-{{- end -}}
-
-{{/*
-Return the appropriate apiVersion for rbac resources.
-*/}}
-{{- define "rbac.apiVersion" -}}
-{{- if semverCompare "^1.8-0" .Capabilities.KubeVersion.GitVersion -}}
-"rbac.authorization.k8s.io/v1"
-{{- else -}}
-"rbac.authorization.k8s.io/v1beta1"
+    {{- if .Values.persistence.data.storageClass -}}
+        {{- if (eq "-" .Values.persistence.data.storageClass) -}}
+            {{- printf "storageClassName: \"\"" -}}
+        {{- else }}
+            {{- printf "storageClassName: %s" .Values.persistence.data.storageClass -}}
+        {{- end -}}
+    {{- end -}}
 {{- end -}}
 {{- end -}}

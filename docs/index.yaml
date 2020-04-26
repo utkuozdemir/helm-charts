@@ -3,7 +3,7 @@ entries:
   gohttpserver:
   - apiVersion: v1
     appVersion: latest
-    created: "2020-04-26T17:03:03.129269+02:00"
+    created: "2020-04-26T19:12:38.52244+02:00"
     description: GoHttpServer
     digest: 1ca503f321b2578255fb0444235796c14673d3c1ab0172272e1751d6f8f318f8
     name: gohttpserver
@@ -13,7 +13,7 @@ entries:
   plex:
   - apiVersion: v2
     appVersion: 1.19.1.2645-ccb6eb67e
-    created: "2020-04-26T17:03:03.130513+02:00"
+    created: "2020-04-26T19:12:38.523895+02:00"
     description: Plex Media Server Helm chart that is based on plexinc/pms-docker
       Docker image.
     digest: cac6966c20326a7a7daf558c21f6475db4ece84b7cb3ab533585fd6ec0d1a70d
@@ -24,7 +24,7 @@ entries:
     version: 1.0.0
   - apiVersion: v1
     appVersion: 1.16.5.1554-1e5ff713d
-    created: "2020-04-26T17:03:03.129869+02:00"
+    created: "2020-04-26T19:12:38.523155+02:00"
     description: Plex
     digest: cf6cc48ea7f9666f65a34c21da073f2898f83f3897ba2aa0ca8579411bec238f
     name: plex
@@ -34,7 +34,7 @@ entries:
   transmission-exporter:
   - apiVersion: v1
     appVersion: 0.3.0
-    created: "2020-04-26T17:03:03.130981+02:00"
+    created: "2020-04-26T19:12:38.524441+02:00"
     description: Transmission Exporter
     digest: 1ba9f2f6a6915b762efd3ff8c331920826b4d19b3db932da325c698138a7bede
     name: transmission-exporter
@@ -42,13 +42,24 @@ entries:
     - https://utkuozdemir.org/helm-charts/transmission-exporter-0.1.0.tgz
     version: 0.1.0
   transmission-openvpn:
+  - apiVersion: v2
+    appVersion: "2.12"
+    created: "2020-04-26T19:12:38.525741+02:00"
+    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn
+      image
+    digest: 11df42c38506d19972753892976320d1792b9f59b0988f7288a755ab1fea5674
+    name: transmission-openvpn
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/transmission-openvpn-1.0.0.tgz
+    version: 1.0.0
   - apiVersion: v1
     appVersion: "2.7"
-    created: "2020-04-26T17:03:03.131558+02:00"
+    created: "2020-04-26T19:12:38.525051+02:00"
     description: Transmission + OpenVPN
     digest: 41fcc45a6c5dbaeba39c550d4ee0c23b840e460e9626e1b45559db0d1c3ec0a6
     name: transmission-openvpn
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2020-04-26T17:03:03.128516+02:00"
+generated: "2020-04-26T19:12:38.521629+02:00"

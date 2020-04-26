@@ -1,6 +1,0 @@
-apiVersion: v2
-name: transmission-openvpn
-description: Transmission + OpenVPN chart based on haugene/transmission-openvpn image
-type: application
-version: 1.0.0
-appVersion: 2.12

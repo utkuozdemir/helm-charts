@@ -1,15 +1,35 @@
-# Default values for transmission-openvpn.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+# global:
+#   storageClass: my-storage-class
 
 image:
   repository: haugene/transmission-openvpn
-  tag: 2.10-alpine
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext:
+  capabilities:
+    add:
+      - NET_ADMIN
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
 
 service:
   type: ClusterIP
@@ -19,11 +39,10 @@ ingress:
   enabled: false
   annotations: {}
     # kubernetes.io/ingress.class: nginx
-  # kubernetes.io/tls-acme: "true"
-  labels: {}
-  path: /
+    # kubernetes.io/tls-acme: "true"
   hosts:
-    - chart-example.local
+    - host: chart-example.local
+      paths: []
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -47,53 +66,39 @@ tolerations: []
 
 affinity: {}
 
-## Enable persistence using Persistent Volume Claims
-## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
-##
 persistence:
+  data:
+    enabled: false
+    # existingClaim: "my-existing-claim"
+    # storageClass: "my-storage-class"
+    annotations:
+    accessModes:
+      - ReadWriteOnce
+    ## Persistent Volume size
+    size: 64Gi
+
+# see docs: https://haugene.github.io/docker-transmission-openvpn/arguments/
+# for sensitive values, use secretEnv below.
+env: {}
+  # OPENVPN_PROVIDER: my_value
+  # CREATE_TUN_DEVICE: "true"
+  # TRANSMISSION_SPEED_LIMIT_UP: "2048"
+  # PUID: "1000"
+  # PGID: "1000"
+
+# put sensitive values here
+secretEnv: {}
+  # OPENVPN_USERNAME: user
+  # OPENVPN_PASSWORD: MySecretPassword1!
+
+# see: https://haugene.github.io/docker-transmission-openvpn/supported-providers/#using_a_custom_provider
+customProvider:
+  enabled: false
+  secretName: openvpn-custom
+
+tunDeviceMountFromHost:
   enabled: true
-  # storageClassName: default
-  accessModes:
-    - ReadWriteOnce
-  size: 32Gi
-  annotations:
-     "helm.sh/resource-policy": keep
-  finalizers:
-    - kubernetes.io/pvc-protection
-  # subPath: ""
-  # existingClaim:
 
-localNetworkCidr: 10.217.0.0/16
-
-#openvpnConfig: |
-#  client
-#  dev tun
-#  remote ...
-#  ...
-#  key-direction 1
-#  <ca>
-#  ...
-#  </ca>
-#  <cert>
-#  ...
-#  </cert>
-#  <key>
-#  ...
-#  </key>
-#  <tls-auth>
-#  ...
-#  </tls-auth>
-
-
-# see: https://haugene.github.io/docker-transmission-openvpn/arguments/#alternative_web_uis
-customWebUi:
+timezoneMountFromHost:
   enabled: true
-  interface: kettu
-
-peerPort: 51413
-
-# see: https://haugene.github.io/docker-transmission-openvpn/arguments/#transmission_configuration_options
-# config reference: https://github.com/transmission/transmission/wiki/Editing-Configuration-Files
-customEnvVars: {}
-#  TRANSMISSION_DOWNLOAD_DIR: "/data/downloads"
-#  TRANSMISSION_START_ADDED_TORRENTS: "false"
+  name: localtime
