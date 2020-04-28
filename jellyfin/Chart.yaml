@@ -1,0 +1,6 @@
+apiVersion: v2
+name: jellyfin
+description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker image.
+type: application
+version: 1.0.0
+appVersion: v10.5.5-ls51

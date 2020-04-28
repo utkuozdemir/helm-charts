@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "jellyfin.fullname" . }}
+  labels:
+    {{- include "jellyfin.labels" . | nindent 4 }}
+data:
+  {{- with .Values.jellyfin.uid }}
+  PUID: {{ . | quote }}
+  {{- end }}
+  {{- with .Values.jellyfin.gid }}
+  PGID: {{ . | quote }}
+  {{- end }}
+  {{- with .Values.jellyfin.timezone }}
+  TZ: {{ . }}
+  {{- end }}
+{{- range $k, $v := .Values.jellyfin.otherEnv }}
+  {{ $k }}: {{ $v }}
+{{- end }}
