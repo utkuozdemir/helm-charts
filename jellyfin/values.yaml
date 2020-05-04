@@ -68,6 +68,7 @@ persistence:
     enabled: false
     # storageClass: "my-storage-class"
     # existingClaim: "my-existing-claim"
+    readOnly: false
     annotations:
     accessModes:
       - ReadWriteOnce
