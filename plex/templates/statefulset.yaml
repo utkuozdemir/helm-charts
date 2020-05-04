@@ -28,6 +28,7 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: data
+              readOnly: {{ .Values.data.persistence.readOnly }}
             - mountPath: /config
               name: config
             - mountPath: /transcode
@@ -69,6 +70,7 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.data.persistence.existingClaim }}
+            readOnly: {{ .Values.data.persistence.readOnly }}
 {{- else if not .Values.data.persistence.enabled }}
         - name: data
           emptyDir: {}

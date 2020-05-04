@@ -70,6 +70,7 @@ config:
 data:
   persistence:
     enabled: false
+    readOnly: false
     # storageClass: "my-storage-class"
     annotations:
     accessModes:

@@ -2,5 +2,5 @@ apiVersion: v2
 name: plex
 description: Plex Media Server Helm chart that is based on plexinc/pms-docker Docker image.
 type: application
-version: 1.0.0
-appVersion: 1.19.1.2645-ccb6eb67e
+version: 1.0.1
+appVersion: 1.19.2.2737-b69929dab
