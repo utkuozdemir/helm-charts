@@ -13,4 +13,6 @@ package_dir=$1
 helm package "$package_dir"
 mv "$package_dir"*.tgz docs/
 helm repo index docs/ --url $repo_url
-git add --all
+
+git add "$package_dir"
+git add docs
