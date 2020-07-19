@@ -4,6 +4,7 @@
 image:
   repository: haugene/transmission-openvpn
   pullPolicy: IfNotPresent
+  # tag:
 
 imagePullSecrets: []
 nameOverride: ""
