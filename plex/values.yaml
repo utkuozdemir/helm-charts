@@ -8,6 +8,7 @@
 image:
   repository: plexinc/pms-docker
   pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart version.
   # tag: plexpass
 
 imagePullSecrets: []

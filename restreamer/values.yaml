@@ -9,7 +9,7 @@ image:
   repository: datarhei/restreamer
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart version.
-  tag: ""
+  # tag: override-tag
 
 imagePullSecrets: []
 nameOverride: ""

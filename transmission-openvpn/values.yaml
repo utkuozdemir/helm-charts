@@ -4,7 +4,8 @@
 image:
   repository: haugene/transmission-openvpn
   pullPolicy: IfNotPresent
-  # tag:
+  # Overrides the image tag whose default is the chart version.
+  # tag: override-tag
 
 imagePullSecrets: []
 nameOverride: ""

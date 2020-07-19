@@ -7,6 +7,8 @@ replicaCount: 1
 image:
   repository: metalmatze/transmission-exporter
   pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart version.
+  # tag: override-tag
 
 imagePullSecrets: []
 nameOverride: ""
