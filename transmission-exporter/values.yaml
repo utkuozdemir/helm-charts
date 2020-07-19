@@ -17,9 +17,9 @@ fullnameOverride: ""
 service:
   type: ClusterIP
   port: 19091
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "19091"
+  annotations: {}
+    # prometheus.io/scrape: "true"
+    # prometheus.io/port: "19091"
 
 ingress:
   enabled: false

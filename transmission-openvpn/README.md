@@ -46,8 +46,9 @@ The following tables lists the configurable parameters of the chart and their de
 | --------- | ----------- | ------- |
 | `global.storageClass` | Global storage class for dynamic provisioning | `nil` |
 | `image.repository` | container image name | `haugene/transmission-openvpn` |
-| `image.tag` | container image tag | `{TAG_NAME}` (taken from the chart appVersion) |
 | `image.pullPolicy` | container image pull policy | `IfNotPresent` |
+| `image.tag` | container image tag | `{TAG_NAME}` (taken from the chart appVersion) |
+| `imagePullSecrets` | Array of imagePullSecrets in the namespace for pulling images | `[]` |
 | `nameOverride` | String to partially override the fullname template with a string (will prepend the release name) | `nil` |
 | `fullnameOverride` | String to fully override the fullname template with a string | `nil` |
 | `serviceAccount.create` | Specifies whether a ServiceAccount should be created | `true` |
@@ -69,7 +70,7 @@ The following tables lists the configurable parameters of the chart and their de
 | `persistence.data.enabled` | Enable persistence | `false` |
 | `persistence.data.existingClaim` | Use a existing PVC which must be created manually before bound | `nil` |
 | `persistence.data.storageClass` | Specify the `storageClass` used to provision the volume | `nil` |
-| `storegateway.persistence.accessModes` | Access modes of data volume  | `["ReadWriteOnce"]` |
+| `persistence.data.accessModes` | Access modes of data volume  | `["ReadWriteOnce"]` |
 | `persistence.data.size` | Size for the PV | `64Gi` |
 | `env` | The **non-sensitive** environment variables to configure the application. See the possible configuration here: https://haugene.github.io/docker-transmission-openvpn/arguments/ | `{}` |
 | `secretEnv` | The **sensitive** environment variables to configure the application. See the possible configuration here: https://haugene.github.io/docker-transmission-openvpn/arguments/ | `{}` |
