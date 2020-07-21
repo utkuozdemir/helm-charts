@@ -3,7 +3,7 @@ entries:
   gohttpserver:
   - apiVersion: v1
     appVersion: latest
-    created: "2020-05-12T17:29:49.805264+02:00"
+    created: "2020-07-21T20:25:49.114954+02:00"
     description: GoHttpServer
     digest: 1ca503f321b2578255fb0444235796c14673d3c1ab0172272e1751d6f8f318f8
     name: gohttpserver
@@ -12,8 +12,19 @@ entries:
     version: 0.1.0
   jellyfin:
   - apiVersion: v2
+    appVersion: 10.6.0-2-ls63
+    created: "2020-07-21T20:25:49.120935+02:00"
+    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
+      image.
+    digest: 0e2b20ec12ba8f15d93e121994bc8809e93423c000c520ec84c216b81d814ce6
+    name: jellyfin
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/jellyfin-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
     appVersion: v10.5.5-ls52
-    created: "2020-05-12T17:29:49.808166+02:00"
+    created: "2020-07-21T20:25:49.120052+02:00"
     description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
       image.
     digest: ba95b4c272bd06a0100477b3ba2a5e2e4fb5adcdea619aea73c7afa3863ccd0a
@@ -24,7 +35,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: v10.5.5-ls51
-    created: "2020-05-12T17:29:49.806556+02:00"
+    created: "2020-07-21T20:25:49.116332+02:00"
     description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
       image.
     digest: cd83eaca916842da9f91ff11784f0d0cc7166be6685ec2ca3a4d8d780e20bef8
@@ -36,7 +47,7 @@ entries:
   plex:
   - apiVersion: v2
     appVersion: 1.19.2.2737-b69929dab
-    created: "2020-05-12T17:29:49.814455+02:00"
+    created: "2020-07-21T20:25:49.125173+02:00"
     description: Plex Media Server Helm chart that is based on plexinc/pms-docker
       Docker image.
     digest: 759eed7cb8c4d71e75a46b0f97e546286783409612b15c34a0ed873c75025bfb
@@ -47,7 +58,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: 1.19.1.2645-ccb6eb67e
-    created: "2020-05-12T17:29:49.812965+02:00"
+    created: "2020-07-21T20:25:49.123511+02:00"
     description: Plex Media Server Helm chart that is based on plexinc/pms-docker
       Docker image.
     digest: d51f1a7bf74255008ac36772d37d3c0a4c8d2b73fafc2c318f23ce85f4da6d73
@@ -58,7 +69,7 @@ entries:
     version: 1.0.0
   - apiVersion: v1
     appVersion: 1.16.5.1554-1e5ff713d
-    created: "2020-05-12T17:29:49.809419+02:00"
+    created: "2020-07-21T20:25:49.122084+02:00"
     description: Plex
     digest: cf6cc48ea7f9666f65a34c21da073f2898f83f3897ba2aa0ca8579411bec238f
     name: plex
@@ -68,7 +79,7 @@ entries:
   restreamer:
   - apiVersion: v2
     appVersion: 0.6.4
-    created: "2020-05-12T17:29:49.816857+02:00"
+    created: "2020-07-21T20:25:49.126879+02:00"
     description: Restreamer helm chart
     digest: 1f808d3297cb01f7c26649a4249e27e1b8396d0d365643108315338c3341a797
     name: restreamer
@@ -79,7 +90,7 @@ entries:
   transmission-exporter:
   - apiVersion: v1
     appVersion: 0.3.0
-    created: "2020-05-12T17:29:49.819354+02:00"
+    created: "2020-07-21T20:25:49.130595+02:00"
     description: Transmission Exporter
     digest: 630d16f2ecc11717d28743576cf6182a46122c98268df3fdac053ae95a2ac357
     name: transmission-exporter
@@ -88,7 +99,7 @@ entries:
     version: 1.0.0
   - apiVersion: v1
     appVersion: 0.3.0
-    created: "2020-05-12T17:29:49.818171+02:00"
+    created: "2020-07-21T20:25:49.129478+02:00"
     description: Transmission Exporter
     digest: 1ba9f2f6a6915b762efd3ff8c331920826b4d19b3db932da325c698138a7bede
     name: transmission-exporter
@@ -98,7 +109,7 @@ entries:
   transmission-openvpn:
   - apiVersion: v2
     appVersion: "2.12"
-    created: "2020-05-12T17:29:49.823499+02:00"
+    created: "2020-07-21T20:25:49.134267+02:00"
     description: Transmission + OpenVPN chart based on haugene/transmission-openvpn
       image
     digest: 20b539ab3202a35a4276f9d0e9e1a88b75f81b2d2d7387d9b0acbf2ba1bea3e7
@@ -109,11 +120,11 @@ entries:
     version: 1.0.0
   - apiVersion: v1
     appVersion: "2.7"
-    created: "2020-05-12T17:29:49.822331+02:00"
+    created: "2020-07-21T20:25:49.132821+02:00"
     description: Transmission + OpenVPN
     digest: 41fcc45a6c5dbaeba39c550d4ee0c23b840e460e9626e1b45559db0d1c3ec0a6
     name: transmission-openvpn
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2020-05-12T17:29:49.804241+02:00"
+generated: "2020-07-21T20:25:49.113672+02:00"
