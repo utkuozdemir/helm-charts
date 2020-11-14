@@ -7,7 +7,7 @@ persistence:
   accessModes:
     - ReadWriteOnce
   ## Persistent Volume size
-  size: 8Gi
+  size: 1Gi
 
 config:
   useHostPorts: true
