@@ -99,6 +99,9 @@ config:
 
 terminationGracePeriodSeconds: 120
 
+podSecurityPolicy:
+  create: false
+
 image:
   repository: docker.io/jamesits/dst-server
   pullPolicy: IfNotPresent

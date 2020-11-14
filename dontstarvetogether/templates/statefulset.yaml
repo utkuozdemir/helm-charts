@@ -63,7 +63,7 @@ spec:
           args:
             - -c
             - |
-              set -e -u -x
+              set -e -u -x;
               mkdir -p /data/DoNotStarveTogether/Cluster_1/;
               cp /config/root/* /data/DoNotStarveTogether/Cluster_1/;
               mkdir -p /data/DoNotStarveTogether/Cluster_1/Master/;

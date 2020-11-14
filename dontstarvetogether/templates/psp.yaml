@@ -1,0 +1,41 @@
+{{- if .Values.podSecurityPolicy.create }}
+apiVersion: {{ template "podSecurityPolicy.apiVersion" . }}
+kind: PodSecurityPolicy
+metadata:
+  name: {{ include "dontstarvetogether.fullname" . }}
+  labels:
+    {{- include "dontstarvetogether.labels" . | nindent 4 }}
+spec:
+  {{- if .Values.config.useHostPorts }}
+  hostPorts:
+    - min: {{ .Values.config.master.network.server_port }}
+      max: {{ .Values.config.master.network.server_port }}
+    - min: {{ .Values.config.master.steam.master_server_port }}
+      max: {{ .Values.config.master.steam.master_server_port }}
+    - min: {{ .Values.config.caves.network.server_port }}
+      max: {{ .Values.config.caves.network.server_port }}
+    - min: {{ .Values.config.caves.steam.master_server_port }}
+      max: {{ .Values.config.caves.steam.master_server_port }}
+  {{- end }}
+  privileged: false
+  allowPrivilegeEscalation: false
+  volumes:
+    - 'configMap'
+    - 'emptyDir'
+    - 'projected'
+    - 'secret'
+    - 'downwardAPI'
+    - 'persistentVolumeClaim'
+  hostNetwork: false
+  hostIPC: false
+  hostPID: false
+  runAsUser:
+    rule: RunAsAny
+  seLinux:
+    rule: 'RunAsAny'
+  supplementalGroups:
+    rule: 'RunAsAny'
+  fsGroup:
+    rule: 'RunAsAny'
+  readOnlyRootFilesystem: false
+{{- end }}

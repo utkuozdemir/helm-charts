@@ -2,6 +2,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ include "dontstarvetogether.fullname" . }}-mods
+  labels:
+    {{- include "dontstarvetogether.labels" . | nindent 4 }}
 data:
 {{- if not (empty .Values.config.mods.additionalFiles) -}}
 {{- toYaml .Values.config.mods.additionalFiles | nindent 2 }}
