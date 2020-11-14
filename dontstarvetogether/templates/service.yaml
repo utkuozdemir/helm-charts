@@ -7,9 +7,21 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+    - port: {{ .Values.config.master.network.server_port }}
+      targetPort: master
+      protocol: UDP
+      name: master
+    - port: {{ .Values.config.master.steam.master_server_port }}
+      targetPort: master-steam
+      protocol: UDP
+      name: master-steam
+    - port: {{ .Values.config.caves.network.server_port }}
+      targetPort: caves
+      protocol: UDP
+      name: caves
+    - port: {{ .Values.config.caves.steam.master_server_port }}
+      targetPort: caves-steam
+      protocol: UDP
+      name: caves-steam
   selector:
     {{- include "dontstarvetogether.selectorLabels" . | nindent 4 }}

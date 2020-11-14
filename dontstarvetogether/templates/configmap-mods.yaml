@@ -3,4 +3,6 @@ kind: ConfigMap
 metadata:
   name: {{ include "dontstarvetogether.fullname" . }}-mods
 data:
-  {{ toYaml .Values.config.mods | nindent 4 }}
+{{- if not (empty .Values.config.mods.additionalFiles) -}}
+{{- toYaml .Values.config.mods.additionalFiles | nindent 2 }}
+{{- end }}

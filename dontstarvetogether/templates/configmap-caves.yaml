@@ -3,4 +3,26 @@ kind: ConfigMap
 metadata:
   name: {{ include "dontstarvetogether.fullname" . }}-caves
 data:
-  {{ toYaml .Values.config.caves | nindent 4 }}
+{{- if not (empty .Values.config.caves.additionalFiles) -}}
+{{- toYaml .Values.config.caves.additionalFiles | nindent 2 }}
+{{- end }}
+  server.ini: |
+    [NETWORK]
+    {{- range $key, $value := .Values.config.caves.network }}
+    {{ $key }} = {{ $value }}
+    {{- end }}
+
+    [SHARD]
+    {{- range $key, $value := .Values.config.caves.shard }}
+    {{ $key }} = {{ $value }}
+    {{- end }}
+
+    [ACCOUNT]
+    {{- range $key, $value := .Values.config.caves.account }}
+    {{ $key }} = {{ $value }}
+    {{- end }}
+
+    [STEAM]
+    {{- range $key, $value := .Values.config.caves.steam }}
+    {{ $key }} = {{ $value }}
+    {{- end }}

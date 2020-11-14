@@ -5,13 +5,18 @@ metadata:
   labels:
     {{- include "dontstarvetogether.labels" . | nindent 4 }}
 spec:
+  serviceName: {{ include "dontstarvetogether.fullname" . }}
   selector:
     matchLabels:
       {{- include "dontstarvetogether.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+        checksum/config-root: {{ include (print $.Template.BasePath "/secret-root.yaml") . | sha256sum }}
+        checksum/config-master: {{ include (print $.Template.BasePath "/configmap-master.yaml") . | sha256sum }}
+        checksum/config-caves: {{ include (print $.Template.BasePath "/configmap-caves.yaml") . | sha256sum }}
+        checksum/config-mods: {{ include (print $.Template.BasePath "/configmap-mods.yaml") . | sha256sum }}
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
@@ -22,6 +27,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "dontstarvetogether.serviceAccountName" . }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
@@ -39,7 +45,8 @@ spec:
             name: {{ include "dontstarvetogether.fullname" . }}-mods
       initContainers:
         - name: {{ .Chart.Name }}-init
-          image: busybox:musl
+          image: {{ .Values.initImage.repository }}:{{ .Values.initImage.tag }}
+          imagePullPolicy: {{ .Values.initImage.pullPolicy }}
           volumeMounts:
             - mountPath: /config/root
               name: config-root
@@ -56,36 +63,48 @@ spec:
           args:
             - -c
             - |
-              set -e -u
-              mkdir -p /data/DoNotStarveTogether/Cluster_1/Master/;
-              mkdir -p /data/DoNotStarveTogether/Cluster_1/Caves/;
-              mkdir -p /data/DoNotStarveTogether/Cluster_1/mods/;
+              set -e -u -x
+              mkdir -p /data/DoNotStarveTogether/Cluster_1/;
               cp /config/root/* /data/DoNotStarveTogether/Cluster_1/;
+              mkdir -p /data/DoNotStarveTogether/Cluster_1/Master/;
               cp /config/master/* /data/DoNotStarveTogether/Cluster_1/Master/;
-              cp /config/caves/* /data/DoNotStarveTogether/Cluster_1/Caves/;
+              mkdir -p /data/DoNotStarveTogether/Cluster_1/mods/;
               cp /config/mods/* /data/DoNotStarveTogether/Cluster_1/mods/;
+              mkdir -p /data/DoNotStarveTogether/Cluster_1/Caves/;
+              cp /config/caves/* /data/DoNotStarveTogether/Cluster_1/Caves/;
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - mountPath: /data
+              name: data
           ports:
             - name: master
-              containerPort: 10999
-              hostPort: 10999
+              containerPort: {{ .Values.config.master.network.server_port }}
+              {{- if .Values.config.useHostPorts }}
+              hostPort: {{ .Values.config.master.network.server_port }}
+              {{- end }}
+              protocol: UDP
+            - name: master-steam
+              containerPort: {{ .Values.config.master.steam.master_server_port }}
+              {{- if .Values.config.useHostPorts }}
+              hostPort: {{ .Values.config.master.steam.master_server_port }}
+              {{- end }}
               protocol: UDP
             - name: caves
-              containerPort: 11000
-              hostPort: 11000
+              containerPort: {{ .Values.config.caves.network.server_port }}
+              {{- if .Values.config.useHostPorts }}
+              hostPort: {{ .Values.config.caves.network.server_port }}
+              {{- end }}
               protocol: UDP
-            - name: steam-1
-              containerPort: 12346
-              hostPort: 12346
-              protocol: UDP
-            - name: steam-2
-              containerPort: 12347
-              hostPort: 12347
+            - name: caves-steam
+              containerPort: {{ .Values.config.caves.steam.master_server_port }}
+              {{- if .Values.config.useHostPorts }}
+              hostPort: {{ .Values.config.caves.steam.master_server_port }}
+              {{- end }}
               protocol: UDP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

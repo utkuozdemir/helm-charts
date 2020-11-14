@@ -10,102 +10,105 @@ persistence:
   size: 8Gi
 
 config:
+  useHostPorts: true
   root:
-    cluster_token.txt: "pds-g^...."
-    adminlist.txt: ""
-    blocklist.txt: ""
-    whitelist.txt: ""
-    cluster.ini: |
-      [NETWORK]
-      cluster_name = My Server
-      cluster_description = My Server
-      cluster_password = MyPassword
-      offline_cluster = false
-      lan_only_cluster = false
-      cluster_intention = cooperative
-      autosaver_enabled = true
-      tick_rate = 30
-
-      [GAMEPLAY]
-      game_mode = survival
-      max_players = 10
-      pvp = false
-      pause_when_empty = true
-
-      [STEAM]
-      steam_group_only = false
-      steam_group_id = 0
-      steam_group_admins = false
-
-      [MISC]
-      console_enabled = true
-      max_snapshots = 6
-
-      [SHARD]
-      shard_enabled = true
-      bind_ip = 127.0.0.1
-      master_ip = 127.0.0.1
-      master_port = 10998
-      cluster_key = MySecretKey
+    clusterToken: "pds-g^...."
+    network:
+      cluster_name: My Server
+      cluster_description: My Server
+      cluster_password: MyPassword
+      offline_cluster: false
+      lan_only_cluster: false
+      cluster_intention: cooperative
+      autosaver_enabled: true
+      tick_rate: 30
+    gameplay:
+      game_mode: survival
+      max_players: 10
+      pvp: false
+      pause_when_empty: true
+    steam:
+      steam_group_only: false
+      steam_group_id: 0
+      steam_group_admins: false
+    misc:
+      console_enabled: true
+      max_snapshots: 6
+    shard:
+      shard_enabled: true
+      bind_ip: 127.0.0.1
+      master_ip: 127.0.0.1
+      master_port: 10998
+      cluster_key: MySecretKey
+    additionalFiles:
+      adminlist.txt: ""
+      blocklist.txt: ""
+      whitelist.txt: ""
   master:
-    leveldataoverride.lua: |
-      return {
-      }
-    modoverrides.lua: |
-      return {
-      }
-    server.ini: |
-      [NETWORK]
-      server_port = 10999
-
-      [SHARD]
-      is_master = true
-
-      [ACCOUNT]
-      encode_user_path = true
-
-      [STEAM]
-      master_server_port = 12346
-      authentication_port = 8766
+    network:
+      server_port: 10999
+    shard:
+      is_master: true
+    account:
+      encode_user_path: true
+    steam:
+      master_server_port: 12346
+      authentication_port: 8766
+    additionalFiles: {}
+      #leveldataoverride.lua: |
+      #  return {
+      #    ...
+      #  }
+      #modoverrides.lua: |
+      #  return {
+      #    ...
+      #  }
   caves:
-    leveldataoverride.lua: |
-      return {
-      }
-    modoverrides.lua: |
-      return {
-      }
-    server.ini: |
-      [NETWORK]
-      server_port = 11000
-
-      [SHARD]
-      is_master = false
-      name = Caves
-
-      [ACCOUNT]
-      encode_user_path = true
-
-      [STEAM]
-      master_server_port = 12347
-      authentication_port = 8767
+    network:
+      server_port: 11000
+    shard:
+      is_master: false
+      name: Caves
+    account:
+      encode_user_path: true
+    steam:
+      master_server_port: 12347
+      authentication_port: 8767
+    additionalFiles: {}
+      #leveldataoverride.lua: |
+      #  return {
+      #    ...
+      #  }
+      #modoverrides.lua: |
+      #  return {
+      #    ...
+      #  }
   mods:
-    dedicated_server_mods_setup.lua: |
-      -- [API] Gem Core (mod dependency) - https://steamcommunity.com/sharedfiles/filedetails/?id=1378549454
-      --ServerModSetup("1378549454")
-      -- Health Info https://steamcommunity.com/sharedfiles/filedetails/?id=375859599
-      --ServerModSetup("375859599")
-      -- Global Positions https://steamcommunity.com/sharedfiles/filedetails/?id=378160973
-      --ServerModSetup("378160973")
-      -- Food Values - Item Tooltips https://steamcommunity.com/sharedfiles/filedetails/?id=458940297
-      --ServerModSetup("458940297")
-      -- Global Pause https://steamcommunity.com/sharedfiles/filedetails/?id=758532836
-      --ServerModSetup("758532836")
+    additionalFiles:
+      dedicated_server_mods_setup.lua: |
+        -- [API] Gem Core (mod dependency) - https://steamcommunity.com/sharedfiles/filedetails/?id=1378549454
+        --ServerModSetup("1378549454")
+        -- Health Info https://steamcommunity.com/sharedfiles/filedetails/?id=375859599
+        --ServerModSetup("375859599")
+        -- Global Positions https://steamcommunity.com/sharedfiles/filedetails/?id=378160973
+        --ServerModSetup("378160973")
+        -- Food Values - Item Tooltips https://steamcommunity.com/sharedfiles/filedetails/?id=458940297
+        --ServerModSetup("458940297")
+        -- Global Pause https://steamcommunity.com/sharedfiles/filedetails/?id=758532836
+        --ServerModSetup("758532836")
+
+terminationGracePeriodSeconds: 120
 
 image:
   repository: docker.io/jamesits/dst-server
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
+
+initImage:
+  repository: docker.io/busybox
+  pullPolicy: IfNotPresent
+  tag: musl
 
 imagePullSecrets: [ ]
 nameOverride: ""
@@ -131,11 +134,10 @@ securityContext: { }
   #   - ALL
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
-# runAsUser: 1000
+  # runAsUser: 1000
 
 service:
   type: ClusterIP
-  port: 10999
 
 resources: { }
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -147,7 +149,7 @@ resources: { }
   #   memory: 128Mi
   # requests:
   #   cpu: 100m
-#   memory: 128Mi
+  #   memory: 128Mi
 
 nodeSelector: { }
 

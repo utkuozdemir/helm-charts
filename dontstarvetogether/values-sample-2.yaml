@@ -1,0 +1,380 @@
+config:
+  useHostPorts: false
+  root:
+    clusterToken: pds-g^K...
+    network:
+      cluster_name: My Cool Server Name 2
+      cluster_description: My Cool Server Description 2
+      cluster_password: MySecretPassword2
+      tick_rate: 60
+    additionalFiles:
+      adminlist.txt: |
+        KU_B4...
+  master:
+    network:
+      server_port: 20999
+    steam:
+      master_server_port: 22346
+    additionalFiles:
+      leveldataoverride.lua: |
+        return {
+          desc="The standard Don't Starve experience.",
+          hideminimap=false,
+          id="SURVIVAL_TOGETHER",
+          location="forest",
+          max_playlist_position=999,
+          min_playlist_position=0,
+          name="Standard Forest",
+          numrandom_set_pieces=4,
+          override_level_string=false,
+          overrides={
+            alternatehunt="default",
+            angrybees="default",
+            antliontribute="default",
+            autumn="default",
+            bearger="default",
+            beefalo="default",
+            beefaloheat="default",
+            bees="default",
+            berrybush="default",
+            birds="default",
+            boons="default",
+            branching="default",
+            butterfly="default",
+            buzzard="default",
+            cactus="default",
+            carrot="default",
+            catcoon="default",
+            chess="default",
+            day="default",
+            deciduousmonster="default",
+            deerclops="default",
+            disease_delay="default",
+            dragonfly="default",
+            flint="default",
+            flowers="default",
+            frograin="default",
+            goosemoose="default",
+            grass="default",
+            has_ocean=true,
+            houndmound="default",
+            hounds="default",
+            hunt="default",
+            keep_disconnected_tiles=true,
+            krampus="default",
+            layout_mode="LinkNodesByKeys",
+            liefs="default",
+            lightning="default",
+            lightninggoat="default",
+            loop="default",
+            lureplants="default",
+            marshbush="default",
+            merm="default",
+            meteorshowers="default",
+            meteorspawner="default",
+            moles="default",
+            mushroom="default",
+            no_joining_islands=true,
+            no_wormholes_to_disconnected_tiles=true,
+            penguins="default",
+            perd="default",
+            petrification="default",
+            pigs="default",
+            ponds="default",
+            prefabswaps_start="default",
+            rabbits="default",
+            reeds="default",
+            regrowth="default",
+            roads="default",
+            rock="default",
+            rock_ice="default",
+            sapling="default",
+            season_start="default",
+            specialevent="default",
+            spiders="default",
+            spring="default",
+            start_location="default",
+            summer="default",
+            tallbirds="default",
+            task_set="default",
+            tentacles="default",
+            touchstone="default",
+            trees="default",
+            tumbleweed="default",
+            walrus="default",
+            weather="default",
+            wildfires="default",
+            winter="default",
+            world_size="default",
+            wormhole_prefab="wormhole"
+          },
+          random_set_pieces={
+            "Sculptures_2",
+            "Sculptures_3",
+            "Sculptures_4",
+            "Sculptures_5",
+            "Chessy_1",
+            "Chessy_2",
+            "Chessy_3",
+            "Chessy_4",
+            "Chessy_5",
+            "Chessy_6",
+            "Maxwell1",
+            "Maxwell2",
+            "Maxwell3",
+            "Maxwell4",
+            "Maxwell6",
+            "Maxwell7",
+            "Warzone_1",
+            "Warzone_2",
+            "Warzone_3"
+          },
+          required_prefabs={ "multiplayer_portal" },
+          required_setpieces={ "Sculptures_1", "Maxwell5" },
+          substitutes={  },
+          version=4
+        }
+      modoverrides.lua: |
+        return {
+          ["workshop-1378549454"]={
+            configuration_options={
+              ["MemSpikeFix:"]=false,
+              MemSpikeFixmaster_override=true,
+              ["MemSpikeFixworkshop-345692228"]="default",
+              ["MemSpikeFixworkshop-347079953"]="default",
+              ["MemSpikeFixworkshop-351325790"]="default",
+              ["MemSpikeFixworkshop-365119238"]="default",
+              ["MemSpikeFixworkshop-375859599"]="default",
+              ["MemSpikeFixworkshop-376333686"]="default",
+              ["MemSpikeFixworkshop-378160973"]="default",
+              ["MemSpikeFixworkshop-458940297"]="default",
+              ["MemSpikeFixworkshop-727774324"]="default",
+              ["MemSpikeFixworkshop-758532836"]="default",
+              craftinghighlight=false
+            },
+            enabled=true
+          },
+          ["workshop-375859599"]={
+            configuration_options={
+              divider=5,
+              random_health_value=0,
+              random_range=0,
+              send_unknwon_prefabs=false,
+              show_type=0,
+              unknwon_prefabs=1,
+              use_blacklist=true
+            },
+            enabled=true
+          },
+          ["workshop-378160973"]={
+            configuration_options={
+              ENABLEPINGS=true,
+              FIREOPTIONS=2,
+              OVERRIDEMODE=false,
+              SHAREMINIMAPPROGRESS=true,
+              SHOWFIREICONS=true,
+              SHOWPLAYERICONS=true,
+              SHOWPLAYERSOPTIONS=2
+            },
+            enabled=true
+          },
+          ["workshop-458940297"]={
+            configuration_options={
+              DFV_ClientPrediction="default",
+              DFV_FueledSettings="default",
+              DFV_Language="EN",
+              DFV_MinimalMode="default",
+              DFV_PercentReplace="default",
+              DFV_ShowACondition="default",
+              DFV_ShowADefence="default",
+              DFV_ShowAType="default",
+              DFV_ShowDamage="default",
+              DFV_ShowFireTime="default",
+              DFV_ShowInsulation="default",
+              DFV_ShowTemperature="default",
+              DFV_ShowUses="default"
+            },
+            enabled=true
+          },
+          ["workshop-758532836"]={
+            configuration_options={
+              AUTOPAUSECONSOLE=false,
+              AUTOPAUSEMAP=false,
+              AUTOPAUSESINGLEPLAYER=true,
+              ENABLECLIENTPAUSING=false,
+              ENABLEHOTKEY=false,
+              KEYBOARDTOGGLEKEY="P"
+            },
+            enabled=true
+          }
+        }
+  caves:
+    network:
+      server_port: 21000
+    steam:
+      master_server_port: 22347
+    additionalFiles:
+      leveldataoverride.lua: |
+        return {
+          background_node_range={ 0, 1 },
+          desc="Delve into the caves... together!",
+          hideminimap=false,
+          id="DST_CAVE",
+          location="cave",
+          max_playlist_position=999,
+          min_playlist_position=0,
+          name="The Caves",
+          numrandom_set_pieces=0,
+          override_level_string=false,
+          overrides={
+            banana="default",
+            bats="default",
+            berrybush="default",
+            boons="default",
+            branching="default",
+            bunnymen="default",
+            cave_ponds="default",
+            cave_spiders="default",
+            cavelight="default",
+            chess="default",
+            disease_delay="default",
+            earthquakes="default",
+            fern="default",
+            fissure="default",
+            flint="default",
+            flower_cave="default",
+            grass="default",
+            layout_mode="RestrictNodesByKey",
+            lichen="default",
+            liefs="default",
+            loop="default",
+            marshbush="default",
+            monkey="default",
+            mushroom="default",
+            mushtree="default",
+            prefabswaps_start="default",
+            reeds="default",
+            regrowth="default",
+            roads="never",
+            rock="default",
+            rocky="default",
+            sapling="default",
+            season_start="default",
+            slurper="default",
+            slurtles="default",
+            start_location="caves",
+            task_set="cave_default",
+            tentacles="default",
+            touchstone="default",
+            trees="default",
+            weather="default",
+            world_size="default",
+            wormattacks="default",
+            wormhole_prefab="tentacle_pillar",
+            wormlights="default",
+            worms="default"
+          },
+          required_prefabs={ "multiplayer_portal" },
+          substitutes={  },
+          version=4
+        }
+
+
+      modoverrides.lua: |
+        return {
+          ["workshop-1378549454"]={
+            configuration_options={
+              ["MemSpikeFix:"]=false,
+              MemSpikeFixmaster_override=true,
+              ["MemSpikeFixworkshop-345692228"]="default",
+              ["MemSpikeFixworkshop-347079953"]="default",
+              ["MemSpikeFixworkshop-351325790"]="default",
+              ["MemSpikeFixworkshop-365119238"]="default",
+              ["MemSpikeFixworkshop-375859599"]="default",
+              ["MemSpikeFixworkshop-376333686"]="default",
+              ["MemSpikeFixworkshop-378160973"]="default",
+              ["MemSpikeFixworkshop-458940297"]="default",
+              ["MemSpikeFixworkshop-727774324"]="default",
+              ["MemSpikeFixworkshop-758532836"]="default",
+              craftinghighlight=false
+            },
+            enabled=true
+          },
+          ["workshop-375859599"]={
+            configuration_options={
+              divider=5,
+              random_health_value=0,
+              random_range=0,
+              send_unknwon_prefabs=false,
+              show_type=0,
+              unknwon_prefabs=1,
+              use_blacklist=true
+            },
+            enabled=true
+          },
+          ["workshop-378160973"]={
+            configuration_options={
+              ENABLEPINGS=true,
+              FIREOPTIONS=2,
+              OVERRIDEMODE=false,
+              SHAREMINIMAPPROGRESS=true,
+              SHOWFIREICONS=true,
+              SHOWPLAYERICONS=true,
+              SHOWPLAYERSOPTIONS=2
+            },
+            enabled=true
+          },
+          ["workshop-458940297"]={
+            configuration_options={
+              DFV_ClientPrediction="default",
+              DFV_FueledSettings="default",
+              DFV_Language="EN",
+              DFV_MinimalMode="default",
+              DFV_PercentReplace="default",
+              DFV_ShowACondition="default",
+              DFV_ShowADefence="default",
+              DFV_ShowAType="default",
+              DFV_ShowDamage="default",
+              DFV_ShowFireTime="default",
+              DFV_ShowInsulation="default",
+              DFV_ShowTemperature="default",
+              DFV_ShowUses="default"
+            },
+            enabled=true
+          },
+          ["workshop-758532836"]={
+            configuration_options={
+              AUTOPAUSECONSOLE=false,
+              AUTOPAUSEMAP=false,
+              AUTOPAUSESINGLEPLAYER=true,
+              ENABLECLIENTPAUSING=false,
+              ENABLEHOTKEY=false,
+              KEYBOARDTOGGLEKEY="P"
+            },
+            enabled=true
+          }
+        }
+  mods:
+    additionalFiles:
+      dedicated_server_mods_setup.lua: |
+        -- [API] Gem Core (mod dependency) - https://steamcommunity.com/sharedfiles/filedetails/?id=1378549454
+        ServerModSetup("1378549454")
+        -- Health Info https://steamcommunity.com/sharedfiles/filedetails/?id=375859599
+        ServerModSetup("375859599")
+        -- Global Positions https://steamcommunity.com/sharedfiles/filedetails/?id=378160973
+        ServerModSetup("378160973")
+        -- Food Values - Item Tooltips https://steamcommunity.com/sharedfiles/filedetails/?id=458940297
+        ServerModSetup("458940297")
+        -- Global Pause https://steamcommunity.com/sharedfiles/filedetails/?id=758532836
+        ServerModSetup("758532836")
+
+service:
+  type: LoadBalancer
+
+resources:
+  requests:
+    cpu: 2000m
+    memory: 4Gi
+
+image:
+  tag: latest
