@@ -1,0 +1,8 @@
+apiVersion: v2
+name: dontstarvetogether
+description: >-
+  A Helm chart for the game Don't Starve Together
+  based on the image https://github.com/Jamesits/docker-dst-server
+type: application
+version: 0.1.0
+appVersion: vanilla

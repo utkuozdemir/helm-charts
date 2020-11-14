@@ -1,0 +1,119 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "dontstarvetogether.fullname" . }}
+  labels:
+    {{- include "dontstarvetogether.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "dontstarvetogether.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "dontstarvetogether.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "dontstarvetogether.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: config-root
+          secret:
+            secretName: {{ include "dontstarvetogether.fullname" . }}-root
+        - name: config-master
+          configMap:
+            name: {{ include "dontstarvetogether.fullname" . }}-master
+        - name: config-caves
+          configMap:
+            name: {{ include "dontstarvetogether.fullname" . }}-caves
+        - name: config-mods
+          configMap:
+            name: {{ include "dontstarvetogether.fullname" . }}-mods
+      initContainers:
+        - name: {{ .Chart.Name }}-init
+          image: busybox:musl
+          volumeMounts:
+            - mountPath: /config/root
+              name: config-root
+            - mountPath: /config/master
+              name: config-master
+            - mountPath: /config/caves
+              name: config-caves
+            - mountPath: /config/mods
+              name: config-mods
+            - mountPath: /data
+              name: data
+          command:
+            - sh
+          args:
+            - -c
+            - |
+              set -e -u
+              mkdir -p /data/DoNotStarveTogether/Cluster_1/Master/;
+              mkdir -p /data/DoNotStarveTogether/Cluster_1/Caves/;
+              mkdir -p /data/DoNotStarveTogether/Cluster_1/mods/;
+              cp /config/root/* /data/DoNotStarveTogether/Cluster_1/;
+              cp /config/master/* /data/DoNotStarveTogether/Cluster_1/Master/;
+              cp /config/caves/* /data/DoNotStarveTogether/Cluster_1/Caves/;
+              cp /config/mods/* /data/DoNotStarveTogether/Cluster_1/mods/;
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: master
+              containerPort: 10999
+              hostPort: 10999
+              protocol: UDP
+            - name: caves
+              containerPort: 11000
+              hostPort: 11000
+              protocol: UDP
+            - name: steam-1
+              containerPort: 12346
+              hostPort: 12346
+              protocol: UDP
+            - name: steam-2
+              containerPort: 12347
+              hostPort: 12347
+              protocol: UDP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  volumeClaimTemplates:
+{{- if .Values.persistence.enabled }}
+    - metadata:
+        name: {{ .Values.persistence.name }}
+      spec:
+        accessModes:
+        {{- range .Values.persistence.accessModes }}
+          - {{ . | quote }}
+        {{- end }}
+      {{- if hasKey .Values.persistence "storageClass" }}
+        storageClassName: {{ .Values.persistence.storageClass | quote }}
+      {{- end }}
+        resources:
+          requests:
+            storage: {{ .Values.persistence.size | quote }}
+{{- end }}

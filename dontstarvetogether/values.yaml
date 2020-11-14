@@ -1,0 +1,156 @@
+persistence:
+  enabled: true
+  name: data
+  # storageClass: "my-storage-class"
+  # existingClaim: "my-existing-claim"
+  annotations:
+  accessModes:
+    - ReadWriteOnce
+  ## Persistent Volume size
+  size: 8Gi
+
+config:
+  root:
+    cluster_token.txt: "pds-g^...."
+    adminlist.txt: ""
+    blocklist.txt: ""
+    whitelist.txt: ""
+    cluster.ini: |
+      [NETWORK]
+      cluster_name = My Server
+      cluster_description = My Server
+      cluster_password = MyPassword
+      offline_cluster = false
+      lan_only_cluster = false
+      cluster_intention = cooperative
+      autosaver_enabled = true
+      tick_rate = 30
+
+      [GAMEPLAY]
+      game_mode = survival
+      max_players = 10
+      pvp = false
+      pause_when_empty = true
+
+      [STEAM]
+      steam_group_only = false
+      steam_group_id = 0
+      steam_group_admins = false
+
+      [MISC]
+      console_enabled = true
+      max_snapshots = 6
+
+      [SHARD]
+      shard_enabled = true
+      bind_ip = 127.0.0.1
+      master_ip = 127.0.0.1
+      master_port = 10998
+      cluster_key = MySecretKey
+  master:
+    leveldataoverride.lua: |
+      return {
+      }
+    modoverrides.lua: |
+      return {
+      }
+    server.ini: |
+      [NETWORK]
+      server_port = 10999
+
+      [SHARD]
+      is_master = true
+
+      [ACCOUNT]
+      encode_user_path = true
+
+      [STEAM]
+      master_server_port = 12346
+      authentication_port = 8766
+  caves:
+    leveldataoverride.lua: |
+      return {
+      }
+    modoverrides.lua: |
+      return {
+      }
+    server.ini: |
+      [NETWORK]
+      server_port = 11000
+
+      [SHARD]
+      is_master = false
+      name = Caves
+
+      [ACCOUNT]
+      encode_user_path = true
+
+      [STEAM]
+      master_server_port = 12347
+      authentication_port = 8767
+  mods:
+    dedicated_server_mods_setup.lua: |
+      -- [API] Gem Core (mod dependency) - https://steamcommunity.com/sharedfiles/filedetails/?id=1378549454
+      --ServerModSetup("1378549454")
+      -- Health Info https://steamcommunity.com/sharedfiles/filedetails/?id=375859599
+      --ServerModSetup("375859599")
+      -- Global Positions https://steamcommunity.com/sharedfiles/filedetails/?id=378160973
+      --ServerModSetup("378160973")
+      -- Food Values - Item Tooltips https://steamcommunity.com/sharedfiles/filedetails/?id=458940297
+      --ServerModSetup("458940297")
+      -- Global Pause https://steamcommunity.com/sharedfiles/filedetails/?id=758532836
+      --ServerModSetup("758532836")
+
+image:
+  repository: docker.io/jamesits/dst-server
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: [ ]
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: { }
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: { }
+
+podSecurityContext: { }
+# fsGroup: 2000
+
+securityContext: { }
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+# runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 10999
+
+resources: { }
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+#   memory: 128Mi
+
+nodeSelector: { }
+
+tolerations: [ ]
+
+affinity: { }
