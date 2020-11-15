@@ -6,3 +6,19 @@ description: >-
 type: application
 version: 1.0.1
 appVersion: vanilla
+home: https://www.klei.com/games/dont-starve-together
+keywords:
+  - dont
+  - don't
+  - starve
+  - together
+  - dontstarvetogether
+  - klei
+sources:
+  - https://github.com/Jamesits/docker-dst-server
+  - https://github.com/utkuozdemir/helm-charts
+icon: https://utkuozdemir.org/helm-charts/dst.ico
+maintainers:
+  - name: Utku Özdemir
+    email: uoz@protonmail.com
+    url: https://utkuozdemir.org
