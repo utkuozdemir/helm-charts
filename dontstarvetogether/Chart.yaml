@@ -4,7 +4,7 @@ description: >-
   A Helm chart for the game Don't Starve Together
   based on the image https://github.com/Jamesits/docker-dst-server
 type: application
-version: 1.0.2
+version: 1.0.3
 appVersion: vanilla
 home: https://www.klei.com/games/dont-starve-together
 keywords:
@@ -14,6 +14,7 @@ keywords:
   - together
   - don't starve together
   - dontstarvetogether
+  - dst
   - klei
 sources:
   - https://github.com/Jamesits/docker-dst-server
