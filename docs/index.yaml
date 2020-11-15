@@ -1,6 +1,45 @@
 apiVersion: v1
 entries:
   dontstarvetogether:
+  - annotations:
+      artifacthub.io/changes: |
+        - Add artifacthub.io annotations for the changelog
+        - Add artifacthub.io images annotations
+        - Add chart icon for the artifacthub
+      artifacthub.io/images: |
+        - name: dst-server
+          image: docker.io/jamesits/dst-server:vanilla
+        - name: busybox
+          image: docker.io/busybox:musl
+    apiVersion: v2
+    appVersion: vanilla
+    created: "2020-11-15T23:32:22.687399+01:00"
+    description: A Helm chart for the game Don't Starve Together based on the image
+      https://github.com/Jamesits/docker-dst-server
+    digest: 030d8929211e990b67bbf2c78116014e5da6c7937548cf5eb3b86eef7d24bc35
+    home: https://www.klei.com/games/dont-starve-together
+    icon: https://utkuozdemir.org/helm-charts/dst.ico
+    keywords:
+    - dont
+    - don't
+    - starve
+    - together
+    - don't starve together
+    - dontstarvetogether
+    - dst
+    - klei
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: dontstarvetogether
+    sources:
+    - https://github.com/Jamesits/docker-dst-server
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/dontstarvetogether-1.0.3.tgz
+    version: 1.0.3
   - apiVersion: v2
     appVersion: vanilla
     created: "2020-11-15T22:07:04.934295+01:00"
@@ -266,4 +305,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2020-11-15T22:07:04.926739+01:00"
+generated: "2020-11-15T23:32:22.683113+01:00"

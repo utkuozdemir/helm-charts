@@ -24,3 +24,13 @@ maintainers:
   - name: Utku Özdemir
     email: uoz@protonmail.com
     url: https://utkuozdemir.org
+annotations:
+  artifacthub.io/changes: |
+    - Add artifacthub.io annotations for the changelog
+    - Add artifacthub.io images annotations
+    - Add chart icon for the artifacthub
+  artifacthub.io/images: |
+    - name: dst-server
+      image: docker.io/jamesits/dst-server:vanilla
+    - name: busybox
+      image: docker.io/busybox:musl
