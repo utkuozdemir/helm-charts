@@ -121,3 +121,5 @@ Temporary Items
 .apdisk
 
 # End of https://www.gitignore.io/api/helm,macos,jetbrains+all
+
+temp/
