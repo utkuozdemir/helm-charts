@@ -3,7 +3,18 @@ entries:
   dontstarvetogether:
   - apiVersion: v2
     appVersion: vanilla
-    created: "2020-11-14T22:12:22.200005+01:00"
+    created: "2020-11-15T21:33:06.652252+01:00"
+    description: A Helm chart for the game Don't Starve Together based on the image
+      https://github.com/Jamesits/docker-dst-server
+    digest: 6a1463663a35a05efcd9773c0c7a269753292c45b184645d66d675760c1aa328
+    name: dontstarvetogether
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/dontstarvetogether-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: vanilla
+    created: "2020-11-15T21:33:06.651211+01:00"
     description: A Helm chart for the game Don't Starve Together based on the image
       https://github.com/Jamesits/docker-dst-server
     digest: 5a1496a089b8bf5c3ce4b7d322ccdfe09c7a65f22fa9b561dbde705e19f9ebcc
@@ -15,7 +26,7 @@ entries:
   gohttpserver:
   - apiVersion: v1
     appVersion: latest
-    created: "2020-11-14T22:12:22.200494+01:00"
+    created: "2020-11-15T21:33:06.653143+01:00"
     description: GoHttpServer
     digest: 1ca503f321b2578255fb0444235796c14673d3c1ab0172272e1751d6f8f318f8
     name: gohttpserver
@@ -25,7 +36,7 @@ entries:
   jellyfin:
   - apiVersion: v2
     appVersion: 10.6.4-1-ls82
-    created: "2020-11-14T22:12:22.208893+01:00"
+    created: "2020-11-15T21:33:06.666804+01:00"
     description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
       image.
     digest: b2a82e80b5deb9e9692d6a9a266d017b27eac648e881a54ac80dc3b2c84f7736
@@ -36,7 +47,7 @@ entries:
     version: 1.0.7
   - apiVersion: v2
     appVersion: 10.6.4-1-ls71
-    created: "2020-11-14T22:12:22.206363+01:00"
+    created: "2020-11-15T21:33:06.665321+01:00"
     description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
       image.
     digest: 45b4d0cb73fe0e1abb044cf671ac1d1ee3f8d50c56485079d49edfbb6832ab70
@@ -47,7 +58,7 @@ entries:
     version: 1.0.6
   - apiVersion: v2
     appVersion: 10.6.3-1-ls69
-    created: "2020-11-14T22:12:22.205327+01:00"
+    created: "2020-11-15T21:33:06.66376+01:00"
     description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
       image.
     digest: e82d46d8ead897269985fe21fc35a9c9bed77542a0662314851fa4cf94dd00c5
@@ -58,7 +69,7 @@ entries:
     version: 1.0.5
   - apiVersion: v2
     appVersion: 10.6.2-1-ls67
-    created: "2020-11-14T22:12:22.20452+01:00"
+    created: "2020-11-15T21:33:06.660945+01:00"
     description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
       image.
     digest: 8b51a81f0223eb27598f4e71e1bc0676c6f2ef258bf7866823468909aa8c545a
@@ -69,7 +80,7 @@ entries:
     version: 1.0.4
   - apiVersion: v2
     appVersion: 10.6.1-1-ls65
-    created: "2020-11-14T22:12:22.203702+01:00"
+    created: "2020-11-15T21:33:06.659462+01:00"
     description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
       image.
     digest: 04b28a217ed1b569895fecf73d04856f227ed57ba0c85f53658e221acc816083
@@ -80,7 +91,7 @@ entries:
     version: 1.0.3
   - apiVersion: v2
     appVersion: 10.6.0-2-ls63
-    created: "2020-11-14T22:12:22.202855+01:00"
+    created: "2020-11-15T21:33:06.658021+01:00"
     description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
       image.
     digest: 0e2b20ec12ba8f15d93e121994bc8809e93423c000c520ec84c216b81d814ce6
@@ -91,7 +102,7 @@ entries:
     version: 1.0.2
   - apiVersion: v2
     appVersion: v10.5.5-ls52
-    created: "2020-11-14T22:12:22.202125+01:00"
+    created: "2020-11-15T21:33:06.656839+01:00"
     description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
       image.
     digest: ba95b4c272bd06a0100477b3ba2a5e2e4fb5adcdea619aea73c7afa3863ccd0a
@@ -102,7 +113,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: v10.5.5-ls51
-    created: "2020-11-14T22:12:22.201154+01:00"
+    created: "2020-11-15T21:33:06.655328+01:00"
     description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
       image.
     digest: cd83eaca916842da9f91ff11784f0d0cc7166be6685ec2ca3a4d8d780e20bef8
@@ -114,7 +125,7 @@ entries:
   plex:
   - apiVersion: v2
     appVersion: 1.19.2.2737-b69929dab
-    created: "2020-11-14T22:12:22.212317+01:00"
+    created: "2020-11-15T21:33:06.670413+01:00"
     description: Plex Media Server Helm chart that is based on plexinc/pms-docker
       Docker image.
     digest: 759eed7cb8c4d71e75a46b0f97e546286783409612b15c34a0ed873c75025bfb
@@ -125,7 +136,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: 1.19.1.2645-ccb6eb67e
-    created: "2020-11-14T22:12:22.211058+01:00"
+    created: "2020-11-15T21:33:06.669178+01:00"
     description: Plex Media Server Helm chart that is based on plexinc/pms-docker
       Docker image.
     digest: d51f1a7bf74255008ac36772d37d3c0a4c8d2b73fafc2c318f23ce85f4da6d73
@@ -136,7 +147,7 @@ entries:
     version: 1.0.0
   - apiVersion: v1
     appVersion: 1.16.5.1554-1e5ff713d
-    created: "2020-11-14T22:12:22.20982+01:00"
+    created: "2020-11-15T21:33:06.667716+01:00"
     description: Plex
     digest: cf6cc48ea7f9666f65a34c21da073f2898f83f3897ba2aa0ca8579411bec238f
     name: plex
@@ -146,7 +157,7 @@ entries:
   restreamer:
   - apiVersion: v2
     appVersion: 0.6.4
-    created: "2020-11-14T22:12:22.213059+01:00"
+    created: "2020-11-15T21:33:06.671906+01:00"
     description: Restreamer helm chart
     digest: 1f808d3297cb01f7c26649a4249e27e1b8396d0d365643108315338c3341a797
     name: restreamer
@@ -157,7 +168,7 @@ entries:
   transmission-exporter:
   - apiVersion: v1
     appVersion: 0.3.0
-    created: "2020-11-14T22:12:22.214158+01:00"
+    created: "2020-11-15T21:33:06.674174+01:00"
     description: Transmission Exporter
     digest: 630d16f2ecc11717d28743576cf6182a46122c98268df3fdac053ae95a2ac357
     name: transmission-exporter
@@ -166,7 +177,7 @@ entries:
     version: 1.0.0
   - apiVersion: v1
     appVersion: 0.3.0
-    created: "2020-11-14T22:12:22.213635+01:00"
+    created: "2020-11-15T21:33:06.672637+01:00"
     description: Transmission Exporter
     digest: 1ba9f2f6a6915b762efd3ff8c331920826b4d19b3db932da325c698138a7bede
     name: transmission-exporter
@@ -176,7 +187,7 @@ entries:
   transmission-openvpn:
   - apiVersion: v2
     appVersion: "3.1"
-    created: "2020-11-14T22:12:22.218163+01:00"
+    created: "2020-11-15T21:33:06.681983+01:00"
     description: Transmission + OpenVPN chart based on haugene/transmission-openvpn
       image
     digest: d92af34216c64d01ceceb7ccbdadeb59e3c8560f1fd17e1341bf6dfb73bf11d5
@@ -187,7 +198,7 @@ entries:
     version: 1.0.3
   - apiVersion: v2
     appVersion: 3.0.1
-    created: "2020-11-14T22:12:22.21741+01:00"
+    created: "2020-11-15T21:33:06.680307+01:00"
     description: Transmission + OpenVPN chart based on haugene/transmission-openvpn
       image
     digest: 2d96f4d9806748c556b4669354d545b3b17775d0e80a27ce52e5cc10a535ba57
@@ -198,7 +209,7 @@ entries:
     version: 1.0.2
   - apiVersion: v2
     appVersion: "2.13"
-    created: "2020-11-14T22:12:22.216341+01:00"
+    created: "2020-11-15T21:33:06.678774+01:00"
     description: Transmission + OpenVPN chart based on haugene/transmission-openvpn
       image
     digest: dd4401ecec13949edfa629ad3ff91211400f7de4b1070f3e6930e6bc3fad4d49
@@ -209,7 +220,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: "2.12"
-    created: "2020-11-14T22:12:22.215484+01:00"
+    created: "2020-11-15T21:33:06.677257+01:00"
     description: Transmission + OpenVPN chart based on haugene/transmission-openvpn
       image
     digest: 20b539ab3202a35a4276f9d0e9e1a88b75f81b2d2d7387d9b0acbf2ba1bea3e7
@@ -220,11 +231,11 @@ entries:
     version: 1.0.0
   - apiVersion: v1
     appVersion: "2.7"
-    created: "2020-11-14T22:12:22.21479+01:00"
+    created: "2020-11-15T21:33:06.675426+01:00"
     description: Transmission + OpenVPN
     digest: 41fcc45a6c5dbaeba39c550d4ee0c23b840e460e9626e1b45559db0d1c3ec0a6
     name: transmission-openvpn
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2020-11-14T22:12:22.198869+01:00"
+generated: "2020-11-15T21:33:06.64955+01:00"
