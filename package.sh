@@ -10,9 +10,10 @@ fi
 repo_url=https://utkuozdemir.org/helm-charts
 package_dir=$1
 
-helm package "$package_dir"
-mv "$package_dir"*.tgz docs/
-helm repo index docs/ --url $repo_url
+mkdir -p temp
+helm package -d temp "$package_dir"
+helm repo index temp/ --url $repo_url --merge docs/index.yaml
+mv temp/* docs/
 
 git add "$package_dir"
 git add docs
