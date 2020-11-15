@@ -13,12 +13,12 @@ entries:
           image: docker.io/busybox:musl
     apiVersion: v2
     appVersion: vanilla
-    created: "2020-11-15T23:32:22.687399+01:00"
+    created: "2020-11-16T00:55:52.406338+01:00"
     description: A Helm chart for the game Don't Starve Together based on the image
       https://github.com/Jamesits/docker-dst-server
-    digest: 030d8929211e990b67bbf2c78116014e5da6c7937548cf5eb3b86eef7d24bc35
+    digest: e15e961d35a86563dd8b81ed8d580908ca19984583239f01e10e5e901ef0664a
     home: https://www.klei.com/games/dont-starve-together
-    icon: https://utkuozdemir.org/helm-charts/dst.ico
+    icon: https://utkuozdemir.org/helm-charts/dst.png
     keywords:
     - dont
     - don't
@@ -305,4 +305,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2020-11-15T23:32:22.683113+01:00"
+generated: "2020-11-16T00:55:52.404875+01:00"

@@ -19,7 +19,7 @@ keywords:
 sources:
   - https://github.com/Jamesits/docker-dst-server
   - https://github.com/utkuozdemir/helm-charts
-icon: https://utkuozdemir.org/helm-charts/dst.ico
+icon: https://utkuozdemir.org/helm-charts/dst.png
 maintainers:
   - name: Utku Özdemir
     email: uoz@protonmail.com
