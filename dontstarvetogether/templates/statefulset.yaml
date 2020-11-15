@@ -84,25 +84,25 @@ spec:
           ports:
             - name: master
               containerPort: {{ .Values.config.master.network.server_port }}
-              {{- if .Values.config.useHostPorts }}
+              {{- if .Values.useHostPorts }}
               hostPort: {{ .Values.config.master.network.server_port }}
               {{- end }}
               protocol: UDP
             - name: master-steam
               containerPort: {{ .Values.config.master.steam.master_server_port }}
-              {{- if .Values.config.useHostPorts }}
+              {{- if .Values.useHostPorts }}
               hostPort: {{ .Values.config.master.steam.master_server_port }}
               {{- end }}
               protocol: UDP
             - name: caves
               containerPort: {{ .Values.config.caves.network.server_port }}
-              {{- if .Values.config.useHostPorts }}
+              {{- if .Values.useHostPorts }}
               hostPort: {{ .Values.config.caves.network.server_port }}
               {{- end }}
               protocol: UDP
             - name: caves-steam
               containerPort: {{ .Values.config.caves.steam.master_server_port }}
-              {{- if .Values.config.useHostPorts }}
+              {{- if .Values.useHostPorts }}
               hostPort: {{ .Values.config.caves.steam.master_server_port }}
               {{- end }}
               protocol: UDP
@@ -123,13 +123,13 @@ spec:
   volumeClaimTemplates:
 {{- if .Values.persistence.enabled }}
     - metadata:
-        name: {{ .Values.persistence.name }}
+        name: data
       spec:
         accessModes:
         {{- range .Values.persistence.accessModes }}
           - {{ . | quote }}
         {{- end }}
-      {{- if hasKey .Values.persistence "storageClass" }}
+      {{- if .Values.persistence.storageClass }}
         storageClassName: {{ .Values.persistence.storageClass | quote }}
       {{- end }}
         resources:

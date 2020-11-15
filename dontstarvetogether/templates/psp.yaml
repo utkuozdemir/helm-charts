@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "dontstarvetogether.labels" . | nindent 4 }}
 spec:
-  {{- if .Values.config.useHostPorts }}
+  {{- if .Values.useHostPorts }}
   hostPorts:
     - min: {{ .Values.config.master.network.server_port }}
       max: {{ .Values.config.master.network.server_port }}

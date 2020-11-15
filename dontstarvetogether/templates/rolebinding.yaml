@@ -11,5 +11,5 @@ roleRef:
   name: {{ include "dontstarvetogether.fullname" . }}
 subjects:
   - kind: ServiceAccount
-    name: {{ include "dontstarvetogether.fullname" . }}
+    name: {{ include "dontstarvetogether.serviceAccountName" . }}
 {{- end }}

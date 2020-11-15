@@ -1,3 +1,5 @@
+useHostPorts: true
+
 config:
   root:
     clusterToken: pds-g^K...
