@@ -162,7 +162,7 @@ There are a few configuration parameters that need your attention. Those are:
   See [This page](https://nodecraft.com/support/games/dont-starve-together/how-to-acquire-a-cluster-token) for more information.
 
 - `config.root.network.cluster_name`: Give your server a friendly name - 
-  so you can find it easily in the "Browse Server" listings.
+  so you can find it easily in the "Browse Servers" listings.
 
 - `config.root.network.cluster_description`: Give your server a friendly description.
 
