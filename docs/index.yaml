@@ -14,8 +14,7 @@ entries:
     apiVersion: v2
     appVersion: vanilla
     created: "2020-11-16T00:55:52.406338+01:00"
-    description: A Helm chart for the game Don't Starve Together based on the image
-      https://github.com/Jamesits/docker-dst-server
+    description: A Helm chart for the game Don't Starve Together based on the image https://github.com/Jamesits/docker-dst-server
     digest: e15e961d35a86563dd8b81ed8d580908ca19984583239f01e10e5e901ef0664a
     home: https://www.klei.com/games/dont-starve-together
     icon: https://utkuozdemir.org/helm-charts/dst.png
@@ -43,8 +42,7 @@ entries:
   - apiVersion: v2
     appVersion: vanilla
     created: "2020-11-15T22:07:04.934295+01:00"
-    description: A Helm chart for the game Don't Starve Together based on the image
-      https://github.com/Jamesits/docker-dst-server
+    description: A Helm chart for the game Don't Starve Together based on the image https://github.com/Jamesits/docker-dst-server
     digest: 1eb170ab7f04b8dae3c4d88935a4f9072b982d2d607d41225ad71c9aac2016df
     home: https://www.klei.com/games/dont-starve-together
     icon: https://utkuozdemir.org/helm-charts/dst.ico
@@ -71,8 +69,7 @@ entries:
   - apiVersion: v2
     appVersion: vanilla
     created: "2020-11-15T22:07:04.93306+01:00"
-    description: A Helm chart for the game Don't Starve Together based on the image
-      https://github.com/Jamesits/docker-dst-server
+    description: A Helm chart for the game Don't Starve Together based on the image https://github.com/Jamesits/docker-dst-server
     digest: 6a1463663a35a05efcd9773c0c7a269753292c45b184645d66d675760c1aa328
     name: dontstarvetogether
     type: application
@@ -82,8 +79,7 @@ entries:
   - apiVersion: v2
     appVersion: vanilla
     created: "2020-11-15T22:07:04.930548+01:00"
-    description: A Helm chart for the game Don't Starve Together based on the image
-      https://github.com/Jamesits/docker-dst-server
+    description: A Helm chart for the game Don't Starve Together based on the image https://github.com/Jamesits/docker-dst-server
     digest: 5a1496a089b8bf5c3ce4b7d322ccdfe09c7a65f22fa9b561dbde705e19f9ebcc
     name: dontstarvetogether
     type: application
@@ -104,8 +100,7 @@ entries:
   - apiVersion: v2
     appVersion: 10.6.4-1-ls82
     created: "2020-11-15T22:07:04.946253+01:00"
-    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
-      image.
+    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker image.
     digest: b2a82e80b5deb9e9692d6a9a266d017b27eac648e881a54ac80dc3b2c84f7736
     name: jellyfin
     type: application
@@ -115,8 +110,7 @@ entries:
   - apiVersion: v2
     appVersion: 10.6.4-1-ls71
     created: "2020-11-15T22:07:04.94503+01:00"
-    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
-      image.
+    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker image.
     digest: 45b4d0cb73fe0e1abb044cf671ac1d1ee3f8d50c56485079d49edfbb6832ab70
     name: jellyfin
     type: application
@@ -126,8 +120,7 @@ entries:
   - apiVersion: v2
     appVersion: 10.6.3-1-ls69
     created: "2020-11-15T22:07:04.943724+01:00"
-    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
-      image.
+    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker image.
     digest: e82d46d8ead897269985fe21fc35a9c9bed77542a0662314851fa4cf94dd00c5
     name: jellyfin
     type: application
@@ -137,8 +130,7 @@ entries:
   - apiVersion: v2
     appVersion: 10.6.2-1-ls67
     created: "2020-11-15T22:07:04.942503+01:00"
-    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
-      image.
+    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker image.
     digest: 8b51a81f0223eb27598f4e71e1bc0676c6f2ef258bf7866823468909aa8c545a
     name: jellyfin
     type: application
@@ -148,8 +140,7 @@ entries:
   - apiVersion: v2
     appVersion: 10.6.1-1-ls65
     created: "2020-11-15T22:07:04.941292+01:00"
-    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
-      image.
+    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker image.
     digest: 04b28a217ed1b569895fecf73d04856f227ed57ba0c85f53658e221acc816083
     name: jellyfin
     type: application
@@ -159,8 +150,7 @@ entries:
   - apiVersion: v2
     appVersion: 10.6.0-2-ls63
     created: "2020-11-15T22:07:04.940093+01:00"
-    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
-      image.
+    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker image.
     digest: 0e2b20ec12ba8f15d93e121994bc8809e93423c000c520ec84c216b81d814ce6
     name: jellyfin
     type: application
@@ -170,8 +160,7 @@ entries:
   - apiVersion: v2
     appVersion: v10.5.5-ls52
     created: "2020-11-15T22:07:04.938724+01:00"
-    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
-      image.
+    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker image.
     digest: ba95b4c272bd06a0100477b3ba2a5e2e4fb5adcdea619aea73c7afa3863ccd0a
     name: jellyfin
     type: application
@@ -181,8 +170,7 @@ entries:
   - apiVersion: v2
     appVersion: v10.5.5-ls51
     created: "2020-11-15T22:07:04.93665+01:00"
-    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker
-      image.
+    description: jellyfin Helm chart that is based on linuxserver/jellyfin Docker image.
     digest: cd83eaca916842da9f91ff11784f0d0cc7166be6685ec2ca3a4d8d780e20bef8
     name: jellyfin
     type: application
@@ -193,8 +181,7 @@ entries:
   - apiVersion: v2
     appVersion: 1.19.2.2737-b69929dab
     created: "2020-11-15T22:07:04.950058+01:00"
-    description: Plex Media Server Helm chart that is based on plexinc/pms-docker
-      Docker image.
+    description: Plex Media Server Helm chart that is based on plexinc/pms-docker Docker image.
     digest: 759eed7cb8c4d71e75a46b0f97e546286783409612b15c34a0ed873c75025bfb
     name: plex
     type: application
@@ -204,8 +191,7 @@ entries:
   - apiVersion: v2
     appVersion: 1.19.1.2645-ccb6eb67e
     created: "2020-11-15T22:07:04.948646+01:00"
-    description: Plex Media Server Helm chart that is based on plexinc/pms-docker
-      Docker image.
+    description: Plex Media Server Helm chart that is based on plexinc/pms-docker Docker image.
     digest: d51f1a7bf74255008ac36772d37d3c0a4c8d2b73fafc2c318f23ce85f4da6d73
     name: plex
     type: application
@@ -253,10 +239,19 @@ entries:
     version: 0.1.0
   transmission-openvpn:
   - apiVersion: v2
+    appVersion: "3.4"
+    created: "2021-02-18T21:29:04.742899+01:00"
+    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn image
+    digest: 887985cf026b5a70aabc0c5e97102bdab23cc3f187bb164882c5415bf65c4217
+    name: transmission-openvpn
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/transmission-openvpn-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v2
     appVersion: "3.1"
     created: "2020-11-15T22:07:04.961943+01:00"
-    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn
-      image
+    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn image
     digest: d92af34216c64d01ceceb7ccbdadeb59e3c8560f1fd17e1341bf6dfb73bf11d5
     name: transmission-openvpn
     type: application
@@ -266,8 +261,7 @@ entries:
   - apiVersion: v2
     appVersion: 3.0.1
     created: "2020-11-15T22:07:04.9602+01:00"
-    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn
-      image
+    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn image
     digest: 2d96f4d9806748c556b4669354d545b3b17775d0e80a27ce52e5cc10a535ba57
     name: transmission-openvpn
     type: application
@@ -277,8 +271,7 @@ entries:
   - apiVersion: v2
     appVersion: "2.13"
     created: "2020-11-15T22:07:04.958208+01:00"
-    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn
-      image
+    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn image
     digest: dd4401ecec13949edfa629ad3ff91211400f7de4b1070f3e6930e6bc3fad4d49
     name: transmission-openvpn
     type: application
@@ -288,8 +281,7 @@ entries:
   - apiVersion: v2
     appVersion: "2.12"
     created: "2020-11-15T22:07:04.956736+01:00"
-    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn
-      image
+    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn image
     digest: 20b539ab3202a35a4276f9d0e9e1a88b75f81b2d2d7387d9b0acbf2ba1bea3e7
     name: transmission-openvpn
     type: application
@@ -305,4 +297,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2020-11-16T00:55:52.404875+01:00"
+generated: "2021-02-18T21:29:04.741449+01:00"
