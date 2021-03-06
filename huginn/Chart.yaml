@@ -1,0 +1,38 @@
+apiVersion: v2
+name: huginn
+description: Huginn Helm chart based on its official Docker image
+type: application
+version: 1.0.0
+appVersion: 4d17829cf6b15b004ad3f4be196303dca4944810
+home: https://github.com/huginn/huginn
+keywords:
+  - huginn
+  - scraper
+  - agent
+  - automation
+  - webscraping
+  - rss
+sources:
+  - https://github.com/huginn/huginn
+  - https://github.com/utkuozdemir/helm-charts
+icon: https://utkuozdemir.org/helm-charts/huginn.png
+maintainers:
+  - name: Utku Özdemir
+    email: uoz@protonmail.com
+    url: https://utkuozdemir.org
+annotations:
+  artifacthub.io/license: MIT
+  artifacthub.io/changes: |
+    - Initial release
+  artifacthub.io/images: |
+    - name: huginn/huginn
+      image: docker.io/huginn/huginn-single-process:4d17829cf6b15b004ad3f4be196303dca4944810
+    - name: bitnami/mysql
+      image: docker.io/bitnami/mysql:8.0.23-debian-10-r28
+    - name: bitnami/bitnami-shell
+      image: docker.io/bitnami/bitnami-shell:10
+dependencies:
+  - name: mysql
+    repository: https://charts.bitnami.com/bitnami
+    version: 8.4.4
+    condition: mysql.install
