@@ -110,6 +110,48 @@ entries:
       artifacthub.io/license: MIT
     apiVersion: v2
     appVersion: 4d17829cf6b15b004ad3f4be196303dca4944810
+    created: "2021-03-07T20:12:47.940398+01:00"
+    dependencies:
+    - condition: mysql.install
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.4.4
+    description: Huginn Helm chart based on its official Docker image
+    digest: 417348494f32814d0dc7fc7c2f51c85d4c6332f99c697526eb997fe919aee467
+    home: https://github.com/huginn/huginn
+    icon: https://utkuozdemir.org/helm-charts/huginn.png
+    keywords:
+    - huginn
+    - scraper
+    - agent
+    - automation
+    - webscraping
+    - rss
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: huginn
+    sources:
+    - https://github.com/huginn/huginn
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/huginn-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
+        - Initial release
+      artifacthub.io/images: |
+        - name: huginn/huginn
+          image: docker.io/huginn/huginn-single-process:4d17829cf6b15b004ad3f4be196303dca4944810
+        - name: bitnami/mysql
+          image: docker.io/bitnami/mysql:8.0.23-debian-10-r28
+        - name: bitnami/bitnami-shell
+          image: docker.io/bitnami/bitnami-shell:10
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 4d17829cf6b15b004ad3f4be196303dca4944810
     created: "2021-03-07T00:09:47.657549+01:00"
     dependencies:
     - condition: mysql.install
@@ -340,4 +382,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-03-07T00:09:47.653369+01:00"
+generated: "2021-03-07T20:12:47.933605+01:00"

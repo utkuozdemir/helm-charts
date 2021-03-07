@@ -101,9 +101,9 @@ seed:
   password: ChangeMe!
 
 mysql:
+  install: true
   volumePermissions:
     enabled: true
-  install: true
   primary:
     service:
       port: 3306
