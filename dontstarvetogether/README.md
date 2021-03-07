@@ -58,7 +58,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `podSecurityPolicy.create` | If a PodSecurityPolicy should be created with its required Role and RoleBindings | `false` |
 | `image.repository` | Image repository | `"docker.io/jamesits/dst-server"` |
 | `image.pullPolicy` | Image pull policy | `"IfNotPresent"` |
-| `image.tag` | Image tag (if not speficied, defaults to the chart's appVersion) | `""` |
+| `image.tag` | Image tag (if not specified, defaults to the chart's appVersion) | `""` |
 | `initImage.repository` | Init container image repository | `"docker.io/busybox"` |
 | `initImage.pullPolicy` | Init container image pull policy | `"IfNotPresent"` |
 | `initImage.tag` | Init container image tag | `"musl"` |
