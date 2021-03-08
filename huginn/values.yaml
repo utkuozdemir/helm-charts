@@ -100,8 +100,16 @@ seed:
   username: admin
   password: ChangeMe!
 
+database:
+  type: ""
+  host:
+  name:
+  username:
+  password:
+  port:
+
 mysql:
-  install: true
+  deployChart: true
   volumePermissions:
     enabled: true
   primary:
@@ -112,3 +120,14 @@ mysql:
     username: huginn
     password: ChangeMe!
     rootPassword: DefinitelyChangeMe!
+
+postgresql:
+  deployChart: false
+  volumePermissions:
+    enabled: true
+  service:
+    port: 5432
+  postgresqlPostgresPassword: DefinitelyChangeMe!
+  postgresqlUsername: huginn
+  postgresqlPassword: ChangeMe!
+  postgresqlDatabase: huginn

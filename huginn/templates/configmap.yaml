@@ -5,11 +5,33 @@ metadata:
   labels:
     {{- include "huginn.labels" . | nindent 4 }}
 data:
-  {{- if not .Values.seed.enabled }}
+  HUGINN_PORT: {{ .Values.web.port | quote }}
+{{- if not .Values.seed.enabled }}
   DO_NOT_SEED: "true"
-  {{- end }}
+{{- end }}
+{{- if not (or .Values.mysql.deployChart .Values.postgresql.deployChart) }}
+{{- if eq .Values.database.type "mysql" }}
   HUGINN_DATABASE_ADAPTER: mysql2
+{{- else if eq .Values.database.type "postgresql" }}
+  HUGINN_DATABASE_ADAPTER: postgresql
+  HUGINN_DATABASE_ENCODING: utf8
+{{- else }}
+  {{- fail "Database type cannot be determined" }}
+{{- end }}
+{{- end }}
+{{- if .Values.mysql.deployChart }}
   HUGINN_DATABASE_NAME: {{ .Values.mysql.auth.database | quote }}
   HUGINN_DATABASE_HOST: {{ include "huginn.fullname" . }}-mysql
   HUGINN_DATABASE_PORT: {{ .Values.mysql.primary.service.port | quote }}
-  HUGINN_PORT: {{ .Values.web.port | quote }}
+  HUGINN_DATABASE_ADAPTER: mysql2
+{{- else if .Values.postgresql.deployChart }}
+  HUGINN_DATABASE_NAME: {{ .Values.postgresql.postgresqlDatabase | quote }}
+  HUGINN_DATABASE_HOST: {{ include "huginn.fullname" . }}-postgresql
+  HUGINN_DATABASE_PORT: {{ .Values.postgresql.service.port | quote }}
+  HUGINN_DATABASE_ADAPTER: postgresql
+  HUGINN_DATABASE_ENCODING: utf8
+{{- else }}
+  HUGINN_DATABASE_NAME: {{ (required "database.name is required" .Values.database.name) | quote }}
+  HUGINN_DATABASE_HOST: {{ (required "database.host is required" .Values.database.host) | quote }}
+  HUGINN_DATABASE_PORT: {{ (required "database.port is required" .Values.database.port) | quote }}
+{{- end }}

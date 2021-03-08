@@ -99,6 +99,55 @@ entries:
   huginn:
   - annotations:
       artifacthub.io/changes: |
+        - Add PostgreSQL as an optional database
+        - Rework values.yaml keys and defaults
+      artifacthub.io/images: |
+        - name: huginn/huginn
+          image: docker.io/huginn/huginn-single-process:4d17829cf6b15b004ad3f4be196303dca4944810
+        - name: bitnami/mysql
+          image: docker.io/bitnami/mysql:8.0.23-debian-10-r28
+        - name: bitnami/postgresql
+          image: docker.io/bitnami/postgresql:11.11.0-debian-10-r24
+        - name: bitnami/bitnami-shell
+          image: docker.io/bitnami/bitnami-shell:10
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 4d17829cf6b15b004ad3f4be196303dca4944810
+    created: "2021-03-08T20:21:06.658303+01:00"
+    dependencies:
+    - condition: mysql.deployChart
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.4.4
+    - condition: postgresql.deployChart
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.11
+    description: Huginn Helm chart based on its official Docker image
+    digest: a9624f1d7c014921025c133f817557e2e361fe1e4c195cca2eacdafd03aaf4dc
+    home: https://github.com/huginn/huginn
+    icon: https://utkuozdemir.org/helm-charts/huginn.png
+    keywords:
+    - huginn
+    - scraper
+    - agent
+    - automation
+    - webscraping
+    - rss
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: huginn
+    sources:
+    - https://github.com/huginn/huginn
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/huginn-2.0.0.tgz
+    version: 2.0.0
+  - annotations:
+      artifacthub.io/changes: |
         - Initial release
       artifacthub.io/images: |
         - name: huginn/huginn
@@ -382,4 +431,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-03-07T20:12:47.933605+01:00"
+generated: "2021-03-08T20:21:06.647115+01:00"

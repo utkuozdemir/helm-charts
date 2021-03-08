@@ -16,7 +16,7 @@ This chart installs and starts 3 applications:
 
 - The Huginn main instance that also function as the web interface 
 - A Huginn worker instance
-- Bitnami's MySQL chart as a dependency as the database
+- Optionally, one of Bitnami's MySQL or PostgreSQL charts as a database dependency (default is MySQL)
   
 It is based on the [single-process docker image of Huginn](https://hub.docker.com/r/huginn/huginn-single-process).
 
@@ -95,12 +95,24 @@ The command removes all the Kubernetes components associated with the chart and 
 | `seed.enabled` | Seed the database with an initial admin user | `true` |
 | `seed.username` | If `seed.enabled` is `true`, the username for the initial user | `admin` |
 | `seed.password` | If `seed.enabled` is `true`, the password for the initial user. **Make sure you change this to a secure password** | `ChangeMe!` |
-| `mysql.install` | Install a [bitnami/mysql](https://artifacthub.io/packages/helm/bitnami/mysql/8.4.4) instance as a dependency | `true` |
+| `database.type` | The type of the backing database. Valid values are `mysql` and `postgresql`. **Ignored if `mysql.deployChart` or `postgresql.deployChart` is true.** | `""` |
+| `database.host` | The host address of the backing database. **Ignored if `mysql.deployChart` or `postgresql.deployChart` is true.** | `nil` |
+| `database.name` | The name of the backing database. **Ignored if `mysql.deployChart` or `postgresql.deployChart` is true.** | `nil` |
+| `database.username` | The auth username for the backing database. **Ignored if `mysql.deployChart` or `postgresql.deployChart` is true.** | `nil` |
+| `database.password` | The auth password of the backing database. **Ignored if `mysql.deployChart` or `postgresql.deployChart` is true.** | `nil` |
+| `database.port` | The port number of the backing database. **Ignored if `mysql.deployChart` or `postgresql.deployChart` is true.** | `nil` |
+| `mysql.deployChart` | Install a [bitnami/mysql](https://artifacthub.io/packages/helm/bitnami/mysql/8.4.4) instance as a dependency. Mutually exclusive with `postgresql.deployChart` | `true` |
 | `mysql` | The configuration for the [bitnami/mysql](https://artifacthub.io/packages/helm/bitnami/mysql/8.4.4) subchart. For additional configuration, see the official chart README | _See below_ |
-| `mysql.auth.database` | The database name for Huginn to connect to. If `mysql.install` is `true`, the database with this name will be created as well | `huginn` |
-| `mysql.auth.username` | The MySQL DB username for Huginn to use. If `mysql.install` is `true`, the user with this name will be configured as well  | `huginn` |
-| `mysql.auth.password` | The MySQL DB password for Huginn to use. If `mysql.install` is `true`, the user with this password will be configured as well. **Make sure you change this to a secure password**  | `ChangeMe!` |
-| `mysql.auth.rootPassword` | The MySQL root password. **Used only when `mysql.install` is `true`. Make sure you change this to a secure password**  | `DefinitelyChangeMe!` |
+| `mysql.auth.database` | The database name for Huginn to connect to. If `mysql.deployChart` is `true`, the database with this name will be created as well | `huginn` |
+| `mysql.auth.username` | The MySQL DB username for Huginn to use. If `mysql.deployChart` is `true`, the user with this name will be configured as well  | `huginn` |
+| `mysql.auth.password` | The MySQL DB password for Huginn to use. If `mysql.deployChart` is `true`, the user with this password will be configured as well. **Make sure you change this to a secure password**  | `ChangeMe!` |
+| `mysql.auth.rootPassword` | The MySQL root password. **Used only when `mysql.deployChart` is `true`. Make sure you change this to a secure password**  | `DefinitelyChangeMe!` |
+| `postgresql.deployChart` | Install a [bitnami/postgresql](https://artifacthub.io/packages/helm/bitnami/postgresql/10.3.11) instance as a dependency. Mutually exclusive with `mysql.deployChart` | `false` |
+| `postgresql` | The configuration for the [bitnami/postgresql](https://artifacthub.io/packages/helm/bitnami/postgresql/10.3.11) subchart. For additional configuration, see the official chart README | _See below_ |
+| `postgresql.postgresqlDatabase` | The database name for Huginn to connect to. If `postgresql.deployChart` is `true`, the database with this name will be created as well | `huginn` |
+| `postgresql.postgresqlUsername` | The PostgreSQL DB username for Huginn to use. If `postgresql.deployChart` is `true`, the user with this name will be configured as well  | `huginn` |
+| `postgresql.postgresqlPassword` | The PostgreSQL DB password for Huginn to use. If `postgresql.deployChart` is `true`, the user with this password will be configured as well. **Make sure you change this to a secure password**  | `ChangeMe!` |
+| `postgresql.postgresqlPostgresPassword` | The PostgreSQL admin user password. **Used only when `postgresql.deployChart` is `true`. Make sure you change this to a secure password**  | `DefinitelyChangeMe!` |
 
 
 The above config parameters map to the various configuration env variables of a typical Huginn server.
