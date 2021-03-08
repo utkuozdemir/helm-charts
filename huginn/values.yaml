@@ -8,7 +8,7 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-imagePullSecrets: []
+imagePullSecrets: [ ]
 nameOverride: ""
 fullnameOverride: ""
 
@@ -16,7 +16,7 @@ serviceAccount:
   # Specifies whether a service account should be created
   create: true
   # Annotations to add to the service account
-  annotations: {}
+  annotations: { }
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
@@ -27,47 +27,26 @@ service:
 
 ingress:
   enabled: false
-  annotations: {}
+  annotations: { }
     # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  # kubernetes.io/tls-acme: "true"
   hosts:
     - host: chart-example.local
-      paths: []
-  tls: []
+      paths: [ ]
+  tls: [ ]
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
 
 web:
-  replicaCount: 1
-  podAnnotations: { }
-  podSecurityContext: { }
-  # fsGroup: 2000
-  securityContext: { }
-    # capabilities:
-    #   drop:
-    #   - ALL
-    # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-  resources: {}
-    # We usually recommend not to specify default resources and to leave this as a conscious
-    # choice for the user. This also increases chances charts run on environments with little
-    # resources, such as Minikube. If you do want to specify resources, uncomment the following
-    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    # limits:
-    #   cpu: 100m
-    #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
-  nodeSelector: {}
-  tolerations: []
-  affinity: {}
-  updateStrategy: Recreate
-  port: 3000
-
-worker:
+  init:
+    enabled: true
+    image:
+      repository: busybox
+      pullPolicy: IfNotPresent
+      tag: stable
+    resources: { }
+    securityContext: { }
   replicaCount: 1
   podAnnotations: { }
   podSecurityContext: { }
@@ -79,7 +58,7 @@ worker:
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-  resources: {}
+  resources: { }
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -90,9 +69,55 @@ worker:
     # requests:
     #   cpu: 100m
   #   memory: 128Mi
-  nodeSelector: {}
-  tolerations: []
-  affinity: {}
+  nodeSelector: { }
+  tolerations: [ ]
+  affinity: { }
+  updateStrategy: Recreate
+  livenessProbe:
+    initialDelaySeconds: 60
+    httpGet:
+      path: /
+      port: http
+  readinessProbe:
+    httpGet:
+      path: /
+      port: http
+  port: 3000
+
+worker:
+  init:
+    enabled: true
+    image:
+      repository: busybox
+      pullPolicy: IfNotPresent
+      tag: stable
+    resources: { }
+    securityContext: { }
+  replicaCount: 1
+  podAnnotations: { }
+  podSecurityContext: { }
+  # fsGroup: 2000
+  securityContext: { }
+    # capabilities:
+    #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+  resources: { }
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+  nodeSelector: { }
+  tolerations: [ ]
+  affinity: { }
   updateStrategy: Recreate
 
 seed:

@@ -99,6 +99,58 @@ entries:
   huginn:
   - annotations:
       artifacthub.io/changes: |
+        - Add initContainer to the main app to wait for the DB
+        - Add initContainer to the worker app to wait for the main app
+        - Add chart test
+      artifacthub.io/images: |
+        - name: huginn/huginn
+          image: docker.io/huginn/huginn-single-process:4d17829cf6b15b004ad3f4be196303dca4944810
+        - name: busybox
+          image: docker.io/busybox:stable
+        - name: bitnami/mysql
+          image: docker.io/bitnami/mysql:8.0.23-debian-10-r28
+        - name: bitnami/postgresql
+          image: docker.io/bitnami/postgresql:11.11.0-debian-10-r24
+        - name: bitnami/bitnami-shell
+          image: docker.io/bitnami/bitnami-shell:10
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 4d17829cf6b15b004ad3f4be196303dca4944810
+    created: "2021-03-08T23:46:42.62865+01:00"
+    dependencies:
+    - condition: mysql.deployChart
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.4.4
+    - condition: postgresql.deployChart
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.11
+    description: Huginn Helm chart based on its official Docker image
+    digest: 878577d3cf15304ba8a91229339d2e8d3d494c1fda585fdfb5905877fa61bb2d
+    home: https://github.com/huginn/huginn
+    icon: https://utkuozdemir.org/helm-charts/huginn.png
+    keywords:
+    - huginn
+    - scraper
+    - agent
+    - automation
+    - webscraping
+    - rss
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: huginn
+    sources:
+    - https://github.com/huginn/huginn
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/huginn-2.1.0.tgz
+    version: 2.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - Add PostgreSQL as an optional database
         - Rework values.yaml keys and defaults
       artifacthub.io/images: |
@@ -431,4 +483,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-03-08T20:21:06.647115+01:00"
+generated: "2021-03-08T23:46:42.618348+01:00"

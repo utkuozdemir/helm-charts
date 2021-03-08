@@ -16,10 +16,12 @@ data:
   HUGINN_DATABASE_ADAPTER: postgresql
   HUGINN_DATABASE_ENCODING: utf8
 {{- else }}
-  {{- fail "Database type cannot be determined" }}
+{{- required "Database type cannot be determined" nil }}
 {{- end }}
 {{- end }}
-{{- if .Values.mysql.deployChart }}
+{{- if and .Values.mysql.deployChart .Values.postgresql.deployChart }}
+{{ required "At most one of mysql.deployChart and postgresql.deployChart must be true, not both" nil }}
+{{- else if .Values.mysql.deployChart }}
   HUGINN_DATABASE_NAME: {{ .Values.mysql.auth.database | quote }}
   HUGINN_DATABASE_HOST: {{ include "huginn.fullname" . }}-mysql
   HUGINN_DATABASE_PORT: {{ .Values.mysql.primary.service.port | quote }}

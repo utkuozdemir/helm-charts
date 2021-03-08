@@ -32,6 +32,27 @@ spec:
       serviceAccountName: {{ include "huginn.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.worker.podSecurityContext | nindent 8 }}
+      {{- if .Values.worker.init.enabled }}
+      initContainers:
+        - name: {{ .Chart.Name }}-init
+          image: "{{ .Values.worker.init.image.repository }}:{{ .Values.worker.init.image.tag }}"
+          envFrom:
+          - configMapRef:
+              name: {{ include "huginn.fullname" . }}
+          resources:
+            {{- toYaml .Values.worker.init.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.worker.init.securityContext | nindent 12 }}
+          command:
+            - sh
+            - -c
+            - |
+              until nc -z -v -w30 {{ include "huginn.fullname" . }} {{ .Values.service.port }}
+              do
+                echo "Waiting for the main instance to start..."
+                sleep 5
+              done
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}-worker
           command:

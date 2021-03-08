@@ -73,9 +73,17 @@ The command removes all the Kubernetes components associated with the chart and 
 | `ingress.hosts[0].host` | Hostname to your installation | `chart-example.local` |
 | `ingress.hosts[0].paths` | Path within the url structure | `[]` |
 | `ingress.tls` | The TLS configuration for the ingress | `[]` |
+| `web.init.enabled` | Use an init container to wait for the db on the web pod | `true` |
+| `web.init.image.repository` | Web init container image repository | `busybox` |
+| `web.init.image.pullPolicy` | Web init container image pull policy | `IfNotPresent` |
+| `web.init.image.tag` | Web init container image tag | `stable` |
+| `web.init.resources` | Web init container resource requests and limits | `{}` |
+| `web.init.securityContext` | Web initContainer security context | `{}` |
 | `web.replicaCount` | Web pod replica count. Investigate the scaling behavior of Huginn before scaling it up and do it at your own risk | `1` |
 | `web.updateStrategy` | Update strategy for the web deployment | `Recreate` |
-| `web.port` | TODO | `3000` |
+| `web.livenessProbe` | The liveness probe configuration for web pod | `{"initialDelaySeconds":60,"httpGet":{"path":"/","port":"http"}}` |
+| `web.readinessProbe` | The readiness probe configuration for web pod | `{"httpGet":{"path":"/","port":"http"}}` |
+| `web.port` | The web port number for Huginn inside the container | `3000` |
 | `web.resources` | The resource requests and limits of the container | `{}` |
 | `web.podAnnotations` | Annotations for the web pod | `{}` |
 | `web.podSecurityContext` | Security context for the web pod | `{}` |
@@ -83,6 +91,12 @@ The command removes all the Kubernetes components associated with the chart and 
 | `web.nodeSelector` | The node selector for the web deployment | `{}` |
 | `web.tolerations` | Tolerations for the web pod assignment | `[]` |
 | `web.affinity` | Affinity for the web pod assignment | `{}` |
+| `worker.init.enabled` | Use an init container to wait for the main application on the worker pod | `true` |
+| `worker.init.image.repository` | Worker init container image repository | `busybox` |
+| `worker.init.image.pullPolicy` | Worker init container image pull policy | `IfNotPresent` |
+| `worker.init.image.tag` | Worker init container image tag | `stable` |
+| `worker.init.resources` | Worker init container resource requests and limits | `{}` |
+| `worker.init.securityContext` | Worker init container security context | `{}` |
 | `worker.replicaCount` | Worker pod replica count. Investigate the scaling behavior of Huginn before scaling it up and do it at your own risk | `1` |
 | `worker.updateStrategy` | Update strategy for the web deployment | `Recreate` |
 | `worker.podAnnotations` | Annotations for the worker pod | `{}` |
@@ -103,15 +117,15 @@ The command removes all the Kubernetes components associated with the chart and 
 | `database.port` | The port number of the backing database. **Ignored if `mysql.deployChart` or `postgresql.deployChart` is true.** | `nil` |
 | `mysql.deployChart` | Install a [bitnami/mysql](https://artifacthub.io/packages/helm/bitnami/mysql/8.4.4) instance as a dependency. Mutually exclusive with `postgresql.deployChart` | `true` |
 | `mysql` | The configuration for the [bitnami/mysql](https://artifacthub.io/packages/helm/bitnami/mysql/8.4.4) subchart. For additional configuration, see the official chart README | _See below_ |
-| `mysql.auth.database` | The database name for Huginn to connect to. If `mysql.deployChart` is `true`, the database with this name will be created as well | `huginn` |
-| `mysql.auth.username` | The MySQL DB username for Huginn to use. If `mysql.deployChart` is `true`, the user with this name will be configured as well  | `huginn` |
-| `mysql.auth.password` | The MySQL DB password for Huginn to use. If `mysql.deployChart` is `true`, the user with this password will be configured as well. **Make sure you change this to a secure password**  | `ChangeMe!` |
+| `mysql.auth.database` | If `mysql.deployChart` is `true`, the database with this name will be configured in the db and will be used by the application | `huginn` |
+| `mysql.auth.username` | If `mysql.deployChart` is `true`, the user with this name will be configured in the db and will be used by the application | `huginn` |
+| `mysql.auth.password` | If `mysql.deployChart` is `true`, the user with this password will be configured in the db and will be used by the application. **Make sure you change this to a secure password**  | `ChangeMe!` |
 | `mysql.auth.rootPassword` | The MySQL root password. **Used only when `mysql.deployChart` is `true`. Make sure you change this to a secure password**  | `DefinitelyChangeMe!` |
 | `postgresql.deployChart` | Install a [bitnami/postgresql](https://artifacthub.io/packages/helm/bitnami/postgresql/10.3.11) instance as a dependency. Mutually exclusive with `mysql.deployChart` | `false` |
 | `postgresql` | The configuration for the [bitnami/postgresql](https://artifacthub.io/packages/helm/bitnami/postgresql/10.3.11) subchart. For additional configuration, see the official chart README | _See below_ |
-| `postgresql.postgresqlDatabase` | The database name for Huginn to connect to. If `postgresql.deployChart` is `true`, the database with this name will be created as well | `huginn` |
-| `postgresql.postgresqlUsername` | The PostgreSQL DB username for Huginn to use. If `postgresql.deployChart` is `true`, the user with this name will be configured as well  | `huginn` |
-| `postgresql.postgresqlPassword` | The PostgreSQL DB password for Huginn to use. If `postgresql.deployChart` is `true`, the user with this password will be configured as well. **Make sure you change this to a secure password**  | `ChangeMe!` |
+| `postgresql.postgresqlDatabase` | If `postgresql.deployChart` is `true`, the database with this name will be configured in the db and will be used by the application | `huginn` |
+| `postgresql.postgresqlUsername` | If `postgresql.deployChart` is `true`, the user with this name will be configured in the db and will be used by the application | `huginn` |
+| `postgresql.postgresqlPassword` | If `postgresql.deployChart` is `true`, the user with this name will be configured in the db and will be used by the application. **Make sure you change this to a secure password**  | `ChangeMe!` |
 | `postgresql.postgresqlPostgresPassword` | The PostgreSQL admin user password. **Used only when `postgresql.deployChart` is `true`. Make sure you change this to a secure password**  | `DefinitelyChangeMe!` |
 
 

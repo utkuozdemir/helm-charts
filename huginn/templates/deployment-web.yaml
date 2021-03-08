@@ -32,6 +32,27 @@ spec:
       serviceAccountName: {{ include "huginn.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.web.podSecurityContext | nindent 8 }}
+      {{- if .Values.web.init.enabled }}
+      initContainers:
+        - name: {{ .Chart.Name }}-init
+          image: "{{ .Values.web.init.image.repository }}:{{ .Values.web.init.image.tag }}"
+          envFrom:
+          - configMapRef:
+              name: {{ include "huginn.fullname" . }}
+          resources:
+            {{- toYaml .Values.web.init.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.web.init.securityContext | nindent 12 }}
+          command:
+            - sh
+            - -c
+            - |
+              until nc -z -v -w30 ${HUGINN_DATABASE_HOST} ${HUGINN_DATABASE_PORT}
+              do
+                echo "Waiting for database connection..."
+                sleep 5
+              done
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}-web
           securityContext:
@@ -48,13 +69,9 @@ spec:
               containerPort: {{ .Values.web.port }}
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /
-              port: http
+            {{- toYaml .Values.web.livenessProbe | nindent 12 }}
           readinessProbe:
-            httpGet:
-              path: /
-              port: http
+          {{- toYaml .Values.web.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.web.resources | nindent 12 }}
       {{- with .Values.web.nodeSelector }}
