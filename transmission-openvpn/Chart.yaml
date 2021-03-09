@@ -2,5 +2,26 @@ apiVersion: v2
 name: transmission-openvpn
 description: Transmission + OpenVPN chart based on haugene/transmission-openvpn image
 type: application
-version: 1.0.4
+version: 1.0.5
 appVersion: 3.4
+home: https://haugene.github.io/docker-transmission-openvpn
+keywords:
+  - transmission
+  - openvpn
+  - transmission-openvpn
+  - torrent
+sources:
+  - https://github.com/haugene/docker-transmission-openvpn
+  - https://github.com/utkuozdemir/helm-charts
+icon: https://utkuozdemir.org/helm-charts/transmission.png
+maintainers:
+  - name: Utku Özdemir
+    email: uoz@protonmail.com
+    url: https://utkuozdemir.org
+annotations:
+  artifacthub.io/license: MIT
+  artifacthub.io/changes: |
+    - Add logo and keywords
+  artifacthub.io/images: |
+    - name: haugene/transmission-openvpn
+      image: docker.io/haugene/transmission-openvpn:3.4
