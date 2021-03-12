@@ -476,6 +476,40 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/plex-0.1.0.tgz
     version: 0.1.0
+  prerender:
+  - annotations:
+      artifacthub.io/changes: |
+        - Initial release
+      artifacthub.io/images: |
+        - name: tvanro/prerender-alpine
+          image: docker.io/tvanro/prerender-alpine:6.2.0
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 6.2.0
+    created: "2021-03-12T01:23:29.927857+01:00"
+    description: Helm chart for prerender wrapping tvanro/prerender-alpine
+    digest: 3d056934917d1fdee2f6eebce68c24a2ef4d64ef3832c1325ec25b84bc7557aa
+    home: https://github.com/prerender/prerender
+    icon: https://utkuozdemir.org/helm-charts/prerender.png
+    keywords:
+    - prerender
+    - render
+    - chrome
+    - headless-chrome
+    - tvanro
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: prerender
+    sources:
+    - https://github.com/prerender/prerender
+    - https://github.com/tvanro/prerender-alpine
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/prerender-1.0.0.tgz
+    version: 1.0.0
   restreamer:
   - apiVersion: v2
     appVersion: 0.6.4
@@ -597,4 +631,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-03-12T01:19:46.163232+01:00"
+generated: "2021-03-12T01:23:29.927045+01:00"
