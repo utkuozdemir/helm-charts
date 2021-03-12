@@ -2,7 +2,7 @@ apiVersion: v2
 name: huginn
 description: Huginn Helm chart based on its official Docker image
 type: application
-version: 2.1.0
+version: 2.1.1
 appVersion: 4d17829cf6b15b004ad3f4be196303dca4944810
 home: https://github.com/huginn/huginn
 keywords:

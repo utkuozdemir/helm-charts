@@ -73,6 +73,8 @@ The command removes all the Kubernetes components associated with the chart and 
 | `ingress.hosts[0].host` | Hostname to your installation | `chart-example.local` |
 | `ingress.hosts[0].paths` | Path within the url structure | `[]` |
 | `ingress.tls` | The TLS configuration for the ingress | `[]` |
+| `otherEnv` | The additional env variable key-value pairs to be passed to the all of the web and worker pods | `{}` |
+| `otherSecretEnv` | The additional **sensitive** env variable key-value pairs to be passed to the all of the web and worker pods | `{}` |
 | `web.init.enabled` | Use an init container to wait for the db on the web pod | `true` |
 | `web.init.image.repository` | Web init container image repository | `busybox` |
 | `web.init.image.pullPolicy` | Web init container image pull policy | `IfNotPresent` |

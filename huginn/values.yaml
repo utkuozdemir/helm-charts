@@ -38,6 +38,11 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
+otherEnv: { }
+  # ENABLE_INSECURE_AGENTS: "true"
+
+otherSecretEnv: { }
+
 web:
   init:
     enabled: true

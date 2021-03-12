@@ -37,3 +37,6 @@ data:
   HUGINN_DATABASE_HOST: {{ (required "database.host is required" .Values.database.host) | quote }}
   HUGINN_DATABASE_PORT: {{ (required "database.port is required" .Values.database.port) | quote }}
 {{- end }}
+{{- range $k, $v := .Values.otherEnv }}
+  {{ $k }}: {{ $v | quote }}
+{{- end }}
