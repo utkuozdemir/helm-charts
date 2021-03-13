@@ -2,8 +2,8 @@ apiVersion: v2
 name: prerender
 description: Helm chart for prerender wrapping tvanro/prerender-alpine
 type: application
-version: 1.0.0
-appVersion: 6.2.0
+version: 1.0.1
+appVersion: 6.3.0
 home: https://github.com/prerender/prerender
 keywords:
   - prerender
@@ -23,7 +23,10 @@ maintainers:
 annotations:
   artifacthub.io/license: MIT
   artifacthub.io/changes: |
-    - Initial release
+    - Add README
+    - Allow environment variables to be set
+    - Bump appVersion to 6.3.0
+    - Change autoscaling.maxReplicas default to 10
   artifacthub.io/images: |
     - name: tvanro/prerender-alpine
       image: docker.io/tvanro/prerender-alpine:6.2.0
