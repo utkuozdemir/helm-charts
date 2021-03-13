@@ -1,6 +1,6 @@
 # prerender
 
-[Prerender](https://github.com/prerender/prerender) Prerender is a node server that uses 
+[Prerender](https://github.com/prerender/prerender) is a node server that uses 
 Headless Chrome to render HTML, screenshots, PDFs, and HAR files out of any web page.
 
 ## TL;DR
@@ -49,7 +49,7 @@ The command removes all the Kubernetes components associated with the chart and 
 
 | Key | Description | Default |
 |-----|------|---------|
-| `image.repository` | Image repository | `"prerender/prerender-single-process"` |
+| `image.repository` | Image repository | `"docker.io/tvanro/prerender-alpine"` |
 | `image.pullPolicy` | Image pull policy | `"IfNotPresent"` |
 | `image.tag` | Image tag (if not specified, defaults to the chart's appVersion) | `""` |
 | `imagePullSecrets` | Image pull secrets | `[]` |
