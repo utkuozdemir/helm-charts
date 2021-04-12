@@ -337,6 +337,37 @@ entries:
   jellyfin:
   - annotations:
       artifacthub.io/changes: |
+        - Bump app version to 10.7.2-1-ls105
+      artifacthub.io/images: |
+        - name: linuxserver/jellyfin
+          image: docker.io/linuxserver/jellyfin:10.7.2-1-ls105
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 10.7.2-1-ls105
+    created: "2021-04-12T16:01:34.045057+02:00"
+    description: Jellyfin Helm chart that is based on linuxserver/jellyfin Docker image.
+    digest: 45e2af95c61ad59b1860b8849e5702523fb3807cf07a772a77c6f179624f5033
+    home: https://jellyfin.org
+    icon: https://utkuozdemir.org/helm-charts/jellyfin.png
+    keywords:
+    - jellyfin
+    - media-server
+    - streaming
+    - video
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: jellyfin
+    sources:
+    - https://github.com/jellyfin/jellyfin
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/jellyfin-1.1.2.tgz
+    version: 1.1.2
+  - annotations:
+      artifacthub.io/changes: |
         - Bump app version to 10.7.1-1-ls102
       artifacthub.io/images: |
         - name: linuxserver/jellyfin
@@ -796,4 +827,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-03-22T17:23:00.555301+01:00"
+generated: "2021-04-12T16:01:34.044215+02:00"
