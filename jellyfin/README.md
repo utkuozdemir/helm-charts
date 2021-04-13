@@ -74,11 +74,15 @@ The following tables lists the configurable parameters of the chart and their de
 | `persistence.config.accessModes` | Access modes of config volume | `["ReadWriteOnce"]` |
 | `persistence.config.size` | Size for the config PV | `8Gi` |
 | `persistence.data.enabled` | Enable persistence for data storage | `false` |
+| `persistence.data.readOnly` | Mount the data volume read-only | `false` |
 | `persistence.data.storageClass` | Specify the `storageClass` used to provision the data volume | `nil` |
-| `persistence.data.existingClaim` | Use a existing PVC for data which must be created manually before bound | `nil` |
+| `persistence.data.existingClaim` | Use a existing PVC for data which must be created manually before bound. Will be ignored if `persistence.data.enabled` is set to false or `persistence.data.hostPath.enabled` is set to true | `nil` |
 | `persistence.data.annotations` | Annotations for the data volume PVC | `nil` |
 | `persistence.data.accessModes` | Access modes of data volume | `["ReadWriteOnce"]` |
 | `persistence.data.size` | Size for the data PV | `8Gi` |
+| `persistence.data.hostPath.enabled` | Mount a hostPath for the data volume. If set to true, no PVC will be created and `existingClaim` will be ignored | `false` |
+| `persistence.data.hostPath.type` | Type of the hostPath mount | `Directory` |
+| `persistence.data.hostPath.path` | Path of the hostPath mount | `/hostpath` |
 | `jellyfin.timezone` | Timezone to be used. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones | `nil` |
 | `jellyfin.uid` | The unix user id for the process to run with | `nil` |
 | `jellyfin.gid` | The unix group id for the process to run with | `nil` |

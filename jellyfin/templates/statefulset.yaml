@@ -69,7 +69,12 @@ spec:
         - name: config
           emptyDir: {}
 {{- end }}
-{{- if and .Values.persistence.data.enabled .Values.persistence.data.existingClaim }}
+{{- if and .Values.persistence.data.enabled .Values.persistence.data.hostPath.enabled }}
+        - name: data
+          hostPath:
+            path: {{ .Values.persistence.data.hostPath.path }}
+            type: {{ .Values.persistence.data.hostPath.type }}
+{{- else if and .Values.persistence.data.enabled .Values.persistence.data.existingClaim }}
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.data.existingClaim }}
@@ -96,7 +101,7 @@ spec:
             storage: {{ .Values.persistence.config.size | quote }}
         {{ include "jellyfin.config.storageClass" . }}
 {{- end }}
-{{- if and .Values.persistence.data.enabled (not .Values.persistence.data.existingClaim) }}
+{{- if and .Values.persistence.data.enabled (not .Values.persistence.data.existingClaim) (not .Values.persistence.data.hostPath.enabled) }}
     - metadata:
         name: data
         labels:

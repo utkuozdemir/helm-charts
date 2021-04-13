@@ -74,6 +74,10 @@ persistence:
       - ReadWriteOnce
     ## Persistent Volume size
     size: 64Gi
+    hostPath:
+      enabled: false
+      type: Directory
+      path: /hostpath
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
