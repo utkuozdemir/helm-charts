@@ -104,3 +104,5 @@ tunDeviceMountFromHost:
 timezoneMountFromHost:
   enabled: true
   name: localtime
+
+dnsConfig: {}
