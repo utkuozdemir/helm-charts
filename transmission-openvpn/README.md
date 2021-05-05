@@ -79,6 +79,7 @@ The following tables lists the configurable parameters of the chart and their de
 | `tunDeviceMountFromHost.enabled` | Mount the `tun` device from the host to the container, in case `tun` is used as the OpenVPN connection type | `true` |
 | `timezoneMountFromHost.enabled` | Mount the timezone file from the host | `true` |
 | `timezoneMountFromHost.name` | The name of the tz database file to mount. More info: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones | `localtime` |
+| `dnsConfig` | Custom DNS configuration for pods. More info: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy | `{}` |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
