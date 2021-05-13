@@ -540,6 +540,42 @@ entries:
     - https://utkuozdemir.org/helm-charts/jellyfin-1.0.0.tgz
     version: 1.0.0
   plex:
+  - annotations:
+      artifacthub.io/changes: |
+        - Bump image version
+        - Add liveness probe
+        - Make liveness and readiness probes externally configurable
+        - Add icon to chart
+        - Update Chart.yaml
+      artifacthub.io/images: |
+        - name: plexinc/pms-docker
+          image: docker.io/plexinc/pms-docker:1.22.3.4523-d0ce30438
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 1.22.3.4523-d0ce30438
+    created: "2021-05-13T20:50:01.812933+02:00"
+    description: Plex Media Server Helm chart that is based on plexinc/pms-docker Docker image.
+    digest: a3633c9615b00ad6a56b821d4cf14c7d05ed31ea8d1770eddcd82cd6eaa4acfe
+    home: https://www.plex.tv
+    icon: https://utkuozdemir.org/helm-charts/plex.png
+    keywords:
+    - plex
+    - media-server
+    - plex-media-server
+    - streaming
+    - tv
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: plex
+    sources:
+    - https://github.com/plexinc/pms-docker
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/plex-1.0.2.tgz
+    version: 1.0.2
   - apiVersion: v2
     appVersion: 1.19.2.2737-b69929dab
     created: "2020-11-15T22:07:04.950058+01:00"
@@ -889,4 +925,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-04-27T10:31:14.469521+02:00"
+generated: "2021-05-13T20:50:01.811944+02:00"

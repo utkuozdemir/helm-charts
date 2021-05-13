@@ -47,10 +47,10 @@ spec:
               {{- if and .Values.plex.hostPort.enabled }}
               hostPort: {{ .Values.plex.hostPort.port }}
               {{- end }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
-            httpGet:
-              path: /web/index.html
-              port: plex
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

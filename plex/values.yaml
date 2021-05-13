@@ -107,6 +107,16 @@ tolerations: []
 
 affinity: {}
 
+livenessProbe:
+  failureThreshold: 10
+  httpGet:
+    path: /web/index.html
+    port: plex
+readinessProbe:
+  httpGet:
+    path: /web/index.html
+    port: plex
+
 # see the explanation for the parameters: https://github.com/plexinc/pms-docker#parameters
 plex:
   hostPort:
