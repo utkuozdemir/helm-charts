@@ -1,0 +1,27 @@
+apiVersion: v2
+name: filebrowser
+description: A Helm chart for the File Browser project
+type: application
+version: 0.1.0
+appVersion: v2.15.0
+home: https://filebrowser.org
+keywords:
+  - filebrowser
+  - file-browser
+  - file-server
+  - http-file-server
+sources:
+  - https://github.com/filebrowser/filebrowser
+  - https://github.com/utkuozdemir/helm-charts
+icon: https://utkuozdemir.org/helm-charts/filebrowser.png
+maintainers:
+  - name: Utku Özdemir
+    email: uoz@protonmail.com
+    url: https://utkuozdemir.org
+annotations:
+  artifacthub.io/license: MIT
+  artifacthub.io/changes: |
+    - Initial release
+  artifacthub.io/images: |
+    - name: filebrowser/filebrowser
+      image: docker.io/filebrowser/filebrowser:v2.15.0

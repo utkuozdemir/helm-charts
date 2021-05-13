@@ -1,0 +1,19 @@
+{{- if and .Values.persistence.rootDir.enabled (not .Values.persistence.rootDir.existingClaim) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "filebrowser.fullname" . }}-rootdir
+  labels:
+    {{- include "filebrowser.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    {{- range .Values.persistence.rootDir.accessModes }}
+    - {{ . | quote }}
+    {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.rootDir.size | quote }}
+  {{- if .Values.persistence.rootDir.storageClassName }}
+  storageClassName: {{ .Values.persistence.rootDir.storageClassName }}
+  {{- end }}
+{{- end }}

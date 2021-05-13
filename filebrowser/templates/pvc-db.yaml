@@ -1,0 +1,19 @@
+{{- if and .Values.persistence.db.enabled (not .Values.persistence.db.existingClaim) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "filebrowser.fullname" . }}-db
+  labels:
+    {{- include "filebrowser.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    {{- range .Values.persistence.db.accessModes }}
+    - {{ . | quote }}
+    {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.db.size | quote }}
+  {{- if .Values.persistence.rootDir.storageClassName }}
+  storageClassName: {{ .Values.persistence.db.storageClassName }}
+  {{- end }}
+{{- end }}
