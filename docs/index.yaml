@@ -89,6 +89,37 @@ entries:
   filebrowser:
   - annotations:
       artifacthub.io/changes: |
+        - Add generated README
+      artifacthub.io/images: |
+        - name: filebrowser/filebrowser
+          image: docker.io/filebrowser/filebrowser:v2.15.0
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: v2.15.0
+    created: "2021-05-14T01:54:11.924717+02:00"
+    description: A Helm chart for the File Browser project
+    digest: e2aec338c6e16e58e44402ae924b04654c97bc50b36a7cf6eb9acbbfa0d86ac1
+    home: https://filebrowser.org
+    icon: https://utkuozdemir.org/helm-charts/filebrowser.png
+    keywords:
+    - filebrowser
+    - file-browser
+    - file-server
+    - http-file-server
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: filebrowser
+    sources:
+    - https://github.com/filebrowser/filebrowser
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/filebrowser-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - Initial release
       artifacthub.io/images: |
         - name: filebrowser/filebrowser
@@ -988,4 +1019,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-05-13T23:04:52.558579+02:00"
+generated: "2021-05-14T01:54:11.921676+02:00"

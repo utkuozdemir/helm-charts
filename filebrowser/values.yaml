@@ -5,29 +5,39 @@
 replicaCount: 1
 
 image:
+  # -- Container image name
   repository: docker.io/filebrowser/filebrowser
+  # -- Container image pull policy
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  # -- Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
+# -- Array of imagePullSecrets in the namespace for pulling images
 imagePullSecrets: []
+
+# -- String to partially override the fullname template with a string (will prepend the release name)
 nameOverride: ""
+
+# -- String to fully override the fullname template with a string
 fullnameOverride: ""
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # -- Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
+  # -- Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
+  # -- The name of the service account to use.
+  # -- If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# -- Annotations of the pods
 podAnnotations: {}
 
+# -- The security context for the pods
 podSecurityContext: {}
   # fsGroup: 2000
 
+# -- The security context for the application container
 securityContext: {}
   # capabilities:
   #   drop:
@@ -37,14 +47,19 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  # -- Kubernetes Service type
   type: ClusterIP
+  # -- Kubernetes Service port
   port: 80
 
 ingress:
+  # -- Enable the use of the ingress controller to access the web UI
   enabled: false
+  # -- Annotations for the Ingress
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
+  # -- Hosts for the ingress
   hosts:
     - host: chart-example.local
       paths:
@@ -54,6 +69,7 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
+# -- The resources to allocate for the container
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -66,32 +82,57 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+# -- Node labels for pod assignment
 nodeSelector: {}
 
+# -- Tolerations for pod assignment
 tolerations: []
 
+# -- Map of node/pod affinities
 affinity: {}
 
 persistence:
   db:
+    # -- Enable persistence for database
     enabled: true
+    # -- Existing claim for the database
     existingClaim: ""
+    # -- Storage class name for the database PVC
     storageClassName: ""
+    # -- Access modes for the database PVC
     accessModes:
       - ReadWriteOnce
+    # -- Size for the database PVC
     size: 256Mi
   rootDir:
+    # -- Enable persistence for the root directory
     enabled: true
+    # -- Existing claim for the root directory
     existingClaim: ""
+    # -- Storage class name for the root directory PVC
     storageClassName: ""
+    # -- Access modes for the root directory PVC
     accessModes:
       - ReadWriteOnce
+    # -- Size for the root directory PVC
     size: 2Gi
+    # -- Mount the root directory in read-only mode
     readOnly: false
 
+# -- Deployment strategy to use
 strategy:
   type: Recreate
 
+# -- Liveness probe configuration
+livenessProbe: {}
+
+# -- Readiness probe configuration
+readinessProbe:
+  httpGet:
+    path: /health
+    port: http
+
+# -- File Browser application specific configuration
 config:
   port: 80
   baseURL: ""
@@ -99,9 +140,3 @@ config:
   log: stdout
   database: /db/database.db
   root: /rootdir
-
-livenessProbe: {}
-readinessProbe:
-  httpGet:
-    path: /health
-    port: http
