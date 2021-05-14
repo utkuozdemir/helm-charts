@@ -58,8 +58,7 @@ The following tables lists the configurable parameters of the chart and their de
 | imagePullSecrets | list | `[]` | Array of imagePullSecrets in the namespace for pulling images |
 | ingress.annotations | object | `{}` | Annotations for the Ingress |
 | ingress.enabled | bool | `false` | Enable the use of the ingress controller to access the web UI |
-| ingress.hosts[0].host | string | `"chart-example.local"` |  |
-| ingress.hosts[0].paths[0] | string | `"/"` |  |
+| ingress.hosts | list | `[]` |  |
 | ingress.tls | list | `[]` |  |
 | livenessProbe | object | `{}` | Liveness probe configuration |
 | nameOverride | string | `""` | String to partially override the fullname template with a string (will prepend the release name) |
@@ -78,13 +77,13 @@ The following tables lists the configurable parameters of the chart and their de
 | podAnnotations | object | `{}` | Annotations of the pods |
 | podSecurityContext | object | `{}` | The security context for the pods |
 | readinessProbe | object | `{"httpGet":{"path":"/health","port":"http"}}` | Readiness probe configuration |
-| replicaCount | int | `1` |  |
+| replicaCount | int | `1` | Number of replicas to run. Chart is not designed to scale horizontally, use at your own risk |
 | resources | object | `{}` | The resources to allocate for the container |
 | securityContext | object | `{}` | The security context for the application container |
 | service.port | int | `80` | Kubernetes Service port |
 | service.type | string | `"ClusterIP"` | Kubernetes Service type |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
-| serviceAccount.name | string | `""` | The name of the service account to use. -- If not set and create is true, a name is generated using the fullname template |
+| serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | strategy | object | `{"type":"Recreate"}` | Deployment strategy to use |
 | tolerations | list | `[]` | Tolerations for pod assignment |

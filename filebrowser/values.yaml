@@ -2,6 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# -- Number of replicas to run. Chart is not designed to scale horizontally, use at your own risk
 replicaCount: 1
 
 image:
@@ -26,8 +27,7 @@ serviceAccount:
   create: true
   # -- Annotations to add to the service account
   annotations: {}
-  # -- The name of the service account to use.
-  # -- If not set and create is true, a name is generated using the fullname template
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
   name: ""
 
 # -- Annotations of the pods
@@ -60,10 +60,11 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   # -- Hosts for the ingress
-  hosts:
-    - host: chart-example.local
-      paths:
-        - /
+  hosts: []
+    # - host: chart-example.local
+    #   paths:
+    #     - /
+  # -- TLS configuration for ingress
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
