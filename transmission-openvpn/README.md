@@ -1,6 +1,6 @@
 # transmission-openvpn
 
-This is a helm chart for the
+This is a helm chart for the 
 [haugene/docker-transmission-openvpn](https://github.com/haugene/docker-transmission-openvpn) image.
 
 ## TL;DR;
@@ -23,7 +23,7 @@ $ helm repo add utkuozdemir https://utkuozdemir.org/helm-charts
 $ helm install my-release utkuozdemir/transmission-openvpn
 ```
 
-**Important:** See the [Parameters](#parameters) section lists the parameters that need to be configured
+**Important:** See the [Parameters](#parameters) section lists the parameters that need to be configured 
 during the installation.
 
 > **Tip**: List all releases using `helm list`
@@ -95,11 +95,11 @@ $ helm install my-release \
   utkuozdemir/transmission-openvpn
 ```
 
-The above command uses *PIA* as the OpenVPN provider, uses the VPN username `myuser`
+The above command uses *PIA* as the OpenVPN provider, uses the VPN username `myuser` 
 and password `mysecretpassword` to connect to the provider.
 It also enables the transmission upload speed limit and sets it to 2048 KB/s.
 
-Alternatively, a YAML file that specifies the values for the parameters
+Alternatively, a YAML file that specifies the values for the parameters 
 can be provided while installing the chart. For example,
 
 ```console
@@ -111,11 +111,11 @@ $ helm install my-release -f values.yaml utkuozdemir/transmission-openvpn
 
 ## Notes
 
-**Important Note:** By default, the `docker-transmission-openvpn` image **blocks all the incoming traffic** other than
+**Important Note:** By default, the `docker-transmission-openvpn` image **blocks all the incoming traffic** other than 
 the traffic coming from the VPN tunnel.
 
-A set of IP ranges can be speficied as the "local network" to be excluded from this block.
-For the service/ingress to work, **you need to specify your Kubernetes cluster pod range as the local network**.
+A set of IP ranges can be speficied as the "local network" to be excluded from this block.  
+For the service/ingress to work, **you need to specify your Kubernetes cluster pod range as the local network**.  
 In the example above, `10.217.0.0/16` is specified as the pod range.
 
 You can find out your cluster's pod range via the following command:
@@ -123,14 +123,14 @@ You can find out your cluster's pod range via the following command:
 kubectl -n kube-system get pod -o yaml -l component=kube-controller-manager | grep cluster-cidr
 ```
 
-Note that this is an un-opinionated chart regarding the configuration. What is meant by this is:
-The chart passes the set of environment variables as-is into the container, using the `env` and `secretEnv` values.
-This way we avoid mapping each and every configuration parameter to an explicitly
+Note that this is an un-opinionated chart regarding the configuration. What is meant by this is:  
+The chart passes the set of environment variables as-is into the container, using the `env` and `secretEnv` values.  
+This way we avoid mapping each and every configuration parameter to an explicitly 
 named chart parameter and provides a very flexible configuration.
 
-See all the possible environment variables
+See all the possible environment variables 
 [on this page](https://haugene.github.io/docker-transmission-openvpn/arguments/).
 
-Note that the transmission application can be fully configured via the environment variables.
-[See this section](https://haugene.github.io/docker-transmission-openvpn/arguments/#transmission_configuration_options)
+Note that the transmission application can be fully configured via the environment variables. 
+[See this section](https://haugene.github.io/docker-transmission-openvpn/arguments/#transmission_configuration_options) 
 for the transmission configuration mapping to the environment.
