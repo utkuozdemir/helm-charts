@@ -79,7 +79,7 @@ persistence:
     ## Persistent Volume size
     size: 64Gi
 
-# An alternative /data volume that does not use a PVC or hostpath mount
+# An alternative data volume definition that does not use a PVC or hostpath mount
 dataVolume: {}
 
 # see docs: https://haugene.github.io/docker-transmission-openvpn/arguments/
