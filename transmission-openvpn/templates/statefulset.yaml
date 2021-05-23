@@ -97,7 +97,9 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.data.existingClaim }}
-{{- else if not .Values.persistence.data.enabled }}
+{{- else if and (not .Values.persistence.data.enabled) .Values.dataVolume }}
+        {{- toYaml (list .Values.dataVolume) | nindent 8 }}
+{{- else }}
         - name: data
           emptyDir: {}
 {{- end }}
