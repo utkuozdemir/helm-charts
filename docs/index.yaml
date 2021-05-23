@@ -838,6 +838,37 @@ entries:
   transmission-openvpn:
   - annotations:
       artifacthub.io/changes: |
+        - Add an option to specify an alternative data volume
+      artifacthub.io/images: |
+        - name: haugene/transmission-openvpn
+          image: docker.io/haugene/transmission-openvpn:3.6
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: "3.6"
+    created: "2021-05-23T21:36:08.756011+02:00"
+    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn image
+    digest: e9191c13288560ff9edc08a79d5a7a2541a0f42d8e0d65c0f91ddabf12073908
+    home: https://haugene.github.io/docker-transmission-openvpn
+    icon: https://utkuozdemir.org/helm-charts/transmission.png
+    keywords:
+    - transmission
+    - openvpn
+    - transmission-openvpn
+    - torrent
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: transmission-openvpn
+    sources:
+    - https://github.com/haugene/docker-transmission-openvpn
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/transmission-openvpn-1.0.9.tgz
+    version: 1.0.9
+  - annotations:
+      artifacthub.io/changes: |
         - Customizable DNS config
       artifacthub.io/images: |
         - name: haugene/transmission-openvpn
@@ -1019,4 +1050,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-05-14T01:54:11.921676+02:00"
+generated: "2021-05-23T21:36:08.75502+02:00"
