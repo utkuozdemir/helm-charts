@@ -79,6 +79,9 @@ persistence:
     ## Persistent Volume size
     size: 64Gi
 
+# An alternative data volume definition
+dataVolume: {}
+
 # see docs: https://haugene.github.io/docker-transmission-openvpn/arguments/
 # for sensitive values, use secretEnv below.
 env: {}
