@@ -682,6 +682,40 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/jellyfin-1.0.0.tgz
     version: 1.0.0
+  nvidia-gpu-exporter:
+  - annotations:
+      artifacthub.io/changes: |
+        - Initial release of the chart
+      artifacthub.io/images: |
+        - name: utkuozdemir/nvidia_gpu_exporter
+          image: docker.io/utkuozdemir/nvidia_gpu_exporter:0.1.5
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 0.1.5
+    created: "2021-06-20T23:11:56.368443+02:00"
+    description: Nvidia GPU exporter for prometheus using `nvidia-smi` binary to gather
+      metrics.
+    digest: 4d694e011dbe7f0bd38a91fb3d109f279fbdfdbb1977d4bac70dfac27c61e1b4
+    home: https://github.com/utkuozdemir/nvidia_gpu_exporter
+    icon: https://utkuozdemir.org/helm-charts/nvidia.png
+    keywords:
+    - nvidia
+    - gpu
+    - exporter
+    - nvidia-smi
+    - nvidia-gpu-exporter
+    - prometheus
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: nvidia-gpu-exporter
+    sources:
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/nvidia-gpu-exporter-0.1.0.tgz
+    version: 0.1.0
   plex:
   - annotations:
       artifacthub.io/changes: |
@@ -1112,4 +1146,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-06-20T22:18:39.814554+02:00"
+generated: "2021-06-20T23:11:56.367123+02:00"
