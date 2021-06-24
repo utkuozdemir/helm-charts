@@ -2,8 +2,8 @@ apiVersion: v2
 name: nvidia-gpu-exporter
 description: Nvidia GPU exporter for prometheus using nvidia-smi binary to gather metrics.
 type: application
-version: 0.1.0
-appVersion: 0.1.5
+version: 0.1.1
+appVersion: 0.1.7
 home: https://github.com/utkuozdemir/nvidia_gpu_exporter
 keywords:
   - nvidia
@@ -22,7 +22,8 @@ maintainers:
 annotations:
   artifacthub.io/license: MIT
   artifacthub.io/changes: |
-    - Initial release of the chart
+    - Bump app version
+    - Update README
   artifacthub.io/images: |
     - name: utkuozdemir/nvidia_gpu_exporter
-      image: docker.io/utkuozdemir/nvidia_gpu_exporter:0.1.5
+      image: docker.io/utkuozdemir/nvidia_gpu_exporter:0.1.7

@@ -1,10 +1,57 @@
 # nvidia-gpu-exporter
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.5](https://img.shields.io/badge/AppVersion-0.1.5-informational?style=flat-square)
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.7](https://img.shields.io/badge/AppVersion-0.1.7-informational?style=flat-square)
 
-Nvidia GPU exporter for prometheus using `nvidia-smi` binary to gather metrics.
+Nvidia GPU exporter for prometheus using nvidia-smi binary to gather metrics.
 
 **Homepage:** <https://github.com/utkuozdemir/nvidia_gpu_exporter>
+
+## TL;DR
+
+```console
+$ helm repo add utkuozdemir https://utkuozdemir.org/helm-charts
+$ helm install my-release utkuozdemir/nvidia-gpu-exporter
+```
+
+## Values
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| affinity | object | `{}` | Affinity for the pod assignment |
+| fullnameOverride | string | `""` | String to fully override fullname template with a string |
+| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
+| image.repository | string | `"docker.io/utkuozdemir/nvidia_gpu_exporter"` | Image repository |
+| image.tag | string | `""` | Image tag (if not specified, defaults to the chart's appVersion) |
+| imagePullSecrets | list | `[]` | Image pull secrets |
+| ingress.annotations | object | `{}` | Annotations for the Ingress |
+| ingress.className | string | `""` | Ingress class name |
+| ingress.enabled | bool | `false` | Expose the app using an Ingress |
+| ingress.hosts.host | string | `"chart-example.local"` |  |
+| ingress.hosts.paths.path | string | `"/"` |  |
+| ingress.hosts.paths.pathType | string | `"ImplementationSpecific"` |  |
+| ingress.tls | list | `[]` | The TLS configuration for the Ingress |
+| log | object | `{"format":"logfmt","level":"info"}` | Log configuration |
+| log.format | string | `"logfmt"` | Log format to be used by the exporter |
+| log.level | string | `"info"` | Log level to be used by the exporter |
+| nameOverride | string | `""` | String to partially override fullname template with a string (will prepend the release name) |
+| nodeSelector | object | `{}` | The node selector for the deployment |
+| nvidiaSmiCommand | string | `"nvidia-smi"` | The command to run to get `nvidia-smi` compatible output. Can be custom path and/or args. |
+| podAnnotations | object | `{}` | Annotations for the pods |
+| podSecurityContext | object | `{}` | Security context for the pods |
+| port | int | `9835` | Port for the exporter to listen to |
+| queryFieldNames | list | `["AUTO"]` | `nvidia-smi` fields to be queried by the exporter |
+| resources | object | `{}` | The resource requests and limits of the container |
+| securityContext | object | `{"privileged":true}` | Security context for the container. Privileged is required for the collector to work properly. |
+| service.port | int | `9835` | Port for the service to use |
+| service.type | string | `"ClusterIP"` | Type of the service |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
+| serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
+| serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
+| serviceMonitor | object | `{"additionalLabels":{},"bearerTokenFile":null,"enabled":false,"proxyUrl":"","relabelings":[],"scheme":"http","scrapeTimeout":"10s","tlsConfig":{}}` | Prometheus ServiceMonitor configuration |
+| telemetryPath | string | `"/metrics"` | The path to expose the metrics from |
+| tolerations | list | `[]` | Tolerations for the pod assignment |
+| volumeMounts | list | `[{"mountPath":"/dev/nvidiactl","name":"nvidiactl"},{"mountPath":"/dev/nvidia0","name":"nvidia0"},{"mountPath":"/usr/bin/nvidia-smi","name":"nvidia-smi"},{"mountPath":"/usr/lib/x86_64-linux-gnu/libnvidia-ml.so","name":"libnvidia-ml-so"},{"mountPath":"/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1","name":"libnvidia-ml-so-1"}]` | The container mount configurations for the volumes |
+| volumes | list | `[{"hostPath":{"path":"/dev/nvidiactl"},"name":"nvidiactl"},{"hostPath":{"path":"/dev/nvidia0"},"name":"nvidia0"},{"hostPath":{"path":"/usr/bin/nvidia-smi"},"name":"nvidia-smi"},{"hostPath":{"path":"/usr/lib/x86_64-linux-gnu/libnvidia-ml.so"},"name":"libnvidia-ml-so"},{"hostPath":{"path":"/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1"},"name":"libnvidia-ml-so-1"}]` | The volumes to mount from the host |
 
 ## Maintainers
 
@@ -15,72 +62,3 @@ Nvidia GPU exporter for prometheus using `nvidia-smi` binary to gather metrics.
 ## Source Code
 
 * <https://github.com/utkuozdemir/helm-charts>
-
-## Values
-
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| affinity | object | `{}` |  |
-| fullnameOverride | string | `""` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"docker.io/utkuozdemir/nvidia_gpu_exporter"` |  |
-| image.tag | string | `""` |  |
-| imagePullSecrets | list | `[]` |  |
-| ingress.annotations | object | `{}` |  |
-| ingress.className | string | `""` |  |
-| ingress.enabled | bool | `false` |  |
-| ingress.hosts[0].host | string | `"chart-example.local"` |  |
-| ingress.hosts[0].paths[0].path | string | `"/"` |  |
-| ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
-| ingress.tls | list | `[]` |  |
-| log.format | string | `"logfmt"` |  |
-| log.level | string | `"info"` |  |
-| nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` |  |
-| nvidiaGpuDevices[0] | string | `"/dev/nvidia0"` |  |
-| nvidiaSmiCommand | string | `"nvidia-smi"` |  |
-| nvidiaSmiHostPath | string | `"/usr/bin/nvidia-smi"` |  |
-| podAnnotations | object | `{}` |  |
-| podSecurityContext | object | `{}` |  |
-| port | int | `9835` |  |
-| queryFieldNames[0] | string | `"AUTO"` |  |
-| resources | object | `{}` |  |
-| securityContext.privileged | bool | `true` |  |
-| service.port | int | `9835` |  |
-| service.type | string | `"ClusterIP"` |  |
-| serviceAccount.annotations | object | `{}` |  |
-| serviceAccount.create | bool | `true` |  |
-| serviceAccount.name | string | `""` |  |
-| serviceMonitor.additionalLabels | object | `{}` |  |
-| serviceMonitor.bearerTokenFile | string | `nil` |  |
-| serviceMonitor.enabled | bool | `false` |  |
-| serviceMonitor.proxyUrl | string | `""` |  |
-| serviceMonitor.relabelings | list | `[]` |  |
-| serviceMonitor.scheme | string | `"http"` |  |
-| serviceMonitor.scrapeTimeout | string | `"10s"` |  |
-| serviceMonitor.tlsConfig | object | `{}` |  |
-| telemetryPath | string | `"/metrics"` |  |
-| tolerations | list | `[]` |  |
-| volumeMounts[0].mountPath | string | `"/dev/nvidiactl"` |  |
-| volumeMounts[0].name | string | `"nvidiactl"` |  |
-| volumeMounts[1].mountPath | string | `"/dev/nvidia0"` |  |
-| volumeMounts[1].name | string | `"nvidia0"` |  |
-| volumeMounts[2].mountPath | string | `"/usr/bin/nvidia-smi"` |  |
-| volumeMounts[2].name | string | `"nvidia-smi"` |  |
-| volumeMounts[3].mountPath | string | `"/usr/lib/x86_64-linux-gnu/libnvidia-ml.so"` |  |
-| volumeMounts[3].name | string | `"libnvidia-ml-so"` |  |
-| volumeMounts[4].mountPath | string | `"/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1"` |  |
-| volumeMounts[4].name | string | `"libnvidia-ml-so-1"` |  |
-| volumes[0].hostPath.path | string | `"/dev/nvidiactl"` |  |
-| volumes[0].name | string | `"nvidiactl"` |  |
-| volumes[1].hostPath.path | string | `"/dev/nvidia0"` |  |
-| volumes[1].name | string | `"nvidia0"` |  |
-| volumes[2].hostPath.path | string | `"/usr/bin/nvidia-smi"` |  |
-| volumes[2].name | string | `"nvidia-smi"` |  |
-| volumes[3].hostPath.path | string | `"/usr/lib/x86_64-linux-gnu/libnvidia-ml.so"` |  |
-| volumes[3].name | string | `"libnvidia-ml-so"` |  |
-| volumes[4].hostPath.path | string | `"/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1"` |  |
-| volumes[4].name | string | `"libnvidia-ml-so-1"` |  |
-
-----------------------------------------------
-Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

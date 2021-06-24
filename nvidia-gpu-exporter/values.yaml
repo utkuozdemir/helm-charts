@@ -1,31 +1,34 @@
-# Default values for nvidia-gpu-exporter.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
 image:
+  # -- Image repository
   repository: docker.io/utkuozdemir/nvidia_gpu_exporter
+  # -- Image pull policy
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  # -- Image tag (if not specified, defaults to the chart's appVersion)
   tag: ""
 
+# -- Image pull secrets
 imagePullSecrets: []
+# -- String to partially override fullname template with a string (will prepend the release name)
 nameOverride: ""
+# -- String to fully override fullname template with a string
 fullnameOverride: ""
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # -- Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
+  # -- Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# -- Annotations for the pods
 podAnnotations: {}
 
+# -- Security context for the pods
 podSecurityContext: {}
   # fsGroup: 2000
 
+# -- Security context for the container. Privileged is required for the collector to work properly.
 securityContext:
   privileged: true
   # capabilities:
@@ -36,30 +39,34 @@ securityContext:
   # runAsUser: 1000
 
 service:
+  # -- Type of the service
   type: ClusterIP
+  # -- Port for the service to use
   port: 9835
 
 ingress:
+  # -- Expose the app using an Ingress
   enabled: false
+  # -- Ingress class name
   className: ""
+  # -- Annotations for the Ingress
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
+  # -- Ingress hosts configuration
   hosts:
-    - host: chart-example.local
+      host: chart-example.local
       paths:
-        - path: /
+          path: /
           pathType: ImplementationSpecific
+  # -- The TLS configuration for the Ingress
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
 
+# -- The resource requests and limits of the container
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   # limits:
   #   cpu: 100m
   #   memory: 128Mi
@@ -67,25 +74,36 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+# -- The node selector for the deployment
 nodeSelector: {}
 
+# -- Tolerations for the pod assignment
 tolerations: []
 
+# -- Affinity for the pod assignment
 affinity: {}
 
+# -- Port for the exporter to listen to
 port: 9835
+
+# -- Log configuration
 log:
+  # -- Log level to be used by the exporter
   level: info
+  # -- Log format to be used by the exporter
   format: logfmt
+
+# -- `nvidia-smi` fields to be queried by the exporter
 queryFieldNames:
   - AUTO
+
+# -- The command to run to get `nvidia-smi` compatible output. Can be custom path and/or args.
 nvidiaSmiCommand: nvidia-smi
+
+# -- The path to expose the metrics from
 telemetryPath: /metrics
 
-nvidiaGpuDevices:
-  - /dev/nvidia0
-nvidiaSmiHostPath: /usr/bin/nvidia-smi
-
+# -- The volumes to mount from the host
 volumes:
   - name: nvidiactl
     hostPath:
@@ -103,6 +121,7 @@ volumes:
     hostPath:
       path: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
 
+# -- The container mount configurations for the volumes
 volumeMounts:
   - name: nvidiactl
     mountPath: /dev/nvidiactl
@@ -115,6 +134,7 @@ volumeMounts:
   - name: libnvidia-ml-so-1
     mountPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
 
+# -- Prometheus ServiceMonitor configuration
 serviceMonitor:
   enabled: false
   additionalLabels: {}
