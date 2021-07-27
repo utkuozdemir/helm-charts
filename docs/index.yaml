@@ -93,6 +93,37 @@ entries:
   filebrowser:
   - annotations:
       artifacthub.io/changes: |
+        - Fix storage class name on DB pvc
+      artifacthub.io/images: |
+        - name: filebrowser/filebrowser
+          image: docker.io/filebrowser/filebrowser:v2.16.0
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: v2.16.0
+    created: "2021-07-27T22:07:52.098496+02:00"
+    description: A Helm chart for the File Browser project
+    digest: fe0aa34264d1838a2426f609783cddede47c22d025302f2b80584a224f998b20
+    home: https://filebrowser.org
+    icon: https://utkuozdemir.org/helm-charts/filebrowser.png
+    keywords:
+    - filebrowser
+    - file-browser
+    - file-server
+    - http-file-server
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: filebrowser
+    sources:
+    - https://github.com/filebrowser/filebrowser
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/filebrowser-0.1.3.tgz
+    version: 0.1.3
+  - annotations:
+      artifacthub.io/changes: |
         - Bump app version to v2.16.0
       artifacthub.io/images: |
         - name: filebrowser/filebrowser
@@ -1244,4 +1275,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-07-26T17:38:16.927333+02:00"
+generated: "2021-07-27T22:07:52.097026+02:00"
