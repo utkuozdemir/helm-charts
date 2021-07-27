@@ -13,7 +13,7 @@ spec:
   resources:
     requests:
       storage: {{ .Values.persistence.db.size | quote }}
-  {{- if .Values.persistence.rootDir.storageClassName }}
+  {{- if .Values.persistence.db.storageClassName }}
   storageClassName: {{ .Values.persistence.db.storageClassName }}
   {{- end }}
 {{- end }}
