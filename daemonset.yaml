@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nvidia-gpu-exporter
+spec:
+  selector:
+    matchLabels:
+      app: nvidia-gpu-exporter
+  template:
+    metadata:
+      labels:
+        app: nvidia-gpu-exporter
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: nvidia-gpu-exporter
+          image: docker.io/utkuozdemir/nvidia_gpu_exporter:0.1.4
+          securityContext:
+            privileged: true
+          command:
+            - tail
+            - -f
+            - /dev/null
+          volumeMounts:
+            - name: nvidiactl
+              mountPath: /dev/nvidiactl
+            - name: nvidia0
+              mountPath: /dev/nvidia0
+            - name: nvidia-smi
+              mountPath: /usr/bin/nvidia-smi
+            - name: libnvidia-ml-so
+              mountPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
+            - name: libnvidia-ml-so-1
+              mountPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
+      volumes:
+        - name: nvidiactl
+          hostPath:
+            path: /dev/nvidiactl
+        - name: nvidia0
+          hostPath:
+            path: /dev/nvidia0
+        - name: nvidia-smi
+          hostPath:
+            path: /usr/bin/nvidia-smi
+        - name: libnvidia-ml-so
+          hostPath:
+            path: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
+        - name: libnvidia-ml-so-1
+          hostPath:
+            path: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
