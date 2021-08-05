@@ -2,8 +2,8 @@ apiVersion: v2
 name: transmission-openvpn
 description: Transmission + OpenVPN chart based on haugene/transmission-openvpn image
 type: application
-version: 1.0.9
-appVersion: 3.6
+version: 1.0.10
+appVersion: "3.7"
 home: https://haugene.github.io/docker-transmission-openvpn
 keywords:
   - transmission
@@ -21,7 +21,7 @@ maintainers:
 annotations:
   artifacthub.io/license: MIT
   artifacthub.io/changes: |
-    - Add an option to specify an alternative data volume
+    - Bump appVersion to 3.7
   artifacthub.io/images: |
     - name: haugene/transmission-openvpn
-      image: docker.io/haugene/transmission-openvpn:3.6
+      image: docker.io/haugene/transmission-openvpn:3.7
