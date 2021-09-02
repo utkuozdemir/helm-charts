@@ -10,6 +10,8 @@ fi
 repo_url=https://utkuozdemir.org/helm-charts
 package_dir=$1
 
+helm lint "$package_dir"
+
 mkdir -p temp
 helm package -d temp "$package_dir"
 helm repo index temp/ --url $repo_url --merge docs/index.yaml
