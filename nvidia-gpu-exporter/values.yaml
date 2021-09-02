@@ -43,9 +43,14 @@ service:
   type: ClusterIP
   # -- Port for the service to use
   port: 9835
+  # -- The node port to use if service type is NodePort or LoadBalancer.
+  nodePort:
 
 ingress:
   # -- Expose the app using an Ingress
+  # -- **Note:** Scraping the ingress
+  # -- will yield incomplete metrics since each DaemonSet pod is
+  # -- exposing the metrics of the GPU on the node it is on
   enabled: false
   # -- Ingress class name
   className: ""
@@ -55,9 +60,9 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   # -- Ingress hosts configuration
   hosts:
-      host: chart-example.local
+    - host: chart-example.local
       paths:
-          path: /
+        - path: /
           pathType: ImplementationSpecific
   # -- The TLS configuration for the Ingress
   tls: []
@@ -86,7 +91,12 @@ affinity: {}
 # -- Port for the exporter to listen to
 port: 9835
 
-# -- Log configuration
+hostPort:
+  # -- Enable hostPort
+  enabled: false
+  # -- The hostPort to listen to
+  port: 9835
+
 log:
   # -- Log level to be used by the exporter
   level: info
@@ -104,6 +114,7 @@ nvidiaSmiCommand: nvidia-smi
 telemetryPath: /metrics
 
 # -- The volumes to mount from the host
+# @default -- see [values.yaml](values.yaml)
 volumes:
   - name: nvidiactl
     hostPath:
@@ -122,6 +133,7 @@ volumes:
       path: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
 
 # -- The container mount configurations for the volumes
+# @default -- see [values.yaml](values.yaml)
 volumeMounts:
   - name: nvidiactl
     mountPath: /dev/nvidiactl
@@ -134,17 +146,16 @@ volumeMounts:
   - name: libnvidia-ml-so-1
     mountPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
 
-# -- Prometheus ServiceMonitor configuration
+# -- Prometheus PodMonitor configuration
+# @default -- see [values.yaml](values.yaml)
 serviceMonitor:
   enabled: false
   additionalLabels: {}
   scheme: http
   bearerTokenFile:
+  interval:
   tlsConfig: {}
-
-  ## proxyUrl: URL of a proxy that should be used for scraping.
-  ##
   proxyUrl: ""
-
   relabelings: []
+  metricRelabelings: []
   scrapeTimeout: 10s
