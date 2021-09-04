@@ -1215,6 +1215,38 @@ entries:
   transmission-openvpn:
   - annotations:
       artifacthub.io/changes: |
+        - Bump appVersion to 3.7.1
+      artifacthub.io/images: |
+        - name: haugene/transmission-openvpn
+          image: docker.io/haugene/transmission-openvpn:3.7.1
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 3.7.1
+    created: "2021-09-04T19:04:08.112864+03:00"
+    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn
+      image
+    digest: f6057a215530004754537eff6e0895f0bb409084e69b7944330a5392b00012d6
+    home: https://haugene.github.io/docker-transmission-openvpn
+    icon: https://utkuozdemir.org/helm-charts/transmission.png
+    keywords:
+    - transmission
+    - openvpn
+    - transmission-openvpn
+    - torrent
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: transmission-openvpn
+    sources:
+    - https://github.com/haugene/docker-transmission-openvpn
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/transmission-openvpn-1.0.11.tgz
+    version: 1.0.11
+  - annotations:
+      artifacthub.io/changes: |
         - Bump appVersion to 3.7
       artifacthub.io/images: |
         - name: haugene/transmission-openvpn
@@ -1469,4 +1501,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-09-03T18:13:49.211727+03:00"
+generated: "2021-09-04T19:04:08.112013+03:00"
