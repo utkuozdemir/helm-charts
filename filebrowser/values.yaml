@@ -133,6 +133,9 @@ readinessProbe:
     path: /health
     port: http
 
+# -- Set of initContainers for the deployment
+initContainers: []
+
 # -- File Browser application specific configuration
 config:
   port: 80
