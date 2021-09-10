@@ -1074,6 +1074,39 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - Bump image version
+      artifacthub.io/images: |
+        - name: plexinc/pms-docker
+          image: docker.io/plexinc/pms-docker:1.24.2.4973-2b1b51db9
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 1.24.2.4973-2b1b51db9
+    created: "2021-09-10T22:17:41.558771+03:00"
+    description: Plex Media Server Helm chart that is based on plexinc/pms-docker
+      Docker image.
+    digest: 566681a5ce21d5ea0058c0161ec6e5e0b609d3f03b5b54e007b02c2b53cd1414
+    home: https://www.plex.tv
+    icon: https://utkuozdemir.org/helm-charts/plex.png
+    keywords:
+    - plex
+    - media-server
+    - plex-media-server
+    - streaming
+    - tv
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: plex
+    sources:
+    - https://github.com/plexinc/pms-docker
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/plex-1.0.3.tgz
+    version: 1.0.3
+  - annotations:
+      artifacthub.io/changes: |
+        - Bump image version
         - Add liveness probe
         - Make liveness and readiness probes externally configurable
         - Add icon to chart
@@ -1564,4 +1597,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-09-06T19:42:03.855724+03:00"
+generated: "2021-09-10T22:17:41.556572+03:00"

@@ -2,8 +2,8 @@ apiVersion: v2
 name: plex
 description: Plex Media Server Helm chart that is based on plexinc/pms-docker Docker image.
 type: application
-version: 1.0.2
-appVersion: 1.22.3.4523-d0ce30438
+version: 1.0.3
+appVersion: 1.24.2.4973-2b1b51db9
 home: https://www.plex.tv
 keywords:
   - plex
@@ -23,10 +23,6 @@ annotations:
   artifacthub.io/license: MIT
   artifacthub.io/changes: |
     - Bump image version
-    - Add liveness probe
-    - Make liveness and readiness probes externally configurable
-    - Add icon to chart
-    - Update Chart.yaml
   artifacthub.io/images: |
     - name: plexinc/pms-docker
-      image: docker.io/plexinc/pms-docker:1.22.3.4523-d0ce30438
+      image: docker.io/plexinc/pms-docker:1.24.2.4973-2b1b51db9
