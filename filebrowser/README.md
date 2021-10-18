@@ -1,6 +1,6 @@
 # filebrowser
 
-![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.15.0](https://img.shields.io/badge/AppVersion-v2.15.0-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.17.2](https://img.shields.io/badge/AppVersion-v2.17.2-informational?style=flat-square)
 
 A Helm chart for the File Browser project
 
@@ -50,7 +50,12 @@ The following tables lists the configurable parameters of the chart and their de
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Map of node/pod affinities |
-| config | object | `{"address":"","baseURL":"","database":"/db/database.db","log":"stdout","port":80,"root":"/rootdir"}` | File Browser application specific configuration |
+| config | object | see [values.yaml](values.yaml) | File Browser application specific configuration |
+| db.pvc.accessModes | list | `["ReadWriteOnce"]` | Access modes for the database PVC |
+| db.pvc.enabled | bool | `true` | Enable persistence for database |
+| db.pvc.existingClaim | string | `""` | Existing claim for the database |
+| db.pvc.size | string | `"256Mi"` | Size for the database PVC |
+| db.pvc.storageClassName | string | `""` | Storage class name for the database PVC |
 | fullnameOverride | string | `""` | String to fully override the fullname template with a string |
 | image.pullPolicy | string | `"IfNotPresent"` | Container image pull policy |
 | image.repository | string | `"docker.io/filebrowser/filebrowser"` | Container image name |
@@ -60,25 +65,22 @@ The following tables lists the configurable parameters of the chart and their de
 | ingress.enabled | bool | `false` | Enable the use of the ingress controller to access the web UI |
 | ingress.hosts | list | `[]` |  |
 | ingress.tls | list | `[]` |  |
+| initContainers | list | `[]` | Set of initContainers for the deployment |
 | livenessProbe | object | `{}` | Liveness probe configuration |
 | nameOverride | string | `""` | String to partially override the fullname template with a string (will prepend the release name) |
 | nodeSelector | object | `{}` | Node labels for pod assignment |
-| persistence.db.accessModes | list | `["ReadWriteOnce"]` | Access modes for the database PVC |
-| persistence.db.enabled | bool | `true` | Enable persistence for database |
-| persistence.db.existingClaim | string | `""` | Existing claim for the database |
-| persistence.db.size | string | `"256Mi"` | Size for the database PVC |
-| persistence.db.storageClassName | string | `""` | Storage class name for the database PVC |
-| persistence.rootDir.accessModes | list | `["ReadWriteOnce"]` | Access modes for the root directory PVC |
-| persistence.rootDir.enabled | bool | `true` | Enable persistence for the root directory |
-| persistence.rootDir.existingClaim | string | `""` | Existing claim for the root directory |
-| persistence.rootDir.readOnly | bool | `false` | Mount the root directory in read-only mode |
-| persistence.rootDir.size | string | `"2Gi"` | Size for the root directory PVC |
-| persistence.rootDir.storageClassName | string | `""` | Storage class name for the root directory PVC |
 | podAnnotations | object | `{}` | Annotations of the pods |
 | podSecurityContext | object | `{}` | The security context for the pods |
-| readinessProbe | object | `{"httpGet":{"path":"/health","port":"http"}}` | Readiness probe configuration |
+| readinessProbe | object | see [values.yaml](values.yaml) | Readiness probe configuration |
 | replicaCount | int | `1` | Number of replicas to run. Chart is not designed to scale horizontally, use at your own risk |
 | resources | object | `{}` | The resources to allocate for the container |
+| rootDir.hostPath.path | string | `"/path/on/host"` |  |
+| rootDir.pvc.accessModes | list | `["ReadWriteOnce"]` | Access modes for the root directory PVC |
+| rootDir.pvc.existingClaim | string | `""` | Existing claim for the root directory |
+| rootDir.pvc.size | string | `"2Gi"` | Size for the root directory PVC |
+| rootDir.pvc.storageClassName | string | `""` | Storage class name for the root directory PVC |
+| rootDir.readOnly | bool | `false` | Mount the root directory in read-only mode |
+| rootDir.type | string | `"pvc"` | type of rootDir mount. Valid values are [pvc, hostPath, emptyDir] |
 | securityContext | object | `{}` | The security context for the application container |
 | service.port | int | `80` | Kubernetes Service port |
 | service.type | string | `"ClusterIP"` | Kubernetes Service type |

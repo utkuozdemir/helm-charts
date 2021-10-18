@@ -93,6 +93,38 @@ entries:
   filebrowser:
   - annotations:
       artifacthub.io/changes: |
+        - Add support for hostPath for rootDir
+        - Update persistence-related values - action required, see README
+      artifacthub.io/images: |
+        - name: filebrowser/filebrowser
+          image: docker.io/filebrowser/filebrowser:v2.17.2
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: v2.17.2
+    created: "2021-10-18T21:40:59.526556+03:00"
+    description: A Helm chart for the File Browser project
+    digest: d91768f3347f96ca7de4fc191dc95b30366a131aaa0ae4e380565d59e9b11ba1
+    home: https://filebrowser.org
+    icon: https://utkuozdemir.org/helm-charts/filebrowser.png
+    keywords:
+    - filebrowser
+    - file-browser
+    - file-server
+    - http-file-server
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: filebrowser
+    sources:
+    - https://github.com/filebrowser/filebrowser
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/filebrowser-0.2.0.tgz
+    version: 0.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - Add support for passing initContainers from helm values
       artifacthub.io/images: |
         - name: filebrowser/filebrowser
@@ -1597,4 +1629,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-09-10T22:17:41.556572+03:00"
+generated: "2021-10-18T21:40:59.525618+03:00"

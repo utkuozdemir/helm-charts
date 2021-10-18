@@ -1,4 +1,4 @@
-{{- if and .Values.persistence.db.enabled (not .Values.persistence.db.existingClaim) }}
+{{- if and .Values.db.pvc.enabled (not .Values.db.pvc.existingClaim) }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -7,13 +7,13 @@ metadata:
     {{- include "filebrowser.labels" . | nindent 4 }}
 spec:
   accessModes:
-    {{- range .Values.persistence.db.accessModes }}
+    {{- range .Values.db.pvc.accessModes }}
     - {{ . | quote }}
     {{- end }}
   resources:
     requests:
-      storage: {{ .Values.persistence.db.size | quote }}
-  {{- if .Values.persistence.db.storageClassName }}
-  storageClassName: {{ .Values.persistence.db.storageClassName }}
+      storage: {{ .Values.db.pvc.size | quote }}
+  {{- if .Values.db.pvc.storageClassName }}
+  storageClassName: {{ .Values.db.pvc.storageClassName }}
   {{- end }}
 {{- end }}

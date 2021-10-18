@@ -1,4 +1,4 @@
-{{- if and .Values.persistence.rootDir.enabled (not .Values.persistence.rootDir.existingClaim) }}
+{{- if and (eq .Values.rootDir.type "pvc") (not .Values.rootDir.pvc.existingClaim) }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -7,13 +7,13 @@ metadata:
     {{- include "filebrowser.labels" . | nindent 4 }}
 spec:
   accessModes:
-    {{- range .Values.persistence.rootDir.accessModes }}
+    {{- range .Values.rootDir.pvc.accessModes }}
     - {{ . | quote }}
     {{- end }}
   resources:
     requests:
-      storage: {{ .Values.persistence.rootDir.size | quote }}
-  {{- if .Values.persistence.rootDir.storageClassName }}
-  storageClassName: {{ .Values.persistence.rootDir.storageClassName }}
+      storage: {{ .Values.rootDir.pvc.size | quote }}
+  {{- if .Values.rootDir.pvc.storageClassName }}
+  storageClassName: {{ .Values.rootDir.pvc.storageClassName }}
   {{- end }}
 {{- end }}

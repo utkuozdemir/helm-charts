@@ -92,8 +92,26 @@ tolerations: []
 # -- Map of node/pod affinities
 affinity: {}
 
-persistence:
-  db:
+rootDir:
+  # -- type of rootDir mount. Valid values are [pvc, hostPath, emptyDir]
+  type: pvc
+  # -- Mount the root directory in read-only mode
+  readOnly: false
+  hostPath:
+    path: /path/on/host
+  pvc:
+    # -- Existing claim for the root directory
+    existingClaim: ""
+    # -- Storage class name for the root directory PVC
+    storageClassName: ""
+    # -- Access modes for the root directory PVC
+    accessModes:
+      - ReadWriteOnce
+    # -- Size for the root directory PVC
+    size: 2Gi
+
+db:
+  pvc:
     # -- Enable persistence for database
     enabled: true
     # -- Existing claim for the database
@@ -105,20 +123,6 @@ persistence:
       - ReadWriteOnce
     # -- Size for the database PVC
     size: 256Mi
-  rootDir:
-    # -- Enable persistence for the root directory
-    enabled: true
-    # -- Existing claim for the root directory
-    existingClaim: ""
-    # -- Storage class name for the root directory PVC
-    storageClassName: ""
-    # -- Access modes for the root directory PVC
-    accessModes:
-      - ReadWriteOnce
-    # -- Size for the root directory PVC
-    size: 2Gi
-    # -- Mount the root directory in read-only mode
-    readOnly: false
 
 # -- Deployment strategy to use
 strategy:
@@ -128,6 +132,7 @@ strategy:
 livenessProbe: {}
 
 # -- Readiness probe configuration
+# @default -- see [values.yaml](values.yaml)
 readinessProbe:
   httpGet:
     path: /health
@@ -137,6 +142,7 @@ readinessProbe:
 initContainers: []
 
 # -- File Browser application specific configuration
+# @default -- see [values.yaml](values.yaml)
 config:
   port: 80
   baseURL: ""
