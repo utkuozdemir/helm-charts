@@ -101,9 +101,9 @@ entries:
       artifacthub.io/license: MIT
     apiVersion: v2
     appVersion: v2.17.2
-    created: "2021-10-18T21:40:59.526556+03:00"
+    created: "2021-10-18T21:46:28.689916+03:00"
     description: A Helm chart for the File Browser project
-    digest: d91768f3347f96ca7de4fc191dc95b30366a131aaa0ae4e380565d59e9b11ba1
+    digest: 42bc020da869cc8208996e849a217c27ca5beec7c870a7bbfc0ca4c9a4093bde
     home: https://filebrowser.org
     icon: https://utkuozdemir.org/helm-charts/filebrowser.png
     keywords:
@@ -1629,4 +1629,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-10-18T21:40:59.525618+03:00"
+generated: "2021-10-18T21:46:28.688997+03:00"

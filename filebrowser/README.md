@@ -41,6 +41,17 @@ $ helm delete my-release
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
 
+## Upgrade Notes
+
+Please read the upgrade notes before upgrading. There may be breaking changes!
+
+### From 0.1.x to 0.2.x
+
+- The values `persistence.rootDir.*` and `persistence.db.*` are
+renamed to `rootDir.pvc.*` and `db.pvc.*`. You should rename your values accordingly.
+- A new value `rootDir.type` is introduced. The default value is `pvc`, which is same as the
+previous default. You can instead set it to `hostPath` to mount
+
 ## Parameters
 
 The following tables lists the configurable parameters of the chart and their default values.
