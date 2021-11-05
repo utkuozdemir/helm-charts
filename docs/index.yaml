@@ -93,6 +93,38 @@ entries:
   filebrowser:
   - annotations:
       artifacthub.io/changes: |
+        - Bump app version to 2.18.0
+        - Add support for Kubernetes 1.22 ingresses
+      artifacthub.io/images: |
+        - name: filebrowser/filebrowser
+          image: docker.io/filebrowser/filebrowser:v2.18.0
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: v2.18.0
+    created: "2021-11-05T23:13:38.708099Z"
+    description: A Helm chart for the File Browser project
+    digest: a3081d913da0fafe9f5dc16c2af4caf66c8bab6e398333258610d9f0f354efe5
+    home: https://filebrowser.org
+    icon: https://utkuozdemir.org/helm-charts/filebrowser.png
+    keywords:
+    - filebrowser
+    - file-browser
+    - file-server
+    - http-file-server
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: filebrowser
+    sources:
+    - https://github.com/filebrowser/filebrowser
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/filebrowser-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
         - Add support for hostPath for rootDir
         - Update persistence-related values - action required, see README
       artifacthub.io/images: |
@@ -1629,4 +1661,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-10-18T21:46:28.688997+03:00"
+generated: "2021-11-05T23:13:38.706724Z"

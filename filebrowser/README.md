@@ -1,6 +1,6 @@
 # filebrowser
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.17.2](https://img.shields.io/badge/AppVersion-v2.17.2-informational?style=flat-square)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.18.0](https://img.shields.io/badge/AppVersion-v2.18.0-informational?style=flat-square)
 
 A Helm chart for the File Browser project
 
@@ -73,8 +73,9 @@ The following tables lists the configurable parameters of the chart and their de
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` | Array of imagePullSecrets in the namespace for pulling images |
 | ingress.annotations | object | `{}` | Annotations for the Ingress |
+| ingress.className | string | `""` | Class name of the Ingress |
 | ingress.enabled | bool | `false` | Enable the use of the ingress controller to access the web UI |
-| ingress.hosts | list | `[]` |  |
+| ingress.hosts | list | see [values.yaml](values.yaml) | Hosts for the ingress |
 | ingress.tls | list | `[]` |  |
 | initContainers | list | `[]` | Set of initContainers for the deployment |
 | livenessProbe | object | `{}` | Liveness probe configuration |
