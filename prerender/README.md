@@ -61,8 +61,8 @@ The command removes all the Kubernetes components associated with the chart and 
 | `service.type` | Type of the service | `"ClusterIP"` |
 | `service.annotations` | Annotations for the service | `{}` |
 | `ingress.enabled` | Enable the use of the ingress controller | `false` |
-| `ingress.className` | Class name for the Ingress | `{}` |
-| `ingress.annotations` | Annotations for the Ingress | `{}` |
+| `ingress.className` | Class name for the ingress | `{}` |
+| `ingress.annotations` | Annotations for the ingress | `{}` |
 | `ingress.hosts` | Hosts configuration of the ingress | see [values.yaml](values.yaml) |
 | `ingress.tls` | The TLS configuration for the ingress | `[]` |
 | `replicaCount` | Pod replica count (if autoscaling is not enabled) | `1` |

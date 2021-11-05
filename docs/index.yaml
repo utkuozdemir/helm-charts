@@ -1504,6 +1504,16 @@ entries:
   restreamer:
   - apiVersion: v2
     appVersion: 0.6.4
+    created: "2021-11-05T23:39:08.970974Z"
+    description: Restreamer helm chart
+    digest: ef5874eee97988843264317abf73a06067a8e34c30ecaee1bc1fc8388eb46acb
+    name: restreamer
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/restreamer-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
+    appVersion: 0.6.4
     created: "2020-11-15T22:07:04.951657+01:00"
     description: Restreamer helm chart
     digest: 1f808d3297cb01f7c26649a4249e27e1b8396d0d365643108315338c3341a797
@@ -1513,6 +1523,15 @@ entries:
     - https://utkuozdemir.org/helm-charts/restreamer-1.0.0.tgz
     version: 1.0.0
   transmission-exporter:
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2021-11-05T23:40:48.150292Z"
+    description: Transmission Exporter
+    digest: cef0d54ad327eb63b88c88d84ae653b0d77e6b21cca267ee9593a22e07a800e4
+    name: transmission-exporter
+    urls:
+    - https://utkuozdemir.org/helm-charts/transmission-exporter-1.1.0.tgz
+    version: 1.1.0
   - apiVersion: v1
     appVersion: 0.3.0
     created: "2020-11-15T22:07:04.954106+01:00"
@@ -1532,6 +1551,38 @@ entries:
     - https://utkuozdemir.org/helm-charts/transmission-exporter-0.1.0.tgz
     version: 0.1.0
   transmission-openvpn:
+  - annotations:
+      artifacthub.io/changes: |
+        - Update ingress to support newer Kubernetes APIs
+      artifacthub.io/images: |
+        - name: haugene/transmission-openvpn
+          image: docker.io/haugene/transmission-openvpn:3.7.1
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 3.7.1
+    created: "2021-11-05T23:42:39.401771Z"
+    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn
+      image
+    digest: 86ccc7ae7f289de6c81fbcbe4a3069b9ecea78da6d1539cedc7eb122091def48
+    home: https://haugene.github.io/docker-transmission-openvpn
+    icon: https://utkuozdemir.org/helm-charts/transmission.png
+    keywords:
+    - transmission
+    - openvpn
+    - transmission-openvpn
+    - torrent
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: transmission-openvpn
+    sources:
+    - https://github.com/haugene/docker-transmission-openvpn
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/transmission-openvpn-1.1.11.tgz
+    version: 1.1.11
   - annotations:
       artifacthub.io/changes: |
         - Bump appVersion to 3.7.1
@@ -1820,4 +1871,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-05T23:36:39.786052Z"
+generated: "2021-11-05T23:42:39.400849Z"

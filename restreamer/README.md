@@ -59,10 +59,10 @@ The following tables lists the configurable parameters of the chart and their de
 | `service.type` | Kubernetes Service type | `ClusterIP` |
 | `service.port` | Kubernetes Service port | `80` |
 | `service.annotations` | Annotations for the Service | `{}` |
-| `ingress.enabled` | Enable the use of the ingress controller to access the web UI | `false` |
-| `ingress.annotations` | Annotations for the Ingress | `{}` |
-| `ingress.hosts[0].host` | Hostname to your installation | `chart-example.local` |
-| `ingress.hosts[0].paths` | Path within the url structure | `[]` |
+| `ingress.enabled` | Enable the use of the ingress controller | `false` |
+| `ingress.className` | Class name for the ingress | `{}` |
+| `ingress.annotations` | Annotations for the ingress | `{}` |
+| `ingress.hosts` | Hosts configuration of the ingress | see [values.yaml](values.yaml) |
 | `ingress.tls` | The TLS configuration for the ingress | `[]` |
 | `resources` | The resources to allocate for the container | `{}` |
 | `affinity` | Map of node/pod affinities | `{}` |
