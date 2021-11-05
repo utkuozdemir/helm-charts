@@ -2,7 +2,7 @@ apiVersion: v2
 name: jellyfin
 description: Jellyfin Helm chart that is based on linuxserver/jellyfin Docker image.
 type: application
-version: 1.1.6
+version: 1.2.6
 appVersion: 10.7.7-1-ls130
 home: https://jellyfin.org
 keywords:
@@ -21,7 +21,7 @@ maintainers:
 annotations:
   artifacthub.io/license: MIT
   artifacthub.io/changes: |
-    - Bump Jellyfin version to 10.7.7
+    - Update ingress to support newer Kubernetes APIs
   artifacthub.io/images: |
     - name: linuxserver/jellyfin
       image: docker.io/linuxserver/jellyfin:10.7.7-1-ls130

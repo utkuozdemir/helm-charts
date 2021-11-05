@@ -2,7 +2,7 @@ apiVersion: v2
 name: huginn
 description: Huginn Helm chart based on its official Docker image
 type: application
-version: 2.1.1
+version: 2.2.1
 appVersion: 4d17829cf6b15b004ad3f4be196303dca4944810
 home: https://github.com/huginn/huginn
 keywords:
@@ -23,9 +23,7 @@ maintainers:
 annotations:
   artifacthub.io/license: MIT
   artifacthub.io/changes: |
-    - Add initContainer to the main app to wait for the DB
-    - Add initContainer to the worker app to wait for the main app
-    - Add chart test
+    - Update ingress to support newer Kubernetes APIs
   artifacthub.io/images: |
     - name: huginn/huginn
       image: docker.io/huginn/huginn-single-process:4d17829cf6b15b004ad3f4be196303dca4944810

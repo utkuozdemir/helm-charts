@@ -406,6 +406,15 @@ entries:
   gohttpserver:
   - apiVersion: v1
     appVersion: latest
+    created: "2021-11-05T23:17:59.219473Z"
+    description: GoHttpServer
+    digest: 916eb32c1fc66548cbeebb8d1fe66e74e88789d51b28141f176f6afa7fe4166a
+    name: gohttpserver
+    urls:
+    - https://utkuozdemir.org/helm-charts/gohttpserver-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v1
+    appVersion: latest
     created: "2020-11-15T22:07:04.935138+01:00"
     description: GoHttpServer
     digest: 1ca503f321b2578255fb0444235796c14673d3c1ab0172272e1751d6f8f318f8
@@ -414,6 +423,56 @@ entries:
     - https://utkuozdemir.org/helm-charts/gohttpserver-0.1.0.tgz
     version: 0.1.0
   huginn:
+  - annotations:
+      artifacthub.io/changes: |
+        - Update ingress to support newer Kubernetes APIs
+      artifacthub.io/images: |
+        - name: huginn/huginn
+          image: docker.io/huginn/huginn-single-process:4d17829cf6b15b004ad3f4be196303dca4944810
+        - name: busybox
+          image: docker.io/busybox:stable
+        - name: bitnami/mysql
+          image: docker.io/bitnami/mysql:8.0.23-debian-10-r28
+        - name: bitnami/postgresql
+          image: docker.io/bitnami/postgresql:11.11.0-debian-10-r24
+        - name: bitnami/bitnami-shell
+          image: docker.io/bitnami/bitnami-shell:10
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 4d17829cf6b15b004ad3f4be196303dca4944810
+    created: "2021-11-05T23:25:08.487056Z"
+    dependencies:
+    - condition: mysql.deployChart
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.4.4
+    - condition: postgresql.deployChart
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.11
+    description: Huginn Helm chart based on its official Docker image
+    digest: 106e697170e6eec211d04b4e580549045aa5a0d41feaff57ef38d7e78b9583e5
+    home: https://github.com/huginn/huginn
+    icon: https://utkuozdemir.org/helm-charts/huginn.png
+    keywords:
+    - huginn
+    - scraper
+    - agent
+    - automation
+    - webscraping
+    - rss
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: huginn
+    sources:
+    - https://github.com/huginn/huginn
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/huginn-2.2.1.tgz
+    version: 2.2.1
   - annotations:
       artifacthub.io/changes: |
         - Add initContainer to the main app to wait for the DB
@@ -652,6 +711,38 @@ entries:
     - https://utkuozdemir.org/helm-charts/huginn-1.0.0.tgz
     version: 1.0.0
   jellyfin:
+  - annotations:
+      artifacthub.io/changes: |
+        - Update ingress to support newer Kubernetes APIs
+      artifacthub.io/images: |
+        - name: linuxserver/jellyfin
+          image: docker.io/linuxserver/jellyfin:10.7.7-1-ls130
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 10.7.7-1-ls130
+    created: "2021-11-05T23:28:29.312355Z"
+    description: Jellyfin Helm chart that is based on linuxserver/jellyfin Docker
+      image.
+    digest: 0139e381757e2c3d3eb1d0cbe6594f02a34b436f02ae7c6f7c9b64a232cd2a7b
+    home: https://jellyfin.org
+    icon: https://utkuozdemir.org/helm-charts/jellyfin.png
+    keywords:
+    - jellyfin
+    - media-server
+    - streaming
+    - video
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: jellyfin
+    sources:
+    - https://github.com/jellyfin/jellyfin
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/jellyfin-1.2.6.tgz
+    version: 1.2.6
   - annotations:
       artifacthub.io/changes: |
         - Bump Jellyfin version to 10.7.7
@@ -1137,6 +1228,40 @@ entries:
   plex:
   - annotations:
       artifacthub.io/changes: |
+        - Update ingress to support newer Kubernetes APIs
+        - Bump appVersion to 1.24.5.5173-8dcc73a59
+      artifacthub.io/images: |
+        - name: plexinc/pms-docker
+          image: docker.io/plexinc/pms-docker:1.24.5.5173-8dcc73a59
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 1.24.5.5173-8dcc73a59
+    created: "2021-11-05T23:33:32.882798Z"
+    description: Plex Media Server Helm chart that is based on plexinc/pms-docker
+      Docker image.
+    digest: 20a0d8945825d3cd94e821010014505c6c71c01056c3b80881329707e66884ad
+    home: https://www.plex.tv
+    icon: https://utkuozdemir.org/helm-charts/plex.png
+    keywords:
+    - plex
+    - media-server
+    - plex-media-server
+    - streaming
+    - tv
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: plex
+    sources:
+    - https://github.com/plexinc/pms-docker
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/plex-1.1.3.tgz
+    version: 1.1.3
+  - annotations:
+      artifacthub.io/changes: |
         - Bump image version
       artifacthub.io/images: |
         - name: plexinc/pms-docker
@@ -1237,6 +1362,40 @@ entries:
     - https://utkuozdemir.org/helm-charts/plex-0.1.0.tgz
     version: 0.1.0
   prerender:
+  - annotations:
+      artifacthub.io/changes: |
+        - Update ingress to support newer Kubernetes APIs
+        - Bump appVersion to 6.4.0
+      artifacthub.io/images: |
+        - name: tvanro/prerender-alpine
+          image: docker.io/tvanro/prerender-alpine:6.4.0
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 6.4.0
+    created: "2021-11-05T23:36:39.786853Z"
+    description: Helm chart for prerender wrapping tvanro/prerender-alpine
+    digest: 9e6b0b7757ed115f026d23955ad18f9394ba626e8ada35efb9c86e6fd151d56e
+    home: https://github.com/prerender/prerender
+    icon: https://utkuozdemir.org/helm-charts/prerender.png
+    keywords:
+    - prerender
+    - render
+    - chrome
+    - headless-chrome
+    - tvanro
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: prerender
+    sources:
+    - https://github.com/prerender/prerender
+    - https://github.com/tvanro/prerender-alpine
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/prerender-1.1.2.tgz
+    version: 1.1.2
   - annotations:
       artifacthub.io/changes: |
         - Add README
@@ -1661,4 +1820,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-05T23:13:38.706724Z"
+generated: "2021-11-05T23:36:39.786052Z"
