@@ -67,6 +67,7 @@ The following tables lists the configurable parameters of the chart and their de
 | `nodeSelector` | Node labels for pod assignment | `{}` |
 | `tolerations` | Tolerations for pod assignment | `[]` |
 | `affinity` | Map of node/pod affinities | `{}` |
+| `hostNetwork` | Run pods in host network | `false` |
 | `persistence.config.enabled` | Enable persistence for config storage | `false` |
 | `persistence.config.storageClass` | Specify the `storageClass` used to provision the config volume | `nil` |
 | `persistence.config.existingClaim` | Use a existing PVC for config which must be created manually before bound | `nil` |
