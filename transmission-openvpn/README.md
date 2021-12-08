@@ -73,6 +73,8 @@ The following tables lists the configurable parameters of the chart and their de
 | `persistence.data.accessModes` | Access modes of data volume  | `["ReadWriteOnce"]` |
 | `persistence.data.size` | Size for the PV | `64Gi` |
 | `dataVolume` | An alternative data volume definition | `{}` |
+| `extraVolumes` | Specify additional volumes to attach to the pod | `{}` |
+| `extraVolumeMounts` | Specify additional volume mounts for the pod | `{}` |
 | `env` | The **non-sensitive** environment variables to configure the application. See the possible configuration here: https://haugene.github.io/docker-transmission-openvpn/arguments/ | `{}` |
 | `secretEnv` | The **sensitive** environment variables to configure the application. See the possible configuration here: https://haugene.github.io/docker-transmission-openvpn/arguments/ | `{}` |
 | `customProvider.enabled` | Use a custom OpenVPN provider service. More info: https://haugene.github.io/docker-transmission-openvpn/supported-providers/#using_a_custom_provider | `false` |

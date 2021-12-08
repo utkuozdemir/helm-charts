@@ -118,3 +118,12 @@ timezoneMountFromHost:
   name: localtime
 
 dnsConfig: {}
+
+# Arbitrary extra mounts for the pod.
+extraVolumes: {}
+#  - name: media
+#    persistentVolumeClaim:
+#      claimName: my-existing-pvc
+extraVolumeMounts: {}
+#  - mountPath: /mnt/media
+#  name: media
