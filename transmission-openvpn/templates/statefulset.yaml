@@ -57,6 +57,9 @@ spec:
             - mountPath: /etc/openvpn/custom/
               name: custom-provider-config
             {{- end }}
+            {{- if .Values.extraVolumeMounts }}
+{{ toYaml .Values.extraVolumeMounts | indent 12 }}
+            {{- end }}
           envFrom:
             - configMapRef:
                 name: {{ include "transmission-openvpn.fullname" . }}
@@ -102,6 +105,9 @@ spec:
 {{- else }}
         - name: data
           emptyDir: {}
+{{- end }}
+{{- if .Values.extraVolumes }}
+{{ toYaml .Values.extraVolumes | indent 8 }}
 {{- end }}
   volumeClaimTemplates:
 {{- if and .Values.persistence.data.enabled (not .Values.persistence.data.existingClaim) }}
