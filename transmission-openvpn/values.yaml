@@ -1,6 +1,3 @@
-# global:
-#   storageClass: my-storage-class
-
 image:
   repository: haugene/transmission-openvpn
   pullPolicy: IfNotPresent
@@ -80,12 +77,11 @@ affinity: {}
 persistence:
   data:
     enabled: false
-    # existingClaim: "my-existing-claim"
-    # storageClass: "my-storage-class"
+    existingClaim:
+    storageClass:
     annotations:
     accessModes:
       - ReadWriteOnce
-    ## Persistent Volume size
     size: 64Gi
 
 # An alternative data volume definition
@@ -112,10 +108,6 @@ customProvider:
 
 tunDeviceMountFromHost:
   enabled: true
-
-timezoneMountFromHost:
-  enabled: true
-  name: localtime
 
 dnsConfig: {}
 

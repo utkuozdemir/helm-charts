@@ -42,47 +42,44 @@ The command removes all the Kubernetes components associated with the chart and 
 
 The following tables lists the configurable parameters of the chart and their default values.
 
-| Parameter | Description | Default |
-| --------- | ----------- | ------- |
-| `global.storageClass` | Global storage class for dynamic provisioning | `nil` |
-| `image.repository` | container image name | `haugene/transmission-openvpn` |
-| `image.pullPolicy` | container image pull policy | `IfNotPresent` |
-| `image.tag` | container image tag | `{TAG_NAME}` (taken from the chart appVersion) |
-| `imagePullSecrets` | Array of imagePullSecrets in the namespace for pulling images | `[]` |
-| `nameOverride` | String to partially override the fullname template with a string (will prepend the release name) | `nil` |
-| `fullnameOverride` | String to fully override the fullname template with a string | `nil` |
-| `serviceAccount.create` | Specifies whether a ServiceAccount should be created | `true` |
-| `serviceAccount.name` | The name of the ServiceAccount to create | Generated using the fullname template |
-| `serviceAccount.annotations` | Annotations for the ServiceAccount | `{}` |
-| `podSecurityContext` | The security context for the pods | `{}` |
-| `securityContext` | The security context for the application container. Includes `NET_ADMIN` by default for the OpenVPN connection to work | `{"capabilities":{"add":["NET_ADMIN"]}}` |
-| `service.type` | Kubernetes Service type | `ClusterIP` |
-| `service.port` | Kubernetes Service port | `80` |
-| `ingress.enabled` | Enable the use of the ingress controller | `false` |
-| `ingress.className` | Class name for the ingress | `{}` |
-| `ingress.annotations` | Annotations for the ingress | `{}` |
-| `ingress.hosts` | Hosts configuration of the ingress | see [values.yaml](values.yaml) |
-| `ingress.tls` | The TLS configuration for the ingress | `[]` |
-| `resources` | The resources to allocate for the container | `{}` |
-| `affinity` | Map of node/pod affinities | `{}` |
-| `nodeSelector` | Node labels for pod assignment | `{}` |
-| `tolerations` | Tolerations for pod assignment | `[]` |
-| `persistence.data.enabled` | Enable persistence | `false` |
-| `persistence.data.existingClaim` | Use a existing PVC which must be created manually before bound | `nil` |
-| `persistence.data.storageClass` | Specify the `storageClass` used to provision the volume | `nil` |
-| `persistence.data.accessModes` | Access modes of data volume  | `["ReadWriteOnce"]` |
-| `persistence.data.size` | Size for the PV | `64Gi` |
-| `dataVolume` | An alternative data volume definition | `{}` |
-| `extraVolumes` | Specify additional volumes to attach to the pod | `{}` |
-| `extraVolumeMounts` | Specify additional volume mounts for the pod | `{}` |
-| `env` | The **non-sensitive** environment variables to configure the application. See the possible configuration here: https://haugene.github.io/docker-transmission-openvpn/arguments/ | `{}` |
-| `secretEnv` | The **sensitive** environment variables to configure the application. See the possible configuration here: https://haugene.github.io/docker-transmission-openvpn/arguments/ | `{}` |
-| `customProvider.enabled` | Use a custom OpenVPN provider service. More info: https://haugene.github.io/docker-transmission-openvpn/supported-providers/#using_a_custom_provider | `false` |
-| `customProvider.secretName` | If a custom provider is used, the name of the secret that contains the OpenVPN client configuration files. | `openvpn-custom` |
-| `tunDeviceMountFromHost.enabled` | Mount the `tun` device from the host to the container, in case `tun` is used as the OpenVPN connection type | `true` |
-| `timezoneMountFromHost.enabled` | Mount the timezone file from the host | `true` |
-| `timezoneMountFromHost.name` | The name of the tz database file to mount. More info: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones | `localtime` |
-| `dnsConfig` | Custom DNS configuration for pods. More info: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy | `{}` |
+| Parameter                        | Description                                                                                                                                                                     | Default                                        |
+|----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------|
+| `image.repository`               | container image name                                                                                                                                                            | `haugene/transmission-openvpn`                 |
+| `image.pullPolicy`               | container image pull policy                                                                                                                                                     | `IfNotPresent`                                 |
+| `image.tag`                      | container image tag                                                                                                                                                             | `{TAG_NAME}` (taken from the chart appVersion) |
+| `imagePullSecrets`               | Array of imagePullSecrets in the namespace for pulling images                                                                                                                   | `[]`                                           |
+| `nameOverride`                   | String to partially override the fullname template with a string (will prepend the release name)                                                                                | `nil`                                          |
+| `fullnameOverride`               | String to fully override the fullname template with a string                                                                                                                    | `nil`                                          |
+| `serviceAccount.create`          | Specifies whether a ServiceAccount should be created                                                                                                                            | `true`                                         |
+| `serviceAccount.name`            | The name of the ServiceAccount to create                                                                                                                                        | Generated using the fullname template          |
+| `serviceAccount.annotations`     | Annotations for the ServiceAccount                                                                                                                                              | `{}`                                           |
+| `podSecurityContext`             | The security context for the pods                                                                                                                                               | `{}`                                           |
+| `securityContext`                | The security context for the application container. Includes `NET_ADMIN` by default for the OpenVPN connection to work                                                          | `{"capabilities":{"add":["NET_ADMIN"]}}`       |
+| `service.type`                   | Kubernetes Service type                                                                                                                                                         | `ClusterIP`                                    |
+| `service.port`                   | Kubernetes Service port                                                                                                                                                         | `80`                                           |
+| `ingress.enabled`                | Enable the use of the ingress controller                                                                                                                                        | `false`                                        |
+| `ingress.className`              | Class name for the ingress                                                                                                                                                      | `{}`                                           |
+| `ingress.annotations`            | Annotations for the ingress                                                                                                                                                     | `{}`                                           |
+| `ingress.hosts`                  | Hosts configuration of the ingress                                                                                                                                              | see [values.yaml](values.yaml)                 |
+| `ingress.tls`                    | The TLS configuration for the ingress                                                                                                                                           | `[]`                                           |
+| `resources`                      | The resources to allocate for the container                                                                                                                                     | `{}`                                           |
+| `affinity`                       | Map of node/pod affinities                                                                                                                                                      | `{}`                                           |
+| `nodeSelector`                   | Node labels for pod assignment                                                                                                                                                  | `{}`                                           |
+| `tolerations`                    | Tolerations for pod assignment                                                                                                                                                  | `[]`                                           |
+| `persistence.data.enabled`       | Enable persistence                                                                                                                                                              | `false`                                        |
+| `persistence.data.existingClaim` | Use a existing PVC which must be created manually before bound                                                                                                                  | `nil`                                          |
+| `persistence.data.storageClass`  | Specify the `storageClass` used to provision the volume                                                                                                                         | `nil`                                          |
+| `persistence.data.accessModes`   | Access modes of data volume                                                                                                                                                     | `["ReadWriteOnce"]`                            |
+| `persistence.data.size`          | Size for the PV                                                                                                                                                                 | `64Gi`                                         |
+| `dataVolume`                     | An alternative data volume definition                                                                                                                                           | `{}`                                           |
+| `extraVolumes`                   | Specify additional volumes to attach to the pod                                                                                                                                 | `{}`                                           |
+| `extraVolumeMounts`              | Specify additional volume mounts for the pod                                                                                                                                    | `{}`                                           |
+| `env`                            | The **non-sensitive** environment variables to configure the application. See the possible configuration here: https://haugene.github.io/docker-transmission-openvpn/arguments/ | `{}`                                           |
+| `secretEnv`                      | The **sensitive** environment variables to configure the application. See the possible configuration here: https://haugene.github.io/docker-transmission-openvpn/arguments/     | `{}`                                           |
+| `customProvider.enabled`         | Use a custom OpenVPN provider service. More info: https://haugene.github.io/docker-transmission-openvpn/supported-providers/#using_a_custom_provider                            | `false`                                        |
+| `customProvider.secretName`      | If a custom provider is used, the name of the secret that contains the OpenVPN client configuration files.                                                                      | `openvpn-custom`                               |
+| `tunDeviceMountFromHost.enabled` | Mount the `tun` device from the host to the container, in case `tun` is used as the OpenVPN connection type                                                                     | `true`                                         |
+| `dnsConfig`                      | Custom DNS configuration for pods. More info: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy                                         | `{}`                                           |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 

@@ -42,11 +42,6 @@ spec:
             tcpSocket:
               port: http
           volumeMounts:
-            {{- if .Values.timezoneMountFromHost.enabled }}
-            - mountPath: /etc/localtime
-              name: timezone-config
-              readOnly: true
-            {{- end }}
             {{- if .Values.tunDeviceMountFromHost.enabled }}
             - mountPath: /dev/net/tun
               name: dev-net-tun
@@ -58,7 +53,7 @@ spec:
               name: custom-provider-config
             {{- end }}
             {{- if .Values.extraVolumeMounts }}
-{{ toYaml .Values.extraVolumeMounts | indent 12 }}
+            {{ toYaml .Values.extraVolumeMounts | nindent 12 }}
             {{- end }}
           envFrom:
             - configMapRef:
@@ -68,16 +63,13 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
+      nodeSelector: {{- toYaml . | nindent 8 }}
       {{- end }}
     {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
+      affinity: {{- toYaml . | nindent 8 }}
     {{- end }}
     {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
+      tolerations: {{- toYaml . | nindent 8 }}
     {{- end }}
       volumes:
         {{- if .Values.customProvider.enabled }}
@@ -85,30 +77,25 @@ spec:
             secretName: {{ .Values.customProvider.secretName }}
           name: custom-provider-config
         {{- end }}
-        {{- if .Values.timezoneMountFromHost.enabled }}
-        - hostPath:
-            path: /usr/share/zoneinfo/{{ .Values.timezoneMountFromHost.name }}
-          name: timezone-config
-        {{- end }}
         {{- if .Values.tunDeviceMountFromHost.enabled }}
         - hostPath:
             path: /dev/net/tun
             type: CharDevice
           name: dev-net-tun
         {{- end }}
-{{- if and .Values.persistence.data.enabled .Values.persistence.data.existingClaim }}
+        {{- if and .Values.persistence.data.enabled .Values.persistence.data.existingClaim }}
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.data.existingClaim }}
-{{- else if and (not .Values.persistence.data.enabled) .Values.dataVolume }}
+        {{- else if and (not .Values.persistence.data.enabled) .Values.dataVolume }}
         {{- toYaml (list .Values.dataVolume) | nindent 8 }}
-{{- else }}
+        {{- else }}
         - name: data
           emptyDir: {}
-{{- end }}
-{{- if .Values.extraVolumes }}
-{{ toYaml .Values.extraVolumes | indent 8 }}
-{{- end }}
+        {{- end }}
+        {{- if .Values.extraVolumes }}
+        {{ toYaml .Values.extraVolumes | nindent 8 }}
+        {{- end }}
   volumeClaimTemplates:
 {{- if and .Values.persistence.data.enabled (not .Values.persistence.data.existingClaim) }}
     - metadata:
@@ -118,6 +105,9 @@ spec:
           release: {{ .Release.Name | quote }}
           heritage: {{ .Release.Service | quote }}
       spec:
+        {{- with .Values.persistence.data.storageClass }}
+        storageClassName: {{ . }}
+        {{- end }}
         accessModes:
         {{- range .Values.persistence.data.accessModes }}
           - {{ . | quote }}
@@ -125,5 +115,4 @@ spec:
         resources:
           requests:
             storage: {{ .Values.persistence.data.size | quote }}
-        {{ include "transmission-openvpn.data.storageClass" . }}
 {{- end }}

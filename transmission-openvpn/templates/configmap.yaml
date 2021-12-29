@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ include "transmission-openvpn.fullname" . }}
   labels:
-  {{- include "transmission-openvpn.labels" . | nindent 4 }}
+    {{- include "transmission-openvpn.labels" . | nindent 4 }}
 data:
   {{- toYaml .Values.env | nindent 2 }}
   {{- if and .Values.customProvider.enabled }}
