@@ -3,6 +3,10 @@
 I took [technosophos/tscharts](https://github.com/technosophos/tscharts) as reference 
 to host the charts I developed via GitHub pages.
 
+> :warning: If you need your own helm chart repo, **do not use this repository as an example**.
+Use [this](https://github.com/helm/chart-releaser-action) instead.  
+(I have to migrate this one some time)
+
 ## How to use the repository
 
 Simply run:
