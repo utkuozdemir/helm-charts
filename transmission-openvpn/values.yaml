@@ -1,94 +1,103 @@
-image:
-  repository: haugene/transmission-openvpn
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart version.
-  # tag: override-tag
+# -- Number of replicas to run. Chart is not designed to scale horizontally, use at your own risk
+replicaCount: 1
 
+image:
+  # -- Image repository
+  repository: haugene/transmission-openvpn
+  # -- Image pull policy
+  pullPolicy: IfNotPresent
+  # -- Image tag (if not specified, defaults to the chart's appVersion)
+  tag: ""
+
+# -- Image pull secrets
 imagePullSecrets: []
+# -- String to partially override fullname template with a string (will prepend the release name)
 nameOverride: ""
+# -- String to fully override fullname template with a string
 fullnameOverride: ""
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # -- Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
+  # -- Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name:
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+  name: ""
 
+# -- Annotations for the pods
+podAnnotations: {}
+
+# -- Security context for the pods
 podSecurityContext: {}
-  # fsGroup: 2000
 
+# -- Security context for the container. NET_ADMIN capability is required for the VPN to work properly.
 securityContext:
   capabilities:
     add:
       - NET_ADMIN
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+
+# -- Deployment strategy
+strategy:
+  type: Recreate
 
 service:
+  # -- Type of the service
   type: ClusterIP
+  # -- Port for the service to use
   port: 80
 
 ingress:
-  # -- Enable the use of the ingress controller to access the web UI
+  # -- Expose the app using an ingress
   enabled: false
-  # -- Class name of the Ingress
+  # -- Ingress class name
   className: ""
-  # -- Annotations for the Ingress
+  # -- Annotations for the ingress
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-
-  # -- Hosts for the ingress
+  # -- Ingress hosts configuration
   # @default -- see [values.yaml](values.yaml)
   hosts:
     - host: chart-example.local
       paths:
         - path: /
           pathType: ImplementationSpecific
+  # -- The TLS configuration for the Ingress
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
+# -- The resource requests and limits of the container
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
 
+# -- The node selector for the deployment
 nodeSelector: {}
 
+# -- Tolerations for the pod assignment
 tolerations: []
 
+# -- Affinity for the pod assignment
 affinity: {}
 
 persistence:
-  data:
-    enabled: false
-    existingClaim:
-    storageClass:
-    annotations:
-    accessModes:
-      - ReadWriteOnce
-    size: 64Gi
+  # -- Enable persistence
+  enabled: false
+  # -- Persistence type is pvc. When `false`, data volume definition is read from `persistence.dataVolume`
+  isPvc: true
+  # -- Name of the existing claim to be used
+  existingClaim: ""
+  # -- Storage class for the data volume
+  storageClass: ""
+  # -- Annotations for the claim
+  annotations: {}
+    # helm.sh/resource-policy: keep
+  # -- Access modes for the claim
+  accessModes:
+    - ReadWriteOnce
+  # -- Size for the claim
+  size: 64Gi
+  # -- Alternative data volume definition (e.g. nfs, hostPath). Used when `persistence.isPvc` is `false`
+  dataVolume: {}
+    # hostPath:
+    #   path: /path/on/host
 
-# An alternative data volume definition
-dataVolume: {}
-
-# see docs: https://haugene.github.io/docker-transmission-openvpn/arguments/
-# for sensitive values, use secretEnv below.
+# -- Non-sensitive environment variables to be set in the pods. See the [application docs](https://haugene.github.io/docker-transmission-openvpn/config-options/)
 env: {}
   # OPENVPN_PROVIDER: my_value
   # CREATE_TUN_DEVICE: "true"
@@ -96,26 +105,36 @@ env: {}
   # PUID: "1000"
   # PGID: "1000"
 
-# put sensitive values here
+# -- Sensitive environment variables to be set in the pods. See the [application docs](https://haugene.github.io/docker-transmission-openvpn/config-options/)
 secretEnv: {}
   # OPENVPN_USERNAME: user
   # OPENVPN_PASSWORD: MySecretPassword1!
 
-# see: https://haugene.github.io/docker-transmission-openvpn/supported-providers/#using_a_custom_provider
-customProvider:
-  enabled: false
-  secretName: openvpn-custom
+# -- Mount the /dev/net/tun device into the pod. Required by OpenVPN when a `tun` device is used
+mountTunDevice: true
 
-tunDeviceMountFromHost:
-  enabled: true
-
+# -- DNS configuration for the pod
 dnsConfig: {}
 
-# Arbitrary extra mounts for the pod.
-extraVolumes: {}
-#  - name: media
-#    persistentVolumeClaim:
-#      claimName: my-existing-pvc
+# -- DNS policy for the pod
+dnsPolicy: ClusterFirst
+
+# -- Arbitrary extra volume definitions for the pod
+extraVolumes: []
+  # - name: custom-provider-config
+  #   secret:
+  #     defaultMode: 420
+  #     secretName: openvpn-custom
+
+# -- Arbitrary extra volume mounts for the pod
 extraVolumeMounts: {}
-#  - mountPath: /mnt/media
-#  name: media
+  # - mountPath: /etc/openvpn/custom/
+  #   name: custom-provider-config
+
+# -- Pod liveness probe
+livenessProbe: {}
+
+# -- Pod readiness probe
+readinessProbe:
+  tcpSocket:
+    port: http

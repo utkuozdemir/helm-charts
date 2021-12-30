@@ -6,6 +6,3 @@ metadata:
     {{- include "transmission-openvpn.labels" . | nindent 4 }}
 data:
   {{- toYaml .Values.env | nindent 2 }}
-  {{- if and .Values.customProvider.enabled }}
-  OPENVPN_PROVIDER: CUSTOM
-  {{- end }}

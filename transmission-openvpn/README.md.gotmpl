@@ -1,0 +1,105 @@
+{{ template "chart.header" . }}
+{{ template "chart.deprecationWarning" . }}
+
+{{ template "chart.badgesSection" . }}
+
+{{ template "chart.description" . }}
+
+{{ template "chart.homepageLine" . }}
+
+## TL;DR
+
+```console
+$ helm repo add utkuozdemir https://utkuozdemir.org/helm-charts
+$ helm install my-release utkuozdemir/{{ template "chart.name" . }}
+```
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}
+
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
+
+```console
+$ helm install my-release \
+  --set env.LOCAL_NETWORK=10.217.0.0/16 \
+  --set env.OPENVPN_PROVIDER=PIA \
+  --set env.OPENVPN_USERNAME=myuser \
+  --set env.TRANSMISSION_SPEED_LIMIT_UP_ENABLED=true \
+  --set env.TRANSMISSION_SPEED_LIMIT_UP=2048 \
+  --set secretEnv.OPENVPN_PASSWORD=mysecretpassword \
+  utkuozdemir/transmission-openvpn
+```
+
+The above command uses *PIA* as the OpenVPN provider, uses the VPN username `myuser`
+and password `mysecretpassword` to connect to the provider.
+It also enables the transmission upload speed limit and sets it to 2048 KB/s.
+
+Alternatively, a YAML file that specifies the values for the parameters
+can be provided while installing the chart. For example,
+
+```console
+$ helm install my-release -f values.yaml utkuozdemir/transmission-openvpn
+```
+
+> **Tip**: You can use the default [values.yaml](values.yaml)
+
+
+## Notes
+
+**Important Note:** By default, the `docker-transmission-openvpn` image **blocks all the incoming traffic** other than
+the traffic coming from the VPN tunnel.
+
+A set of IP ranges can be speficied as the "local network" to be excluded from this block.
+For the service/ingress to work, **you need to specify your Kubernetes cluster pod range as the local network**.
+In the example above, `10.217.0.0/16` is specified as the pod range.
+
+You can find out your cluster's pod range via the following command:
+```console
+kubectl -n kube-system get pod -o yaml -l component=kube-controller-manager | grep cluster-cidr
+```
+
+Alternatively, if you trust all local networks,
+you can specify all [RFC1918 private networks](https://en.wikipedia.org/wiki/Private_network):
+```console
+helm install ... --set env.LOCAL_NETWORK=10.0.0.0/8,172.16.0.0/12,192.168.0.0/16 ...
+```
+
+
+Note that this is an un-opinionated chart regarding the configuration. What is meant by this is:
+The chart passes the set of environment variables as-is into the container, using the `env` and `secretEnv` values.
+This way we avoid mapping each and every configuration parameter to an explicitly
+named chart parameter and provides a very flexible configuration.
+
+See all the possible environment variables
+[on this page](https://haugene.github.io/docker-transmission-openvpn/arguments/).
+
+Note that the transmission application can be fully configured via the environment variables.
+[See this section](https://haugene.github.io/docker-transmission-openvpn/arguments/#transmission_configuration_options)
+for the transmission configuration mapping to the environment.
+
+## Upgrading Chart
+
+```console
+helm upgrade my-release utkuozdemir/{{ template "chart.name" . }}
+```
+
+_See [helm upgrade](https://helm.sh/docs/helm/helm_upgrade/) for command documentation._
+
+### Upgrading an existing Release to a new major version
+
+A major chart version change (like 1.2.0 -> 2.0.0) indicates that
+there is an incompatible breaking change needing manual actions.
+
+### From 1.x to 2.x
+
+On version 2.x, the app is backed by a deployment instead of a statefulset.
+
+The values is largely refactored - pay attention to the changes on the `persistence` section.
+
+It is recommended to start from a fresh install.
+
+
+{{ template "chart.maintainersSection" . }}
+
+{{ template "chart.sourcesSection" . }}
