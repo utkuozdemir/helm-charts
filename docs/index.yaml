@@ -93,6 +93,38 @@ entries:
   filebrowser:
   - annotations:
       artifacthub.io/changes: |
+        - Change default port to 8080
+        - Do rollout restart on configmap change
+      artifacthub.io/images: |
+        - name: filebrowser/filebrowser
+          image: docker.io/filebrowser/filebrowser:v2.20.0
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: v2.20.0
+    created: "2021-12-30T22:36:07.533606+01:00"
+    description: A Helm chart for the File Browser project
+    digest: 18f38d6305af748ef86d3eb6e72b0c9ceff83a7e2785e117a165b9eacea1fd84
+    home: https://filebrowser.org
+    icon: https://utkuozdemir.org/helm-charts/filebrowser.png
+    keywords:
+    - filebrowser
+    - file-browser
+    - file-server
+    - http-file-server
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: filebrowser
+    sources:
+    - https://github.com/filebrowser/filebrowser
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/filebrowser-0.4.0.tgz
+    version: 0.4.0
+  - annotations:
+      artifacthub.io/changes: |
         - Bump app version to 2.20.0
       artifacthub.io/images: |
         - name: filebrowser/filebrowser
@@ -2063,4 +2095,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-30T21:09:54.529267+01:00"
+generated: "2021-12-30T22:36:07.532553+01:00"

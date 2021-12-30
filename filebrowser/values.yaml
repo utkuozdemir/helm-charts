@@ -148,7 +148,7 @@ initContainers: []
 # -- File Browser application specific configuration
 # @default -- see [values.yaml](values.yaml)
 config:
-  port: 80
+  port: 8080
   baseURL: ""
   address: ""
   log: stdout
