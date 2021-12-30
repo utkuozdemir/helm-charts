@@ -5,5 +5,5 @@ metadata:
   labels:
     {{- include "filebrowser.labels" . | nindent 4 }}
 data:
-  .filebrowser.json: |
+  settings.json: |
     {{- .Values.config | toPrettyJson | nindent 4 }}

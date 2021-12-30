@@ -41,9 +41,9 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
-            - mountPath: /.filebrowser.json
+            - mountPath: /config/settings.json
               name: config
-              subPath: .filebrowser.json
+              subPath: settings.json
             - mountPath: /db
               name: db
             - mountPath: /rootdir
