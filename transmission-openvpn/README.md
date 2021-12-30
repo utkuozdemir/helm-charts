@@ -1,6 +1,6 @@
 # transmission-openvpn
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0](https://img.shields.io/badge/AppVersion-4.0-informational?style=flat-square)
+![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0](https://img.shields.io/badge/AppVersion-4.0-informational?style=flat-square)
 
 Transmission + OpenVPN chart based on haugene/transmission-openvpn image
 
@@ -33,6 +33,7 @@ $ helm install my-release utkuozdemir/transmission-openvpn
 | ingress.enabled | bool | `false` | Expose the app using an ingress |
 | ingress.hosts | list | see [values.yaml](values.yaml) | Ingress hosts configuration |
 | ingress.tls | list | `[]` | The TLS configuration for the Ingress |
+| initContainers | list | `[]` | Init containers |
 | livenessProbe | object | `{}` | Pod liveness probe |
 | mountTunDevice | bool | `true` | Mount the /dev/net/tun device into the pod. Required by OpenVPN when a `tun` device is used |
 | nameOverride | string | `""` | String to partially override fullname template with a string (will prepend the release name) |
@@ -57,6 +58,7 @@ $ helm install my-release utkuozdemir/transmission-openvpn
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
+| sidecarContainers | list | `[]` | Sidecar containers |
 | strategy | object | `{"type":"Recreate"}` | Deployment strategy |
 | tolerations | list | `[]` | Tolerations for the pod assignment |
 

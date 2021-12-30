@@ -1585,6 +1585,38 @@ entries:
   transmission-openvpn:
   - annotations:
       artifacthub.io/changes: |
+        - Add values to specify initContainers and sidecarContainers
+      artifacthub.io/images: |
+        - name: haugene/transmission-openvpn
+          image: docker.io/haugene/transmission-openvpn:4.0
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: "4.0"
+    created: "2021-12-30T16:40:25.351894+01:00"
+    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn
+      image
+    digest: f670cbe76efe8a3c98076b32f900a78842cee8fb954f3a472ec5f36caaecc207
+    home: https://haugene.github.io/docker-transmission-openvpn
+    icon: https://utkuozdemir.org/helm-charts/transmission.png
+    keywords:
+    - transmission
+    - openvpn
+    - transmission-openvpn
+    - torrent
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: transmission-openvpn
+    sources:
+    - https://github.com/haugene/docker-transmission-openvpn
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/transmission-openvpn-2.1.0.tgz
+    version: 2.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - Major refactor of values
         - Use deployment instead of statefulset
       artifacthub.io/images: |
@@ -2000,4 +2032,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-30T01:42:23.174469+01:00"
+generated: "2021-12-30T16:40:25.35026+01:00"

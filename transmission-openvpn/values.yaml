@@ -138,3 +138,21 @@ livenessProbe: {}
 readinessProbe:
   tcpSocket:
     port: http
+
+# -- Init containers
+initContainers: []
+  # - name: init
+  #   image: busybox:stable-musl
+  #   command:
+  #     - sh
+  #     - -c
+  #     - echo "initializing..."
+
+# -- Sidecar containers
+sidecarContainers: []
+  # - name: sidecar
+  #   image: busybox:stable-musl
+  #   command:
+  #     - tail
+  #     - -f
+  #     - /dev/null
