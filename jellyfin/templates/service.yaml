@@ -8,8 +8,11 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: jellyfin
+      targetPort: http
       protocol: TCP
-      name: jellyfin
+      name: http
+    {{- with .Values.additionalServicePorts }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   selector:
     {{- include "jellyfin.selectorLabels" . | nindent 4 }}

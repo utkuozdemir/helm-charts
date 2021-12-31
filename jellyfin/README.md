@@ -1,110 +1,81 @@
 # jellyfin
 
-This is a helm chart for the [Jellyfin Media Server](https://jellyfin.org/) based on the
-[linuxserver.io's Jellyfin docker image](https://hub.docker.com/r/linuxserver/jellyfin).
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.7.7](https://img.shields.io/badge/AppVersion-10.7.7-informational?style=flat-square)
 
-## TL;DR;
+Jellyfin Helm chart
 
-```console
-$ helm repo add utkuozdemir https://utkuozdemir.org/helm-charts
-$ helm install my-release utkuozdemir/jellyfin
-```
+**Homepage:** <https://jellyfin.org>
 
-## Introduction
-
-This chart simply maps the features of the jellyfin project to the Kubernetes concepts.
-
-## Installing the Chart
-
-To install the chart with the release name `my-release`:
+## TL;DR
 
 ```console
 $ helm repo add utkuozdemir https://utkuozdemir.org/helm-charts
 $ helm install my-release utkuozdemir/jellyfin
 ```
 
-**Important:** See the [Parameters](#parameters) section lists the parameters that need to be configured 
-during the installation.
+## Values
 
-> **Tip**: List all releases using `helm list`
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| additionalPorts | list | `[]` | Additional port definitions for the pod |
+| additionalServicePorts | list | `[]` | Additional port definitions for the service |
+| affinity | object | `{}` | Affinity for the pod assignment |
+| dnsConfig | object | `{}` | DNS configuration for the pod |
+| dnsPolicy | string | `"ClusterFirst"` | DNS policy for the pod |
+| env | object | `{}` | Non-sensitive environment variables to be set in the pods. See the [application docs](https://docs.linuxserver.io/images/docker-jellyfin) |
+| extraVolumeMounts | object | `{}` | Arbitrary extra volume mounts for the pod |
+| extraVolumes | list | `[]` | Arbitrary extra volume definitions for the pod |
+| fullnameOverride | string | `""` | String to fully override fullname template with a string |
+| hostNetwork | bool | `false` | Use host network |
+| hostPort.enabled | bool | `false` | Use host port for the application |
+| hostPort.port | int | `8096` | Host port to bind to |
+| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
+| image.repository | string | `"docker.io/linuxserver/jellyfin"` | Image repository |
+| image.tag | string | `""` | Image tag (if not specified, defaults to the chart's appVersion) |
+| imagePullSecrets | list | `[]` | Image pull secrets |
+| ingress.annotations | object | `{}` | Annotations for the ingress |
+| ingress.className | string | `""` | Ingress class name |
+| ingress.enabled | bool | `false` | Expose the app using an ingress |
+| ingress.hosts | list | see [values.yaml](values.yaml) | Ingress hosts configuration |
+| ingress.tls | list | `[]` | The TLS configuration for the Ingress |
+| initContainers | list | `[]` | Init containers |
+| livenessProbe | object | `{}` | Pod liveness probe |
+| nameOverride | string | `""` | String to partially override fullname template with a string (will prepend the release name) |
+| nodeSelector | object | `{}` | The node selector for the deployment |
+| persistence.config.accessModes[0] | string | `"ReadWriteOnce"` |  |
+| persistence.config.annotations | object | `{}` | Config: Annotations for the claim |
+| persistence.config.customVolume | object | `{}` | Config: Alternative data volume definition (e.g. nfs, hostPath). Used when `persistence.config.isPvc` is `false` |
+| persistence.config.enabled | bool | `true` | Config: Enable persistence |
+| persistence.config.existingClaim | string | `""` | Config: Name of the existing claim to be used for config |
+| persistence.config.isPvc | bool | `true` | Config: Persistence type is pvc. When `false`, data volume definition is read from `persistence.config.customVolume` |
+| persistence.config.size | string | `"2Gi"` | Config: Size for the claim |
+| persistence.config.storageClass | string | `""` | Config: Storage class for the volume |
+| persistence.data.accessModes[0] | string | `"ReadWriteOnce"` |  |
+| persistence.data.annotations | object | `{}` | Data: Annotations for the claim |
+| persistence.data.customVolume | object | `{}` | Data: Alternative data volume definition (e.g. nfs, hostPath). Used when `persistence.data.isPvc` is `false` |
+| persistence.data.enabled | bool | `false` | Data: Enable persistence |
+| persistence.data.existingClaim | string | `""` | Data: Name of the existing claim to be used |
+| persistence.data.isPvc | bool | `true` | Data: Persistence type is pvc. When `false`, data volume definition is read from `persistence.data.customVolume` |
+| persistence.data.size | string | `"64Gi"` | Data: Size for the claim |
+| persistence.data.storageClass | string | `""` | Data: Storage class for the data volume |
+| podAnnotations | object | `{}` | Annotations for the pods |
+| podSecurityContext | object | `{}` | Security context for the pods |
+| port | int | `8096` |  |
+| readinessProbe | object | `{"httpGet":{"port":"http"}}` | Pod readiness probe |
+| replicaCount | int | `1` | Number of replicas to run. Chart is not designed to scale horizontally, use at your own risk |
+| resources | object | `{}` | The resource requests and limits of the container |
+| secretEnv | object | `{}` | Sensitive environment variables to be set in the pods. See the [application docs](https://docs.linuxserver.io/images/docker-jellyfin) |
+| securityContext | object | `{"capabilities":{"add":["NET_ADMIN"]}}` | Security context for the container. NET_ADMIN capability is required for the VPN to work properly. |
+| service.port | int | `8096` | Port for the service to use |
+| service.type | string | `"ClusterIP"` | Type of the service |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
+| serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
+| serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
+| sidecarContainers | list | `[]` | Sidecar containers |
+| strategy | object | `{"type":"Recreate"}` | Deployment strategy |
+| tolerations | list | `[]` | Tolerations for the pod assignment |
 
-## Uninstalling the Chart
-
-To uninstall/delete the `my-release` deployment:
-
-```console
-$ helm delete my-release
-```
-
-The command removes all the Kubernetes components associated with the chart and deletes the release.
-
-## Parameters
-
-The following tables lists the configurable parameters of the chart and their default values.
-
-| Parameter | Description | Default |
-| --------- | ----------- | ------- |
-| `global.storageClass` | Global storage class for dynamic provisioning | `nil` |
-| `image.repository` | container image name | `haugene/jellyfin` |
-| `image.pullPolicy` | container image pull policy | `IfNotPresent` |
-| `image.tag` | container image tag | `{TAG_NAME}` (taken from the chart appVersion) |
-| `imagePullSecrets` | Array of imagePullSecrets in the namespace for pulling images | `[]` |
-| `nameOverride` | String to partially override the fullname template with a string (will prepend the release name) | `nil` |
-| `fullnameOverride` | String to fully override the fullname template with a string | `nil` |
-| `serviceAccount.create` | Specifies whether a ServiceAccount should be created | `true` |
-| `serviceAccount.name` | The name of the ServiceAccount to create | Generated using the fullname template |
-| `serviceAccount.annotations` | Annotations for the ServiceAccount | `{}` |
-| `podSecurityContext` | The security context for the pods | `{}` |
-| `securityContext` | The security context for the application container. Includes `NET_ADMIN` by default for the OpenVPN connection to work | `{"capabilities":{"add":["NET_ADMIN"]}}` |
-| `service.type` | Kubernetes Service type | `ClusterIP` |
-| `service.port` | Kubernetes Service port | `80` |
-| `ingress.enabled` | Enable the use of the ingress controller to access the web UI | `false` |
-| `ingress.className` | Class name for the ingress | `{}` |
-| `ingress.annotations` | Annotations for the ingress | `{}` |
-| `ingress.hosts` | Hosts configuration of the ingress | see [values.yaml](values.yaml) |
-| `ingress.tls` | The TLS configuration for the ingress | `[]` |
-| `resources` | The resources to allocate for the container | `{}` |
-| `nodeSelector` | Node labels for pod assignment | `{}` |
-| `tolerations` | Tolerations for pod assignment | `[]` |
-| `affinity` | Map of node/pod affinities | `{}` |
-| `hostNetwork` | Run pods in host network | `false` |
-| `persistence.config.enabled` | Enable persistence for config storage | `false` |
-| `persistence.config.storageClass` | Specify the `storageClass` used to provision the config volume | `nil` |
-| `persistence.config.existingClaim` | Use a existing PVC for config which must be created manually before bound | `nil` |
-| `persistence.config.annotations` | Annotations for the config volume PVC | `nil` |
-| `persistence.config.accessModes` | Access modes of config volume | `["ReadWriteOnce"]` |
-| `persistence.config.size` | Size for the config PV | `8Gi` |
-| `persistence.data.enabled` | Enable persistence for data storage | `false` |
-| `persistence.data.readOnly` | Mount the data volume read-only | `false` |
-| `persistence.data.storageClass` | Specify the `storageClass` used to provision the data volume | `nil` |
-| `persistence.data.existingClaim` | Use a existing PVC for data which must be created manually before bound. Will be ignored if `persistence.data.enabled` is set to false or `persistence.data.hostPath.enabled` is set to true | `nil` |
-| `persistence.data.annotations` | Annotations for the data volume PVC | `nil` |
-| `persistence.data.accessModes` | Access modes of data volume | `["ReadWriteOnce"]` |
-| `persistence.data.size` | Size for the data PV | `8Gi` |
-| `persistence.data.hostPath.enabled` | Mount a hostPath for the data volume. If set to true, no PVC will be created and `existingClaim` will be ignored | `false` |
-| `persistence.data.hostPath.type` | Type of the hostPath mount | `Directory` |
-| `persistence.data.hostPath.path` | Path of the hostPath mount | `/hostpath` |
-| `jellyfin.timezone` | Timezone to be used. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones | `nil` |
-| `jellyfin.uid` | The unix user id for the process to run with | `nil` |
-| `jellyfin.gid` | The unix group id for the process to run with | `nil` |
-| `jellyfin.otherEnv` | Additional key-value pairs to be passed as environment variables to the container. See https://hub.docker.com/r/linuxserver/jellyfin for reference | `nil` |
-
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-
-```console
-$ helm install my-release \
-  --set persistence.config.enabled=true \
-  --set persistence.data.enabled=true \
-  --set persistence.data.size=1Ti \
-  --set jellyfin.timezone=Europe/Berlin \
-  utkuozdemir/jellyfin
-```
-
-The above command enabled persistence for both config and data, sets the data PVC (library) size 
-to 1 terabyte and uses the Berlin/Germany timezone.
-
-Alternatively, a YAML file that specifies the values for the parameters 
+Alternatively, a YAML file that specifies the values for the parameters
 can be provided while installing the chart. For example,
 
 ```console
@@ -112,3 +83,42 @@ $ helm install my-release -f values.yaml utkuozdemir/jellyfin
 ```
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
+
+## Notes
+
+Note that this is an un-opinionated chart regarding the configuration. What is meant by this is:
+The chart passes the set of environment variables as-is into the container, using the `env` and `secretEnv` values.
+This way we avoid mapping each and every configuration parameter to an explicitly
+named chart parameter and provides a very flexible configuration.
+
+## Upgrading Chart
+
+```console
+helm upgrade my-release utkuozdemir/jellyfin
+```
+
+_See [helm upgrade](https://helm.sh/docs/helm/helm_upgrade/) for command documentation._
+
+### Upgrading an existing Release to a new major version
+
+A major chart version change (like 1.2.0 -> 2.0.0) indicates that
+there is an incompatible breaking change needing manual actions.
+
+### From 1.x to 2.x
+
+On version 2.x, the app is backed by a deployment instead of a statefulset.
+
+The values is largely refactored - pay attention to the changes on the `persistence` section.
+
+It is recommended to start from a fresh install.
+
+## Maintainers
+
+| Name | Email | Url |
+| ---- | ------ | --- |
+| Utku Özdemir | uoz@protonmail.com | https://utkuozdemir.org |
+
+## Source Code
+
+* <https://github.com/linuxserver/docker-jellyfin>
+* <https://github.com/utkuozdemir/helm-charts>

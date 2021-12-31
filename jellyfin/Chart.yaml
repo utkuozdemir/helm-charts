@@ -1,17 +1,19 @@
 apiVersion: v2
 name: jellyfin
-description: Jellyfin Helm chart that is based on linuxserver/jellyfin Docker image.
+description: Jellyfin Helm chart
 type: application
-version: 1.2.7
-appVersion: 10.7.7-1-ls130
+version: 2.0.0
+appVersion: 10.7.7
 home: https://jellyfin.org
 keywords:
   - jellyfin
   - media-server
   - streaming
+  - tv
   - video
+  - kodi
 sources:
-  - https://github.com/jellyfin/jellyfin
+  - https://github.com/linuxserver/docker-jellyfin
   - https://github.com/utkuozdemir/helm-charts
 icon: https://utkuozdemir.org/helm-charts/jellyfin.png
 maintainers:
@@ -21,7 +23,7 @@ maintainers:
 annotations:
   artifacthub.io/license: MIT
   artifacthub.io/changes: |
-    - Add option to use host network
+    - Complete rewrite
   artifacthub.io/images: |
     - name: linuxserver/jellyfin
-      image: docker.io/linuxserver/jellyfin:10.7.7-1-ls130
+      image: docker.io/linuxserver/jellyfin:10.7.7
