@@ -1808,6 +1808,38 @@ entries:
   transmission-openvpn:
   - annotations:
       artifacthub.io/changes: |
+        - Add values hostNetwork, hostPort, additionalPorts and additionalServicePorts
+      artifacthub.io/images: |
+        - name: haugene/transmission-openvpn
+          image: docker.io/haugene/transmission-openvpn:4.0
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: "4.0"
+    created: "2021-12-31T16:02:13.202012+01:00"
+    description: Transmission + OpenVPN chart based on haugene/transmission-openvpn
+      image
+    digest: 6feb652a54928389dcd262ed5709f0a24fb5b60927f9724f9e6ab3a84b51d69f
+    home: https://haugene.github.io/docker-transmission-openvpn
+    icon: https://utkuozdemir.org/helm-charts/transmission.png
+    keywords:
+    - transmission
+    - openvpn
+    - transmission-openvpn
+    - torrent
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: transmission-openvpn
+    sources:
+    - https://github.com/haugene/docker-transmission-openvpn
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/transmission-openvpn-2.2.0.tgz
+    version: 2.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - Fix livenessprobe
       artifacthub.io/images: |
         - name: haugene/transmission-openvpn
@@ -2287,4 +2319,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-31T15:43:11.647699+01:00"
+generated: "2021-12-31T16:02:13.200643+01:00"

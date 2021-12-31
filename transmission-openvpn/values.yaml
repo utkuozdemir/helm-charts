@@ -1,6 +1,21 @@
 # -- Number of replicas to run. Chart is not designed to scale horizontally, use at your own risk
 replicaCount: 1
 
+# -- Use host network
+hostNetwork: false
+
+hostPort:
+  # -- Use host port for the application
+  enabled: false
+  # -- Host port to bind to
+  port: 9091
+
+# -- Additional port definitions for the pod
+additionalPorts: []
+
+# -- Additional port definitions for the service
+additionalServicePorts: []
+
 image:
   # -- Image repository
   repository: haugene/transmission-openvpn

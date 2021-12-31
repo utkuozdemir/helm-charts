@@ -1,6 +1,6 @@
 # transmission-openvpn
 
-![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0](https://img.shields.io/badge/AppVersion-4.0-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0](https://img.shields.io/badge/AppVersion-4.0-informational?style=flat-square)
 
 Transmission + OpenVPN chart based on haugene/transmission-openvpn image
 
@@ -17,6 +17,8 @@ $ helm install my-release utkuozdemir/transmission-openvpn
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| additionalPorts | list | `[]` | Additional port definitions for the pod |
+| additionalServicePorts | list | `[]` | Additional port definitions for the service |
 | affinity | object | `{}` | Affinity for the pod assignment |
 | dnsConfig | object | `{}` | DNS configuration for the pod |
 | dnsPolicy | string | `"ClusterFirst"` | DNS policy for the pod |
@@ -24,6 +26,9 @@ $ helm install my-release utkuozdemir/transmission-openvpn
 | extraVolumeMounts | object | `{}` | Arbitrary extra volume mounts for the pod |
 | extraVolumes | list | `[]` | Arbitrary extra volume definitions for the pod |
 | fullnameOverride | string | `""` | String to fully override fullname template with a string |
+| hostNetwork | bool | `false` | Use host network |
+| hostPort.enabled | bool | `false` | Use host port for the application |
+| hostPort.port | int | `9091` | Host port to bind to |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
 | image.repository | string | `"haugene/transmission-openvpn"` | Image repository |
 | image.tag | string | `""` | Image tag (if not specified, defaults to the chart's appVersion) |
