@@ -1,145 +1,169 @@
-# Default values for plex.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+# -- Number of replicas to run. Chart is not designed to scale horizontally, use at your own risk
+replicaCount: 1
 
-# global:
-#   storageClass: my-storage-class
+hostNetwork: false
+hostPort:
+  enabled: false
+  port: 32400
 
 image:
-  repository: plexinc/pms-docker
+  # -- Image repository
+  repository: docker.io/linuxserver/plex
+  # -- Image pull policy
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart version.
-  # tag: plexpass
+  # -- Image tag (if not specified, defaults to the chart's appVersion)
+  tag: ""
 
+# -- Image pull secrets
 imagePullSecrets: []
+# -- String to partially override fullname template with a string (will prepend the release name)
 nameOverride: ""
+# -- String to fully override fullname template with a string
 fullnameOverride: ""
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # -- Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
+  # -- Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name:
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+  name: ""
 
+# -- Annotations for the pods
+podAnnotations: {}
+
+# -- Security context for the pods
 podSecurityContext: {}
-  # fsGroup: 2000
 
+# -- Security context for the container. NET_ADMIN capability is required for the VPN to work properly.
 securityContext:
   capabilities:
     add:
       - NET_ADMIN
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+
+# -- Deployment strategy
+strategy:
+  type: Recreate
 
 service:
+  # -- Type of the service
   type: ClusterIP
-  port: 80
+  # -- Port for the service to use
+  port: 32400
 
 ingress:
-  # -- Enable the use of the ingress controller to access the web UI
+  # -- Expose the app using an ingress
   enabled: false
-  # -- Class name of the Ingress
+  # -- Ingress class name
   className: ""
-  # -- Annotations for the Ingress
+  # -- Annotations for the ingress
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-    # nginx.ingress.kubernetes.io/proxy-body-size: "256m"
-    # nginx.ingress.kubernetes.io/proxy-redirect-from: "off"
-    # nginx.ingress.kubernetes.io/proxy-buffering: "off"
-    # nginx.ingress.kubernetes.io/proxy-send-timeout: "100m"
-
-  # -- Hosts for the ingress
+  # -- Ingress hosts configuration
   # @default -- see [values.yaml](values.yaml)
   hosts:
     - host: chart-example.local
       paths:
         - path: /
           pathType: ImplementationSpecific
+  # -- The TLS configuration for the Ingress
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
-config:
-  persistence:
-    enabled: false
-    # storageClass: "my-storage-class"
-    annotations:
-    accessModes:
-      - ReadWriteOnce
-    ## Persistent Volume size
-    size: 8Gi
-
-data:
-  persistence:
-    enabled: false
-    readOnly: false
-    # storageClass: "my-storage-class"
-    annotations:
-    accessModes:
-      - ReadWriteOnce
-    ## Persistent Volume size
-    size: 64Gi
-
-transcode:
-  persistence:
-    enabled: false
-    # storageClass: "my-storage-class"
-    annotations:
-    accessModes:
-      - ReadWriteOnce
-    ## Persistent Volume size
-    size: 2Gi
-
+# -- The resource requests and limits of the container
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
 
+# -- The node selector for the deployment
 nodeSelector: {}
 
+# -- Tolerations for the pod assignment
 tolerations: []
 
+# -- Affinity for the pod assignment
 affinity: {}
 
-livenessProbe:
-  failureThreshold: 10
-  httpGet:
-    path: /web/index.html
-    port: plex
+persistence:
+  config:
+    # -- Config: Enable persistence
+    enabled: true
+    # -- Config: Persistence type is pvc. When `false`, data volume definition is read from `persistence.config.customVolume`
+    isPvc: true
+    # -- Config: Name of the existing claim to be used for config
+    existingClaim: ""
+    # -- Config: Storage class for the volume
+    storageClass: ""
+    # -- Config: Annotations for the claim
+    annotations: {}
+      # helm.sh/resource-policy: keep
+    # -- Config: Access modes for the claim
+    accessModes:
+      - ReadWriteOnce
+    # -- Config: Size for the claim
+    size: 2Gi
+    # -- Config: Alternative data volume definition (e.g. nfs, hostPath). Used when `persistence.config.isPvc` is `false`
+    customVolume: {}
+      # hostPath:
+      #   path: /path/on/host
+  data:
+    # -- Data: Enable persistence
+    enabled: false
+    # -- Data: Persistence type is pvc. When `false`, data volume definition is read from `persistence.data.customVolume`
+    isPvc: true
+    # -- Data: Name of the existing claim to be used
+    existingClaim: ""
+    # -- Data: Storage class for the data volume
+    storageClass: ""
+    # -- Data: Annotations for the claim
+    annotations: {}
+    # helm.sh/resource-policy: keep
+    # -- Data: Access modes for the claim
+    accessModes:
+      - ReadWriteOnce
+    # -- Data: Size for the claim
+    size: 64Gi
+    # -- Data: Alternative data volume definition (e.g. nfs, hostPath). Used when `persistence.data.isPvc` is `false`
+    customVolume: {}
+    # hostPath:
+    #   path: /path/on/host
+
+# -- Non-sensitive environment variables to be set in the pods. See the [application docs](https://docs.linuxserver.io/images/docker-plex)
+env: {}
+
+# -- Sensitive environment variables to be set in the pods. See the [application docs](https://docs.linuxserver.io/images/docker-plex)
+secretEnv: {}
+
+# -- DNS configuration for the pod
+dnsConfig: {}
+
+# -- DNS policy for the pod
+dnsPolicy: ClusterFirst
+
+# -- Arbitrary extra volume definitions for the pod
+extraVolumes: []
+
+# -- Arbitrary extra volume mounts for the pod
+extraVolumeMounts: {}
+
+# -- Pod liveness probe
+livenessProbe: {}
+
+# -- Pod readiness probe
 readinessProbe:
-  httpGet:
-    path: /web/index.html
+  tcpSocket:
     port: plex
 
-# see the explanation for the parameters: https://github.com/plexinc/pms-docker#parameters
-plex:
-  hostPort:
-    enabled: false
-    port: 32400
-  # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  # timezone: UTC
-  # claim:
-  # uid: 911
-  # gid: 911
-  # changeConfigDirOwnership: true
-  # advertiseIp: http://10.1.1.23:32400
-  # allowedNetworks:
-  #   - 192.168.1.0/24
-  #   - 172.16.0.0/16
-  # otherEnv:
-  #   - MY_VAR: my_value
+# -- Init containers
+initContainers: []
+  # - name: init
+  #   image: busybox:stable-musl
+  #   command:
+  #     - sh
+  #     - -c
+  #     - echo "initializing..."
+
+# -- Sidecar containers
+sidecarContainers: []
+  # - name: sidecar
+  #   image: busybox:stable-musl
+  #   command:
+  #     - tail
+  #     - -f
+  #     - /dev/null

@@ -1,0 +1,124 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "plex.fullname" . }}
+  labels:
+    {{- include "plex.labels" . | nindent 4 }}
+spec:
+  {{- with .Values.strategy }}
+  strategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "plex.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "plex.selectorLabels" . | nindent 8 }}
+    spec:
+      hostNetwork: {{ .Values.hostNetwork }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "plex.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      dnsPolicy: {{ .Values.dnsPolicy }}
+      {{- with .Values.dnsConfig }}
+      dnsConfig:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.initContainers }}
+      initContainers:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - mountPath: /config
+              name: config
+            - mountPath: /data
+              name: data
+            {{- with .Values.extraVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "plex.fullname" . }}
+            - secretRef:
+                name: {{ include "plex.fullname" . }}
+          ports:
+            - name: plex
+              containerPort: 32400
+              protocol: TCP
+              {{- if .Values.hostPort.enabled }}
+              hostPort: {{ .Values.hostPort.port }}
+              {{- end }}
+          {{- with .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.sidecarContainers }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: config
+        {{- if .Values.persistence.config.enabled }}
+          {{- if .Values.persistence.config.isPvc }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.config.existingClaim | default (include "plex.configPvcName" .) }}
+          {{- else }}
+          {{- with .Values.persistence.config.customVolume }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- end }}
+        {{- else }}
+          emptyDir: {}
+        {{- end }}
+        - name: data
+        {{- if .Values.persistence.data.enabled }}
+          {{- if .Values.persistence.data.isPvc }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.data.existingClaim | default (include "plex.dataPvcName" .) }}
+          {{- else }}
+          {{- with .Values.persistence.data.customVolume }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- end }}
+        {{- else }}
+          emptyDir: {}
+        {{- end }}
+        {{- with .Values.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}

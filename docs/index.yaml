@@ -1354,6 +1354,38 @@ entries:
   plex:
   - annotations:
       artifacthub.io/changes: |
+        - Complete refactor of chart
+      artifacthub.io/images: |
+        - name: linuxserver/plex
+          image: docker.io/linuxserver/plex:1.25.2
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 1.25.2
+    created: "2021-12-31T04:28:19.809429+01:00"
+    description: Plex Media Server Helm chart
+    digest: 222be3552efe343743c0640de6b41671239868dc9e1ae15cd418fb2b5d690166
+    home: https://www.plex.tv
+    icon: https://utkuozdemir.org/helm-charts/plex.png
+    keywords:
+    - plex
+    - media-server
+    - plex-media-server
+    - streaming
+    - tv
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: plex
+    sources:
+    - https://github.com/linuxserver/docker-plex
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/plex-2.0.0.tgz
+    version: 2.0.0
+  - annotations:
+      artifacthub.io/changes: |
         - Update ingress to support newer Kubernetes APIs
         - Bump appVersion to 1.24.5.5173-8dcc73a59
       artifacthub.io/images: |
@@ -2158,4 +2190,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-31T03:38:41.31589+01:00"
+generated: "2021-12-31T04:28:19.808267+01:00"

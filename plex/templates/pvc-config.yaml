@@ -1,0 +1,23 @@
+{{- if and (.Values.persistence.config.enabled) (not .Values.persistence.config.existingClaim) (.Values.persistence.config.isPvc) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "plex.configPvcName" . }}
+  labels:
+    {{- include "plex.labels" . | nindent 4 }}
+  {{- with .Values.persistence.config.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  accessModes:
+    {{- range .Values.persistence.config.accessModes }}
+    - {{ . | quote }}
+    {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.config.size | quote }}
+  {{- if .Values.persistence.config.storageClass }}
+  storageClassName: {{ .Values.persistence.config.storageClass }}
+  {{- end -}}
+{{- end -}}
