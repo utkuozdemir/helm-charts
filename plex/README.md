@@ -1,6 +1,6 @@
 # plex
 
-![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.25.2](https://img.shields.io/badge/AppVersion-1.25.2-informational?style=flat-square)
+![Version: 2.1.1](https://img.shields.io/badge/Version-2.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.25.2](https://img.shields.io/badge/AppVersion-1.25.2-informational?style=flat-square)
 
 Plex Media Server Helm chart
 
@@ -64,7 +64,7 @@ $ helm install my-release utkuozdemir/plex
 | replicaCount | int | `1` | Number of replicas to run. Chart is not designed to scale horizontally, use at your own risk |
 | resources | object | `{}` | The resource requests and limits of the container |
 | secretEnv | object | `{}` | Sensitive environment variables to be set in the pods. See the [application docs](https://docs.linuxserver.io/images/docker-plex) |
-| securityContext | object | `{"capabilities":{"add":["NET_ADMIN"]}}` | Security context for the container. NET_ADMIN capability is required for the VPN to work properly. |
+| securityContext | object | `{}` | Security context for the container |
 | service.port | int | `32400` | Port for the service to use |
 | service.type | string | `"ClusterIP"` | Type of the service |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |

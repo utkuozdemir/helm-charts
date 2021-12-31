@@ -2,7 +2,7 @@ apiVersion: v2
 name: plex
 description: Plex Media Server Helm chart
 type: application
-version: 2.1.0
+version: 2.1.1
 appVersion: 1.25.2
 home: https://www.plex.tv
 keywords:
@@ -22,7 +22,7 @@ maintainers:
 annotations:
   artifacthub.io/license: MIT
   artifacthub.io/changes: |
-    - Add additionalPorts and additionalServicePorts options
+    - Disable NET_ADMIN capability
   artifacthub.io/images: |
     - name: linuxserver/plex
       image: docker.io/linuxserver/plex:1.25.2

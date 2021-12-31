@@ -73,11 +73,11 @@ podAnnotations: {}
 # -- Security context for the pods
 podSecurityContext: {}
 
-# -- Security context for the container. NET_ADMIN capability is required for the VPN to work properly.
-securityContext:
-  capabilities:
-    add:
-      - NET_ADMIN
+# -- Security context for the container
+securityContext: {}
+  # capabilities:
+  #   add:
+  #     - NET_ADMIN
 
 # -- Deployment strategy
 strategy:
