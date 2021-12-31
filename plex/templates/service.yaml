@@ -11,5 +11,8 @@ spec:
       targetPort: plex
       protocol: TCP
       name: plex
+    {{- with .Values.additionalServicePorts }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   selector:
     {{- include "plex.selectorLabels" . | nindent 4 }}

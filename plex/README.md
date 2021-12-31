@@ -1,6 +1,6 @@
 # plex
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.25.2](https://img.shields.io/badge/AppVersion-1.25.2-informational?style=flat-square)
+![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.25.2](https://img.shields.io/badge/AppVersion-1.25.2-informational?style=flat-square)
 
 Plex Media Server Helm chart
 
@@ -17,6 +17,8 @@ $ helm install my-release utkuozdemir/plex
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| additionalPorts | list | `[]` | Additional port definitions for the pod |
+| additionalServicePorts | list | `[]` | Additional port definitions for the service |
 | affinity | object | `{}` | Affinity for the pod assignment |
 | dnsConfig | object | `{}` | DNS configuration for the pod |
 | dnsPolicy | string | `"ClusterFirst"` | DNS policy for the pod |
@@ -24,9 +26,9 @@ $ helm install my-release utkuozdemir/plex
 | extraVolumeMounts | object | `{}` | Arbitrary extra volume mounts for the pod |
 | extraVolumes | list | `[]` | Arbitrary extra volume definitions for the pod |
 | fullnameOverride | string | `""` | String to fully override fullname template with a string |
-| hostNetwork | bool | `false` |  |
-| hostPort.enabled | bool | `false` |  |
-| hostPort.port | int | `32400` |  |
+| hostNetwork | bool | `false` | Use host network |
+| hostPort.enabled | bool | `false` | Use host port for the application |
+| hostPort.port | int | `32400` | Host port to bind to |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
 | image.repository | string | `"docker.io/linuxserver/plex"` | Image repository |
 | image.tag | string | `""` | Image tag (if not specified, defaults to the chart's appVersion) |

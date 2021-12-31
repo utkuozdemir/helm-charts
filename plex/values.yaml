@@ -1,10 +1,48 @@
 # -- Number of replicas to run. Chart is not designed to scale horizontally, use at your own risk
 replicaCount: 1
 
+# -- Use host network
 hostNetwork: false
+
 hostPort:
+  # -- Use host port for the application
   enabled: false
+  # -- Host port to bind to
   port: 32400
+
+# -- Additional port definitions for the pod
+additionalPorts: []
+  # - name: udp-1900
+  #   containerPort: 1900
+  #   protocol: UDP
+  #   hostPort: 1900
+  # - name: udp-5353
+  #   containerPort: 5353
+  #   protocol: UDP
+  #   hostPort: 5353
+  # - name: tcp-32410
+  #   containerPort: 32410
+  #   protocol: TCP
+  #   hostPort: 32410
+  # - name: tcp-32412
+  #   containerPort: 32412
+  #   protocol: TCP
+  #   hostPort: 32412
+  # - name: tcp-32413
+  #   containerPort: 32413
+  #   protocol: TCP
+  #   hostPort: 32413
+  # - name: tcp-32414
+  #   containerPort: 32414
+  #   protocol: TCP
+  #   hostPort: 32414
+  # - name: tcp-32469
+  #   containerPort: 32469
+  #   protocol: TCP
+  #   hostPort: 32469
+
+# -- Additional port definitions for the service
+additionalServicePorts: []
 
 image:
   # -- Image repository

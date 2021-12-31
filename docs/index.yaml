@@ -1354,6 +1354,38 @@ entries:
   plex:
   - annotations:
       artifacthub.io/changes: |
+        - Add additionalPorts and additionalServicePorts options
+      artifacthub.io/images: |
+        - name: linuxserver/plex
+          image: docker.io/linuxserver/plex:1.25.2
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 1.25.2
+    created: "2021-12-31T04:47:43.760776+01:00"
+    description: Plex Media Server Helm chart
+    digest: 9ce7f53ec10cd989a21d971ea8dcbfb7c4e7ad59c57588cb1096e7b40151cf44
+    home: https://www.plex.tv
+    icon: https://utkuozdemir.org/helm-charts/plex.png
+    keywords:
+    - plex
+    - media-server
+    - plex-media-server
+    - streaming
+    - tv
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: plex
+    sources:
+    - https://github.com/linuxserver/docker-plex
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/plex-2.1.0.tgz
+    version: 2.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - Complete refactor of chart
       artifacthub.io/images: |
         - name: linuxserver/plex
@@ -2190,4 +2222,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-31T04:28:19.808267+01:00"
+generated: "2021-12-31T04:47:43.75952+01:00"
