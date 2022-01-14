@@ -4,5 +4,8 @@ metadata:
   name: {{ include "transmission-openvpn.fullname" . }}
   labels:
     {{- include "transmission-openvpn.labels" . | nindent 4 }}
+    {{- with .Values.additionalLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 data:
   {{- toYaml .Values.env | nindent 2 }}
