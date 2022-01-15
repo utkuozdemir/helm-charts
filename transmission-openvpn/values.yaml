@@ -10,8 +10,8 @@ hostPort:
   # -- Host port to bind to
   port: 9091
 
-# -- Additional labels for this chart's resources
-additionalLabels: {}
+# -- Common labels for all resources of the chart
+commonLabels: {}
 
 # -- Additional port definitions for the pod
 additionalPorts: []

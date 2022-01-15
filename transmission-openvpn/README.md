@@ -1,6 +1,6 @@
 # transmission-openvpn
 
-![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0](https://img.shields.io/badge/AppVersion-4.0-informational?style=flat-square)
+![Version: 2.3.0](https://img.shields.io/badge/Version-2.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0](https://img.shields.io/badge/AppVersion-4.0-informational?style=flat-square)
 
 Transmission + OpenVPN chart based on haugene/transmission-openvpn image
 
@@ -20,6 +20,7 @@ $ helm install my-release utkuozdemir/transmission-openvpn
 | additionalPorts | list | `[]` | Additional port definitions for the pod |
 | additionalServicePorts | list | `[]` | Additional port definitions for the service |
 | affinity | object | `{}` | Affinity for the pod assignment |
+| commonLabels | object | `{}` | Common labels for all resources of the chart |
 | dnsConfig | object | `{}` | DNS configuration for the pod |
 | dnsPolicy | string | `"ClusterFirst"` | DNS policy for the pod |
 | env | object | `{}` | Non-sensitive environment variables to be set in the pods. See the [application docs](https://haugene.github.io/docker-transmission-openvpn/config-options/) |
