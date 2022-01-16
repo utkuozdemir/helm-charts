@@ -1,6 +1,6 @@
 # transmission-openvpn
 
-![Version: 2.3.0](https://img.shields.io/badge/Version-2.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0](https://img.shields.io/badge/AppVersion-4.0-informational?style=flat-square)
+![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0](https://img.shields.io/badge/AppVersion-4.0-informational?style=flat-square)
 
 Transmission + OpenVPN chart based on haugene/transmission-openvpn image
 
@@ -59,6 +59,11 @@ $ helm install my-release utkuozdemir/transmission-openvpn
 | resources | object | `{}` | The resource requests and limits of the container |
 | secretEnv | object | `{}` | Sensitive environment variables to be set in the pods. See the [application docs](https://haugene.github.io/docker-transmission-openvpn/config-options/) |
 | securityContext | object | `{"capabilities":{"add":["NET_ADMIN"]}}` | Security context for the container. NET_ADMIN capability is required for the VPN to work properly. |
+| service.annotations | object | `{}` | Service annotations |
+| service.clusterIP | string | `""` | clusterIP for the service |
+| service.externalName | string | `""` | externalName for the service |
+| service.loadBalancerClass | string | `""` | loadBalancerClass for the service |
+| service.loadBalancerIP | string | `""` | loadBalancerIP for the service |
 | service.port | int | `80` | Port for the service to use |
 | service.type | string | `"ClusterIP"` | Type of the service |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |

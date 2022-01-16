@@ -63,6 +63,16 @@ service:
   type: ClusterIP
   # -- Port for the service to use
   port: 80
+  # -- Service annotations
+  annotations: {}
+  # -- clusterIP for the service
+  clusterIP: ""
+  # -- loadBalancerIP for the service
+  loadBalancerIP: ""
+  # -- externalName for the service
+  externalName: ""
+  # -- loadBalancerClass for the service
+  loadBalancerClass: ""
 
 ingress:
   # -- Expose the app using an ingress
