@@ -112,6 +112,8 @@ persistence:
   existingClaim: ""
   # -- Storage class for the data volume
   storageClass: ""
+  # -- Volume name override for the pvc
+  volumeName: ""
   # -- Annotations for the claim
   annotations: {}
     # helm.sh/resource-policy: keep
