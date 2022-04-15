@@ -49,6 +49,9 @@ spec:
             - mountPath: /rootdir
               name: rootdir
               readOnly: {{ .Values.rootDir.readOnly }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "filebrowser.fullname" . }}
           ports:
             - name: http
               containerPort: {{ .Values.config.port }}

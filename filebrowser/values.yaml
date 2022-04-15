@@ -46,6 +46,12 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+# -- Non-sensitive environment variables to be set in the pods.
+env: {}
+  # --  map the container's internal user to a user on the host machine
+  # PUID: "1000"
+  # PGID: "1000"
+
 service:
   # -- Kubernetes Service type
   type: ClusterIP
