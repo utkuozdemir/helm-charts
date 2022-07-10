@@ -1,4 +1,6 @@
-# jellyfin
+# jellyfin - ⚠️ DEPRECATED
+
+⚠️ **This chart is not maintained anymore. Please switch to using [k8s-at-home/jellyfin](https://github.com/k8s-at-home/charts/tree/master/charts/stable/jellyfin) instead.**
 
 ![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.7.7](https://img.shields.io/badge/AppVersion-10.7.7-informational?style=flat-square)
 
