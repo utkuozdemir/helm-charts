@@ -1,4 +1,6 @@
-# plex
+# plex - ⚠️ DEPRECATED
+
+⚠️ **This chart is not maintained anymore. Please switch to using [k8s-at-home/plex](https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex) instead.**
 
 ![Version: 2.1.1](https://img.shields.io/badge/Version-2.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.25.2](https://img.shields.io/badge/AppVersion-1.25.2-informational?style=flat-square)
 
