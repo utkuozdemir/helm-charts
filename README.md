@@ -7,6 +7,8 @@ to host the charts I developed via GitHub pages.
 Use [this](https://github.com/helm/chart-releaser-action) instead.  
 (I have to migrate this one some time)
 
+:warning: **Deprecation Notice:** I stopped maintaining most of the charts in this repo, since better versions of them became available over time. Please check the README for each chart before starting to use them.
+
 ## How to use the repository
 
 Simply run:
