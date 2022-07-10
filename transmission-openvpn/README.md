@@ -1,4 +1,6 @@
-# transmission-openvpn
+# transmission-openvpn - ⚠️ DEPRECATED
+
+⚠️ **This chart is not maintained anymore. Please switch to using [k8s-at-home/transmission](https://github.com/k8s-at-home/charts/tree/master/charts/stable/transmission) instead. It can be configured to send all traffic over VPN.**
 
 ![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0](https://img.shields.io/badge/AppVersion-4.0-informational?style=flat-square)
 
