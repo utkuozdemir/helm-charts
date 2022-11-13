@@ -93,6 +93,37 @@ entries:
   filebrowser:
   - annotations:
       artifacthub.io/changes: |
+        - Fix settings.json path once more
+      artifacthub.io/images: |
+        - name: filebrowser/filebrowser
+          image: docker.io/filebrowser/filebrowser:v2.23.0
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: v2.23.0
+    created: "2022-11-13T03:11:18.416853+01:00"
+    description: A Helm chart for the File Browser project
+    digest: 8857738a28a2adc63f93dde3635b5661a13ad0db504acb19c37bf0596fe1ee48
+    home: https://filebrowser.org
+    icon: https://utkuozdemir.org/helm-charts/filebrowser.png
+    keywords:
+    - filebrowser
+    - file-browser
+    - file-server
+    - http-file-server
+    maintainers:
+    - email: uoz@protonmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: filebrowser
+    sources:
+    - https://github.com/filebrowser/filebrowser
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/filebrowser-1.0.0.tgz
+    version: 1.0.0
+  - annotations:
+      artifacthub.io/changes: |
         - Fix settings.json path
       artifacthub.io/images: |
         - name: filebrowser/filebrowser
@@ -2415,4 +2446,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2022-03-28T19:35:14.022609+02:00"
+generated: "2022-11-13T03:11:18.416339+01:00"

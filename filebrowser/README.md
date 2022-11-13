@@ -1,10 +1,6 @@
-# filebrowser - ⚠️ DEPRECATED
+# filebrowser
 
-⚠️ **This chart is not maintained anymore. Please switch to using [k8s-at-home/filebrowser](https://github.com/k8s-at-home/charts/tree/master/charts/stable/filebrowser) instead.**
-
----
-
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.18.0](https://img.shields.io/badge/AppVersion-v2.18.0-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.23.0](https://img.shields.io/badge/AppVersion-v2.23.0-informational?style=flat-square)
 
 A Helm chart for the File Browser project
 

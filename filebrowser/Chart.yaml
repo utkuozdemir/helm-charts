@@ -2,8 +2,8 @@ apiVersion: v2
 name: filebrowser
 description: A Helm chart for the File Browser project
 type: application
-version: 0.4.1
-appVersion: v2.20.0
+version: 1.0.0
+appVersion: v2.23.0
 home: https://filebrowser.org
 keywords:
   - filebrowser
@@ -21,7 +21,7 @@ maintainers:
 annotations:
   artifacthub.io/license: MIT
   artifacthub.io/changes: |
-    - Fix settings.json path
+    - Fix settings.json path once more
   artifacthub.io/images: |
     - name: filebrowser/filebrowser
-      image: docker.io/filebrowser/filebrowser:v2.20.0
+      image: docker.io/filebrowser/filebrowser:v2.23.0
