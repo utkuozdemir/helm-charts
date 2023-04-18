@@ -94,6 +94,10 @@ spec:
           {{- else if eq .Values.rootDir.type "hostPath" }}
           hostPath:
             path: {{ .Values.rootDir.hostPath.path }}
+          {{- else if eq .Values.rootDir.type "nfs" }}
+          nfs:
+            server: {{ .Values.rootDir.nfs.server }}
+            path: {{ .Values.rootDir.nfs.path }}
           {{- else }}
           emptyDir: {}
           {{- end }}
