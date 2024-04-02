@@ -13,6 +13,9 @@ spec:
     - port: http
       path: {{ .Values.telemetryPath }}
       scheme: {{ .Values.serviceMonitor.scheme }}
+      {{- with .Values.serviceMonitor.bearerTokenFile }}
+      bearerTokenFile: {{ . }}
+      {{- end }}
       {{- with .Values.serviceMonitor.interval }}
       interval: {{ . }}
       {{- end }}
