@@ -39,6 +39,8 @@ securityContext:
   # runAsUser: 1000
 
 service:
+  # -- Enables the Service
+  enabled: true
   # -- Type of the service
   type: ClusterIP
   # -- Port for the service to use
@@ -159,3 +161,5 @@ serviceMonitor:
   relabelings: []
   metricRelabelings: []
   scrapeTimeout: 10s
+
+hostNetwork: false
