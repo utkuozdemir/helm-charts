@@ -117,7 +117,7 @@ It is recommended to start from a fresh install.
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| Utku Özdemir | uoz@protonmail.com | https://utkuozdemir.org |
+| Utku Özdemir | utkuozdemir@gmail.com | https://utkuozdemir.org |
 
 ## Source Code
 

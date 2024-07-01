@@ -18,7 +18,7 @@ sources:
 icon: https://utkuozdemir.org/helm-charts/prerender.png
 maintainers:
   - name: Utku Özdemir
-    email: uoz@protonmail.com
+    email: utkuozdemir@gmail.com
     url: https://utkuozdemir.org
 annotations:
   artifacthub.io/license: MIT
