@@ -97,6 +97,9 @@ resources: {}
 # -- The node selector for the deployment
 nodeSelector: {}
 
+# -- The runtime class to be used for the pod. See the [application docs](https://docs.linuxserver.io/images/docker-jellyfin/#nvidia).
+runtimeClass: ""
+
 # -- Tolerations for the pod assignment
 tolerations: []
 
