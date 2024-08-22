@@ -87,6 +87,9 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.runtimeClass }}
+      runtimeClassName: {{ .Values.runtimeClass }}
+      {{- end -}}
       {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}

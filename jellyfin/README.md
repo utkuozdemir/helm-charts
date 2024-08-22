@@ -66,6 +66,7 @@ $ helm install my-release utkuozdemir/jellyfin
 | readinessProbe | object | `{"httpGet":{"port":"http"}}` | Pod readiness probe |
 | replicaCount | int | `1` | Number of replicas to run. Chart is not designed to scale horizontally, use at your own risk |
 | resources | object | `{}` | The resource requests and limits of the container |
+| runtimeClass | string | The runtime class to be used for the pod. This is most commonly used to enable the nvidia runtime container for nvenc hardware acceleration in jellyfin. See the [application docs](https://docs.linuxserver.io/images/docker-jellyfin/#nvidia). |
 | secretEnv | object | `{}` | Sensitive environment variables to be set in the pods. See the [application docs](https://docs.linuxserver.io/images/docker-jellyfin) |
 | securityContext | object | `{"capabilities":{"add":["NET_ADMIN"]}}` | Security context for the container. NET_ADMIN capability is required for the VPN to work properly. |
 | service.port | int | `8096` | Port for the service to use |
