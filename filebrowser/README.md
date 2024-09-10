@@ -87,12 +87,14 @@ The following tables lists the configurable parameters of the chart and their de
 | replicaCount | int | `1` | Number of replicas to run. Chart is not designed to scale horizontally, use at your own risk |
 | resources | object | `{}` | The resources to allocate for the container |
 | rootDir.hostPath.path | string | `"/path/on/host"` |  |
+| rootDir.nfs.server | string | `""` |  |
+| rootDir.nfs.path | string | `""` |  |
 | rootDir.pvc.accessModes | list | `["ReadWriteOnce"]` | Access modes for the root directory PVC |
 | rootDir.pvc.existingClaim | string | `""` | Existing claim for the root directory |
 | rootDir.pvc.size | string | `"2Gi"` | Size for the root directory PVC |
 | rootDir.pvc.storageClassName | string | `""` | Storage class name for the root directory PVC |
 | rootDir.readOnly | bool | `false` | Mount the root directory in read-only mode |
-| rootDir.type | string | `"pvc"` | type of rootDir mount. Valid values are [pvc, hostPath, emptyDir] |
+| rootDir.type | string | `"pvc"` | type of rootDir mount. Valid values are [pvc, hostPath, nfs, emptyDir] |
 | securityContext | object | `{}` | The security context for the application container |
 | service.port | int | `80` | Kubernetes Service port |
 | service.type | string | `"ClusterIP"` | Kubernetes Service type |

@@ -97,12 +97,15 @@ tolerations: []
 affinity: {}
 
 rootDir:
-  # -- type of rootDir mount. Valid values are [pvc, hostPath, emptyDir]
+  # -- type of rootDir mount. Valid values are [pvc, hostPath, nfs, emptyDir]
   type: pvc
   # -- Mount the root directory in read-only mode
   readOnly: false
   hostPath:
     path: /path/on/host
+  nfs:
+    server: ""
+    path: ""
   pvc:
     # -- Existing claim for the root directory
     existingClaim: ""
