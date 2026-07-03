@@ -9,6 +9,8 @@ Use [this](https://github.com/helm/chart-releaser-action) instead.
 
 :warning: **Deprecation Notice:** I stopped maintaining most of the charts in this repo, since better versions of them became available over time. Please check the README for each chart before starting to use them.
 
+:warning: The **nvidia-gpu-exporter** chart moved to [the application repository](https://github.com/utkuozdemir/nvidia_gpu_exporter/tree/main/charts/nvidia-gpu-exporter) and is maintained there as chart 2.x. This repo only serves its final, deprecated 1.x version.
+
 ## How to use the repository
 
 Simply run:

@@ -1,8 +1,9 @@
 apiVersion: v2
 name: nvidia-gpu-exporter
-description: Nvidia GPU exporter for prometheus using nvidia-smi binary to gather metrics.
+description: DEPRECATED - the chart moved to the application repository, see https://github.com/utkuozdemir/nvidia_gpu_exporter
 type: application
-version: 1.0.0
+deprecated: true
+version: 1.0.1
 appVersion: 1.2.1
 home: https://github.com/utkuozdemir/nvidia_gpu_exporter
 keywords:
@@ -22,9 +23,7 @@ maintainers:
 annotations:
   artifacthub.io/license: MIT
   artifacthub.io/changes: |
-    - Add hostNetwork to the DS and make svc opt-out
-    - Bump appVersion to 1.2.1
-    - Release 1.0.0 of the chart
+    - Deprecate the chart, it moved to the application repository
   artifacthub.io/images: |
     - name: utkuozdemir/nvidia_gpu_exporter
       image: docker.io/utkuozdemir/nvidia_gpu_exporter:1.2.1

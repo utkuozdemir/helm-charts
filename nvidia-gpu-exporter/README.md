@@ -1,17 +1,34 @@
 # nvidia-gpu-exporter
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.1](https://img.shields.io/badge/AppVersion-1.2.1-informational?style=flat-square)
+> **:exclamation: This Helm Chart is deprecated!**
 
-Nvidia GPU exporter for prometheus using nvidia-smi binary to gather metrics.
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.1](https://img.shields.io/badge/AppVersion-1.2.1-informational?style=flat-square)
+
+DEPRECATED - the chart moved to the application repository, see https://github.com/utkuozdemir/nvidia_gpu_exporter
 
 **Homepage:** <https://github.com/utkuozdemir/nvidia_gpu_exporter>
 
-## TL;DR
+## This chart has moved
+
+The chart now lives in the application repository and is maintained there as chart version 2.x:
+<https://github.com/utkuozdemir/nvidia_gpu_exporter/tree/main/charts/nvidia-gpu-exporter>
+
+Install it from its new home:
 
 ```console
-$ helm repo add utkuozdemir https://utkuozdemir.org/helm-charts
-$ helm install my-release utkuozdemir/nvidia-gpu-exporter
+$ helm install nvidia-gpu-exporter oci://ghcr.io/utkuozdemir/charts/nvidia-gpu-exporter
 ```
+
+or via the classic repository:
+
+```console
+$ helm repo add nvidia-gpu-exporter https://utkuozdemir.github.io/nvidia_gpu_exporter
+$ helm install nvidia-gpu-exporter nvidia-gpu-exporter/nvidia-gpu-exporter
+```
+
+The new chart accesses GPUs through the NVIDIA container runtime instead of hand-mounted host paths, so values are not compatible with this chart. See the "Upgrading from chart 1.x" section of the new chart's README before migrating.
+
+This version of the chart receives no further updates.
 
 ## Values
 
