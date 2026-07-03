@@ -3,7 +3,7 @@ name: nvidia-gpu-exporter
 description: DEPRECATED - the chart moved to the application repository, see https://github.com/utkuozdemir/nvidia_gpu_exporter
 type: application
 deprecated: true
-version: 1.0.1
+version: 1.0.2
 appVersion: 1.2.1
 home: https://github.com/utkuozdemir/nvidia_gpu_exporter
 keywords:
@@ -23,7 +23,7 @@ maintainers:
 annotations:
   artifacthub.io/license: MIT
   artifacthub.io/changes: |
-    - Deprecate the chart, it moved to the application repository
+    - Reduce the README to a pointer to the new chart location
   artifacthub.io/images: |
     - name: utkuozdemir/nvidia_gpu_exporter
       image: docker.io/utkuozdemir/nvidia_gpu_exporter:1.2.1

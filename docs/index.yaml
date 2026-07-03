@@ -1248,6 +1248,39 @@ entries:
   nvidia-gpu-exporter:
   - annotations:
       artifacthub.io/changes: |
+        - Reduce the README to a pointer to the new chart location
+      artifacthub.io/images: |
+        - name: utkuozdemir/nvidia_gpu_exporter
+          image: docker.io/utkuozdemir/nvidia_gpu_exporter:1.2.1
+      artifacthub.io/license: MIT
+    apiVersion: v2
+    appVersion: 1.2.1
+    created: "2026-07-04T00:14:33.274242+03:00"
+    deprecated: true
+    description: DEPRECATED - the chart moved to the application repository, see https://github.com/utkuozdemir/nvidia_gpu_exporter
+    digest: ca861c3ad64a9aa14972fe5e9b0fd00bf22c57cd88fe3945c57fa166383fa07c
+    home: https://github.com/utkuozdemir/nvidia_gpu_exporter
+    icon: https://utkuozdemir.org/helm-charts/nvidia.png
+    keywords:
+    - nvidia
+    - gpu
+    - exporter
+    - nvidia-smi
+    - nvidia-gpu-exporter
+    - prometheus
+    maintainers:
+    - email: utkuozdemir@gmail.com
+      name: Utku Özdemir
+      url: https://utkuozdemir.org
+    name: nvidia-gpu-exporter
+    sources:
+    - https://github.com/utkuozdemir/helm-charts
+    type: application
+    urls:
+    - https://utkuozdemir.org/helm-charts/nvidia-gpu-exporter-1.0.2.tgz
+    version: 1.0.2
+  - annotations:
+      artifacthub.io/changes: |
         - Deprecate the chart, it moved to the application repository
       artifacthub.io/images: |
         - name: utkuozdemir/nvidia_gpu_exporter
@@ -2514,4 +2547,4 @@ entries:
     urls:
     - https://utkuozdemir.org/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2026-07-04T00:06:38.380756+03:00"
+generated: "2026-07-04T00:14:33.273556+03:00"
